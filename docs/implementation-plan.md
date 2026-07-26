@@ -45,17 +45,17 @@ DNS managed at Hostinger hPanel
 
 ---
 
-## Phase 1 — Content Harvest *(Claude Code autonomous)*
+## Phase 1 — Content Harvest *(Claude Code autonomous)* — ✅ COMPLETE
 - [x] 1.1 Crawl all 13 project pages on leisurenotes.com
 - [x] 1.2 Download all page text, titles, descriptions, metadata (captured in docs/content-inventory.md)
-- [ ] 1.3 Download all project images and gallery photos — **blocked, see below**
-- [ ] 1.4 Download all downloadable files (CAD ZIPs, PDFs) — **blocked, see below**
+- [x] 1.3 Download all project images and gallery photos (via Hostinger hPanel File Manager export of wp-content/uploads 2021+2022)
+- [x] 1.4 Download all downloadable files (CAD ZIPs, PDFs)
 - [x] 1.5 Capture Foosball + Vertical Tool Cart user comments (preserve as static text) — note: found on these two pages, not Pinball as originally assumed
-- [x] 1.6 Document complete file inventory (URLs) — see docs/content-inventory.md; exact sizes pending download
-- [ ] 1.7 Flag any files exceeding 90MB (GitHub Pages safety threshold) — pending download
-- [ ] 1.8 Organize all content into ~/projects/web/leisurenotes-com/ — pending download
+- [x] 1.6 Document complete file inventory with sizes — see docs/content-inventory.md
+- [x] 1.7 Flag any files exceeding 90MB — Pinball (111MB) and Mantel Clock (46MB) PDFs compressed to <1MB each; no file over 100MB remains
+- [x] 1.8 Organize all content into ~/projects/web/leisurenotes-com/projects/<project-name>/
 
-**Blocker + resolution:** Claude's sandbox network blocks leisurenotes.com directly, and Safari is view-only without the Claude-in-Chrome extension — so files can't be downloaded programmatically or via browser automation this session. Customer decided: use Hostinger hPanel File Manager to zip and download the entire `wp-content/uploads` folder in one action, rather than ~150+ individual file downloads. Resume point for next session is receiving that zip and organizing it per docs/content-inventory.md.
+**Resolution note:** Claude's sandbox network blocks leisurenotes.com directly, and Safari is view-only without the Claude-in-Chrome extension — so files couldn't be downloaded programmatically or via browser automation. Customer used Hostinger hPanel File Manager to zip and download `wp-content/uploads/2021` + `2022` in one action instead of ~150+ individual downloads. Claude then organized, deduplicated to smaller image sizes, compressed 2 oversized PDFs, and flagged one orphan file (kept aside, not deleted). Final `projects/` folder: 622MB, no file over 100MB.
 
 ---
 

@@ -5,7 +5,14 @@
 
 ## Status
 Text/structure crawl of all 13 project pages + About + Projects listing: **complete**.
-Actual file downloads (images, PDFs, CAD ZIPs): **not started** — blocked this session (see Blockers below). Plan is Hostinger hPanel File Manager bulk export of `wp-content/uploads`.
+Actual file downloads (images, PDFs, CAD ZIPs): **complete**. Customer exported `wp-content/uploads/2021` + `2022` via Hostinger hPanel File Manager; Claude extracted, organized into `projects/<project-name>/` per project, resolved the 4 previously-unresolved attachment links, compressed 2 oversized PDFs, and dropped full-resolution image originals (kept WordPress's pre-generated smaller sizes). Final repo `projects/` folder: **622MB**, no file over 100MB.
+
+### Actions taken to fit GitHub limits
+- **Mechanical Pinball instructions PDF**: 111MB → 574KB (Ghostscript `/ebook` preset, verified same 13 pages + image quality after compression)
+- **Mantel Clock instructions PDF**: 46MB → 740KB (same method)
+- **Full-res image originals removed**: kept WordPress's smaller pre-generated sizes (up to 2048px) for all projects — site doesn't need originals above that
+- **Orphan file found**: `OTA-8in-f6-newt-20211231-01.3dm.zip` (71MB, telescope tube CAD) — not linked from any live page, confirmed via site search. Kept aside in `projects/_unsorted/` per customer decision, not deleted.
+- **Remaining large files** (all under 100MB, kept as-is): Crayford Focuser SketchUp ZIP (74MB), Fidget Spinner ZIP (74MB), Focuser STEP ZIP (36MB), Pinball CAD ZIP (33MB), Foosball CAD ZIP (27MB) — these are legitimate CAD deliverables, not candidates for compression
 
 ---
 
@@ -79,17 +86,12 @@ Image counts are heaviest on **Foosball Table** (~30 images) and **Vertical Tool
 
 ---
 
-## Blockers This Session
+## Blocker (resolved this session)
 - Sandbox shell network is allowlisted and blocks leisurenotes.com directly — cannot `curl`/download files programmatically.
 - Safari is available to Claude in view-only mode (no clicks) without the Claude-in-Chrome extension connected — cannot drive downloads through the browser either.
-- **Resolution (customer decision):** use Hostinger hPanel File Manager to zip and download the entire `wp-content/uploads` folder in one action next session (or before), rather than fetching ~150+ individual files/images one at a time.
+- **Resolution:** customer used Hostinger hPanel File Manager to zip and download `wp-content/uploads/2021` + `2022` (only years containing our 13 projects) in one action, then handed the zip to Claude to extract and organize.
 
 ---
 
 ## Next Session — Resume Point
-1. Customer downloads `wp-content/uploads` zip via Hostinger hPanel File Manager
-2. Provide the zip to Claude (drop in project folder or workspace)
-3. Claude extracts, matches files to the 13 projects per this inventory, organizes into `~/projects/web/leisurenotes-com/projects/<project-name>/`
-4. Verify all files present, flag any >90MB
-5. Resolve the 4 unresolved attachment files from the extracted uploads folder
-6. Mark Phase 1 complete → proceed to Phase 2 (Design Interview)
+Phase 1 is complete. Ready to proceed to **Phase 2 — Design Interview** (audience, visual style, homepage priority, navigation, reference sites, etc.) per implementation-plan.md.
