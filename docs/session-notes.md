@@ -6,9 +6,9 @@
 
 ## ⚡ QUICK START — READ FIRST
 
-- **Resume point:** Phase 0A — MacBook Audit
-- **First action:** Claude Code checks all required apps, reports gaps
-- **Confirm with customer:** "Ready to resume at Phase 0A — MacBook Audit. Confirm?"
+- **Resume point:** Phase 1 — Content Harvest, file download step
+- **First action:** Customer downloads `wp-content/uploads` zip via Hostinger hPanel File Manager and provides it to Claude
+- **Confirm with customer:** "Ready to resume Phase 1 — do you have the uploads folder zip from Hostinger?"
 
 ---
 
@@ -17,8 +17,8 @@
 ### Current Phase
 | Phase | Status |
 |---|---|
-| Phase 0 — MacBook Readiness + Folder Setup | ⬅️ Next |
-| Phase 1 — Content Harvest | Pending |
+| Phase 0 — MacBook Readiness + Folder Setup | ✅ Complete |
+| Phase 1 — Content Harvest | 🔶 In progress — crawl/inventory done, file download pending |
 | Phase 2 — Design Interview + Build | Pending |
 | Phase 3 — Site Build | Pending |
 | Phase 4 — Deployment | Pending |
@@ -41,10 +41,13 @@
 - Folder structure: only create folders as needed — start minimal
 
 ### Open Items
-- [ ] Verify all CAD/ZIP file sizes <100MB before Phase 1
+- [ ] Customer to download `wp-content/uploads` zip via Hostinger hPanel File Manager (Phase 1 resume step)
+- [ ] Verify all CAD/ZIP file sizes <100MB once files are in hand
 - [ ] WordPress stays live until Phase 5 approved
-- [ ] Foosball + Pinball user comments — preserve as static text
+- [ ] Foosball Table (2) + Vertical Tool Cart (1) user comments — preserve as static text. NOTE: Mechanical Pinball currently has 0 comments, contradicting the original assumption — verify before Phase 3.
+- [ ] 4 attachment file links didn't auto-resolve during crawl (Mantel Clock PDF, Pinball PDF, Pinball CAD ZIP, Fidget Spinner CAD ZIP) — will be in the uploads export, no separate action needed
 - [ ] Build time estimates on project cards need customer verification
+- [x] Corrected contact email: **leisurenotes.hsc@gmail.com** (was incorrectly leisurenotes@gmail.com in prior docs)
 
 ---
 
@@ -69,6 +72,11 @@
 - Signed into GitHub Desktop as scbeme
 - Created scbeme/leisurenotes-com repo (public), enabled GitHub Pages (verified via 404 test)
 - Created local folder structure: docs/, images/, projects/
+- Phase 1: crawled all 13 project pages + About + Projects listing — full text/structure captured in content-inventory.md
+- Identified all downloadable file URLs (CAD ZIPs, PDFs) and image URLs per project; 4 attachment links didn't auto-resolve
+- Found actual user comments on Foosball Table (2) and Vertical Tool Cart (1) — not Pinball as previously assumed
+- Corrected contact email to leisurenotes.hsc@gmail.com
+- Identified blocker: sandbox network + view-only Safari prevent direct file downloads; decided to use Hostinger hPanel File Manager bulk export of wp-content/uploads instead
 
 ### Key Reference — Permanent Facts
 
@@ -93,7 +101,7 @@ DNS changes: Hostinger hPanel
 **Customer:**
 - Name: Harvey Carson
 - GitHub: scbeme
-- Contact: leisurenotes@gmail.com
+- Contact: leisurenotes.hsc@gmail.com
 - Hostinger: Single plan — domain only after migration
 - Domain expiry: 2027-01-29 (auto-renew ON)
 - MacBook: Dedicated — Claude Code configured

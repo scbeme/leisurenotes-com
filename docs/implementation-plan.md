@@ -34,26 +34,28 @@ DNS managed at Hostinger hPanel
 - [x] 0.13 GitHub Desktop → Publish repository → scbeme/leisurenotes-com
 - [x] 0.14 GitHub.com → repo Settings → Pages → enable (deploy from main branch)
 - [x] 0.15 Verify test page loads at scbeme.github.io/leisurenotes-com (404 confirms Pages live, no content yet)
-- [ ] 0.16 Confirm leisurenotes@gmail.com accessible
+- [x] 0.16 Confirm leisurenotes.hsc@gmail.com accessible (corrected from leisurenotes@gmail.com)
 
 ### 0D — Folder Structure + Document Upload *(Claude Code)*
 - [x] 0.17 Create ~/projects/web/leisurenotes-com/ folder structure
 - [x] 0.18 Create /docs folder in repository
 - [x] 0.19 Upload session-notes.md, implementation-plan.md, config-mgmt.md to /docs
-- [ ] 0.20 Commit "Initial project setup + docs" → push to GitHub
-- [ ] 0.21 Customer: GitHub Desktop → Fetch/Pull to confirm sync
+- [x] 0.20 Commit "Initial project setup + docs" → push to GitHub
+- [x] 0.21 Customer: GitHub Desktop → Fetch/Pull to confirm sync (same machine, already in sync)
 
 ---
 
 ## Phase 1 — Content Harvest *(Claude Code autonomous)*
-- [ ] 1.1 Crawl all 13 project pages on leisurenotes.com
-- [ ] 1.2 Download all page text, titles, descriptions, metadata
-- [ ] 1.3 Download all project images and gallery photos
-- [ ] 1.4 Download all downloadable files (CAD ZIPs, PDFs)
-- [ ] 1.5 Capture Foosball + Pinball user comments (preserve as static text)
-- [ ] 1.6 Document complete file inventory with sizes
-- [ ] 1.7 Flag any files exceeding 90MB (GitHub Pages safety threshold)
-- [ ] 1.8 Organize all content into ~/projects/web/leisurenotes-com/
+- [x] 1.1 Crawl all 13 project pages on leisurenotes.com
+- [x] 1.2 Download all page text, titles, descriptions, metadata (captured in docs/content-inventory.md)
+- [ ] 1.3 Download all project images and gallery photos — **blocked, see below**
+- [ ] 1.4 Download all downloadable files (CAD ZIPs, PDFs) — **blocked, see below**
+- [x] 1.5 Capture Foosball + Vertical Tool Cart user comments (preserve as static text) — note: found on these two pages, not Pinball as originally assumed
+- [x] 1.6 Document complete file inventory (URLs) — see docs/content-inventory.md; exact sizes pending download
+- [ ] 1.7 Flag any files exceeding 90MB (GitHub Pages safety threshold) — pending download
+- [ ] 1.8 Organize all content into ~/projects/web/leisurenotes-com/ — pending download
+
+**Blocker + resolution:** Claude's sandbox network blocks leisurenotes.com directly, and Safari is view-only without the Claude-in-Chrome extension — so files can't be downloaded programmatically or via browser automation this session. Customer decided: use Hostinger hPanel File Manager to zip and download the entire `wp-content/uploads` folder in one action, rather than ~150+ individual file downloads. Resume point for next session is receiving that zip and organizing it per docs/content-inventory.md.
 
 ---
 
