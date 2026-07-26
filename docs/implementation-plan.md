@@ -57,6 +57,8 @@ DNS managed at Hostinger hPanel
 
 **Resolution note:** Claude's sandbox network blocks leisurenotes.com directly, and Safari is view-only without the Claude-in-Chrome extension — so files couldn't be downloaded programmatically or via browser automation. Customer used Hostinger hPanel File Manager to zip and download `wp-content/uploads/2021` + `2022` in one action instead of ~150+ individual downloads. Claude then organized, deduplicated to smaller image sizes, compressed 2 oversized PDFs, and flagged one orphan file (kept aside, not deleted). Final `projects/` folder: 622MB, no file over 100MB.
 
+**Coverage verification:** All 13 pages re-fetched individually and checked — every embedded file/image URL resolves only to 2021 or 2022 upload folders. Confirmed the two exported year folders were complete; nothing in 2023–2026 is referenced by any live page.
+
 ---
 
 ## Phase 2 — Design Interview, Documentation & Build

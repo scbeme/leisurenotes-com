@@ -6,9 +6,9 @@
 
 ## ⚡ QUICK START — READ FIRST
 
-- **Resume point:** Phase 1 — Content Harvest, file download step
-- **First action:** Customer downloads `wp-content/uploads` zip via Hostinger hPanel File Manager and provides it to Claude
-- **Confirm with customer:** "Ready to resume Phase 1 — do you have the uploads folder zip from Hostinger?"
+- **Resume point:** Phase 2 — Design Interview
+- **First action:** Claude conducts structured design interview (audience, visual style, homepage priority, navigation, reference sites, dislikes, content hierarchy)
+- **Confirm with customer:** "Ready to resume at Phase 2 — Design Interview. Confirm?"
 
 ---
 
@@ -18,8 +18,8 @@
 | Phase | Status |
 |---|---|
 | Phase 0 — MacBook Readiness + Folder Setup | ✅ Complete |
-| Phase 1 — Content Harvest | 🔶 In progress — crawl/inventory done, file download pending |
-| Phase 2 — Design Interview + Build | Pending |
+| Phase 1 — Content Harvest | ✅ Complete + verified |
+| Phase 2 — Design Interview + Build | ⬅️ Next |
 | Phase 3 — Site Build | Pending |
 | Phase 4 — Deployment | Pending |
 | Phase 5 — Client Review | Pending |
@@ -77,6 +77,13 @@
 - Found actual user comments on Foosball Table (2) and Vertical Tool Cart (1) — not Pinball as previously assumed
 - Corrected contact email to leisurenotes.hsc@gmail.com
 - Identified blocker: sandbox network + view-only Safari prevent direct file downloads; decided to use Hostinger hPanel File Manager bulk export of wp-content/uploads instead
+- Customer exported wp-content/uploads/2021 + 2022 via Hostinger hPanel File Manager; Claude extracted, organized into projects/<name>/ folders, resolved the 4 previously-unresolved attachment links
+- Compressed 2 oversized PDFs (Pinball 111MB→574KB, Mantel Clock 46MB→740KB) using Ghostscript, verified page count + image quality unchanged
+- Removed full-resolution image originals, kept WordPress's smaller pre-generated sizes — repo shrunk from ~1.2GB to 622MB, no file over 100MB
+- Found + kept aside one orphan file (OTA-8in-f6-newt telescope tube CAD, 71MB) not linked from any live page
+- Committed and pushed all 541 harvested files to GitHub
+- Verified coverage: re-fetched all 13 pages individually, confirmed every file/image URL resolves only to 2021/2022 folders — nothing missed from 2023-2026
+- Phase 1 marked complete in implementation-plan.md and content-inventory.md, both pushed
 
 ### Key Reference — Permanent Facts
 
@@ -127,13 +134,20 @@ DNS changes: Hostinger hPanel
 ## Session Close Protocol
 
 ### Every session — Claude Code does automatically:
-- [ ] Update all relevant documents in /docs
-- [ ] Commit with descriptive message
-- [ ] Push to GitHub
-- [ ] Remind customer: GitHub Desktop → Fetch/Pull to sync MacBook
+- [x] Update all relevant documents in /docs
+- [x] Commit with descriptive message
+- [x] Push to GitHub
+- [x] Remind customer: GitHub Desktop → Fetch/Pull to sync MacBook (n/a — same machine, already in sync)
 
 ### Phase 0C/0D — completed this session:
 - [x] Create repo + enable GitHub Pages (Phase 0C)
 - [x] Claude Code creates folder structure + /docs
-- [ ] Claude Code uploads all documents → commit + push
-- [ ] Customer: GitHub Desktop → Fetch/Pull to confirm sync
+- [x] Claude Code uploads all documents → commit + push
+- [x] Customer: GitHub Desktop → Fetch/Pull to confirm sync
+
+### Session 02 Close — final state
+- All Phase 0 and Phase 1 checklist items complete (see implementation-plan.md)
+- 4 project docs current: session-notes.md, implementation-plan.md, config-mgmt.md, content-inventory.md
+- 541 project files (622MB) committed + pushed alongside docs
+- Repo: scbeme/leisurenotes-com, GitHub Pages enabled, local copy at ~/projects/web/leisurenotes-com/
+- Next session resumes at Phase 2 — Design Interview
