@@ -19,8 +19,14 @@ Ask first, always:
 - Anything outside the currently approved phase
 - Anything already covered by hard product guardrails (financial transactions, permanent deletion, credentials) — these can't be waived regardless of this file
 
+## Interface preference
+GUI is preferred but not exclusive. Goal: minimize the customer's total implementation actions — not avoid the terminal at all costs.
+- Default for routine/recurring actions (e.g. git commit + push each session): Claude Code/Cowork automates via GUI (GitHub Desktop) — zero action required from customer.
+- If a terminal command is genuinely more efficient than GUI automation (e.g. one-time setup, environment config), Claude provides an exact copy-paste script for the customer to run in their own Mac Terminal — which has full network access that a Cowork sandbox session does not.
+- For git-heavy phases where GUI automation proves slow/unreliable, consider running that phase via a Claude Code terminal session instead (direct, unrestricted git access on the customer's Mac) rather than continuing to drive GitHub Desktop's screen from Cowork.
+
 ## Standing facts
-- Customer: Harvey Carson (Scott) — GUI only, no terminal
+- Customer: Harvey Carson (Scott) — GUI preferred, terminal OK via copy-paste scripts when more efficient
 - GitHub: scbeme/leisurenotes-com — hosting via GitHub Pages, DNS/domain stays at Hostinger
 - Contact email: leisurenotes.hsc@gmail.com
 - License: CC BY-NC 4.0
