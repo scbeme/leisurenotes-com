@@ -1,14 +1,23 @@
 # Leisurenotes.com — Session Notes
 ## Project: leisurenotes.com Redesign & Migration
-## Last updated: 2026-07-26 | Session: 02
+## Last updated: 2026-07-27 | Session: 03
 
 ---
 
 ## ⚡ QUICK START — READ FIRST
 
-- **Resume point:** Phase 2 — Design Interview
-- **First action:** Claude conducts structured design interview (audience, visual style, homepage priority, navigation, reference sites, dislikes, content hierarchy)
-- **Confirm with customer:** "Ready to resume at Phase 2 — Design Interview. Confirm?"
+- **Resume point:** Phase 2A — Design Interview, Question 2 of 10
+- **First action:** Ask Question 2 exactly as below and wait for customer answer before proceeding to Question 3.
+
+> **Question 2 of 10 — Visual style (colors, mood, energy)**
+>
+> What overall feel should the site have? Think in terms of mood words — clean/minimal, warm/workshop, bold/energetic, technical/blueprint, etc. — and any color instincts you already have (or explicitly don't want).
+>
+> My recommendation: **light/clean base with warm wood-tone accents**, calm rather than flashy. Reasoning: this was the direction you confirmed in Session 1 and never walked back — a white/light-gray background lets your project photos (which are the real content) carry visual interest, with one warm accent color (mahogany/walnut-inspired) tying back to the woodworking core of the site without making it feel like a lumber yard. 2026 design trends also favor these calmer, lower-saturation palettes over loud color schemes, and it reads as credible/technical rather than hobbyist-cute — fitting your STEM/astronomy/precision projects too, not just woodworking.
+>
+> Does that match your instinct, or did you have a different mood in mind?
+
+- **Remaining interview questions (3–10):** typography, homepage priority, project page layout, navigation, mobile/desktop priority, reference sites, dislikes, content hierarchy. Ask one at a time, always with a recommendation, per customer preference.
 
 ---
 
@@ -19,7 +28,8 @@
 |---|---|
 | Phase 0 — MacBook Readiness + Folder Setup | ✅ Complete |
 | Phase 1 — Content Harvest | ✅ Complete + verified |
-| Phase 2 — Design Interview + Build | ⬅️ Next |
+| Phase 2A — Design Interview | ⬅️ In progress (Q1 of 10 done, Q2 asked, awaiting answer) |
+| Phase 2B–2E | Pending |
 | Phase 3 — Site Build | Pending |
 | Phase 4 — Deployment | Pending |
 | Phase 5 — Client Review | Pending |
@@ -27,98 +37,83 @@
 | Phase 7 — Ongoing Operations | Pending |
 
 ### Decisions Locked This Session
-- GitHub Pages = free hosting (replaces Hostinger hosting plan)
-- Domain registration stays at Hostinger (~$15/yr, auto-renew ON)
-- DNS managed at Hostinger hPanel
-- No contact form — leisurenotes@gmail.com mailto link only
-- Content harvested from live website — not local files
-- Design = fresh interview next session (all previous mockups discarded)
-- Customer GUI only — no terminal commands ever
-- Project documents stored in GitHub repo /docs folder
-- Git handles all document version control — fixed filenames, no date suffixes
-- MacBook = primary working copy; GitHub = automatic cloud backup
-- No separate GitHub folder needed — repo lives inside project folder
-- Folder structure: only create folders as needed — start minimal
+- Cowork project folder connected: `~/projects/web/leisurenotes-com` — this is now the live source of truth (the separate Claude.ai "Leisurenotes.com website roadmap" project is stale/superseded, Session 1 only)
+- `CLAUDE.md` created at repo root — autonomy policy (default to action on reversible/in-scope work, ask first on irreversible/out-of-scope/customer-sign-off items) + interface preference (GUI preferred, terminal via copy-paste script when more efficient, goal = minimize customer actions)
+- Git push credential: fine-grained PAT cached in macOS Keychain (`credential.helper osxkeychain`) on MacBook Air — verified working via `git push --dry-run`. Expires ~2027-07-27, renewal reminder needed.
+- Tool-switch milestone documented in implementation-plan.md: Cowork for 2A/2B (this phase), switch to a Claude Code terminal session on the MacBook Air starting Phase 2C (Homepage build) — direct git push now possible, no GUI automation needed for high commit-volume phases
+- `.gitignore` added (`.DS_Store`, `.permtest_*`)
+- Asset/image reduction plan locked (see website-design.md): drop redundant WordPress-generated image sizes (keep 2 per photo, not 4–8), convert all images to WebP. CAD ZIPs/PDFs stay in-repo for now.
+- GitHub Releases documented as fallback (not implemented) if repo size grows — release assets don't count toward the Pages 1GB limit, no adverse effect on site speed confirmed. Monitoring trigger: revisit at ~800MB repo size (currently projected ~400–460MB after asset pipeline work, vs. 622MB today)
+- Phase 2A Q1 (Audience) confirmed: hobbyist makers with some technical fluency — comfortable with tools/CAD, not professional engineers
+- Phase 2A Q2 (Visual style) proposed, not yet confirmed — see Quick Start above
 
 ### Open Items
-- [ ] Customer to download `wp-content/uploads` zip via Hostinger hPanel File Manager (Phase 1 resume step)
-- [ ] Verify all CAD/ZIP file sizes <100MB once files are in hand
+- [ ] Resume Phase 2A interview at Question 2 (visual style) — customer to answer next session
+- [ ] Questions 3–10 remaining: typography, homepage priority, project page layout, navigation, mobile/desktop priority, reference sites, dislikes, content hierarchy
+- [ ] Git PAT expires ~2027-07-27 — renewal reminder
+- [ ] Monitor repo size — revisit GitHub Releases fallback at ~800MB
 - [ ] WordPress stays live until Phase 5 approved
-- [ ] Foosball Table (2) + Vertical Tool Cart (1) user comments — preserve as static text. NOTE: Mechanical Pinball currently has 0 comments, contradicting the original assumption — verify before Phase 3.
-- [ ] 4 attachment file links didn't auto-resolve during crawl (Mantel Clock PDF, Pinball PDF, Pinball CAD ZIP, Fidget Spinner CAD ZIP) — will be in the uploads export, no separate action needed
-- [ ] Build time estimates on project cards need customer verification
-- [x] Corrected contact email: **leisurenotes.hsc@gmail.com** (was incorrectly leisurenotes@gmail.com in prior docs)
+- [ ] Build time estimates on project cards need customer verification (carried from Session 02)
+- [ ] Foosball Table (2) + Vertical Tool Cart (1) user comments — preserve as static text (carried from Session 02)
 
 ---
 
-## Session 02 Summary
+## Session 03 Summary
 
 ### Accomplished
-- Confirmed GitHub Pages as hosting platform — free, eliminates Hostinger hosting fee
-- Confirmed domain stays registered at Hostinger
-- Confirmed DNS at Hostinger hPanel (ns1/ns2.dns-parking.com)
-- Confirmed GitHub username: scbeme
-- Established contact: leisurenotes@gmail.com mailto link — no form needed
-- Defined complete implementation plan Phases 0–7
-- Established document management via GitHub /docs + Git versioning
-- Defined design process: interview → website-design doc → sitemap → build → review
-- Discarded all previous mockups — fresh design start next session
-- Confirmed customer GUI-only throughout
-- Defined MacBook directory structure — minimal, expand as needed
-- Confirmed no separate GitHub folder needed on MacBook
-- Completed Phase 0A audit: Node.js, GitHub Desktop, VS Code, extensions all checked
-- Installed Node.js v24.18.0, GitHub Desktop, VS Code
-- Installed Claude Code + Live Preview VS Code extensions
-- Signed into GitHub Desktop as scbeme
-- Created scbeme/leisurenotes-com repo (public), enabled GitHub Pages (verified via 404 test)
-- Created local folder structure: docs/, images/, projects/
-- Phase 1: crawled all 13 project pages + About + Projects listing — full text/structure captured in content-inventory.md
-- Identified all downloadable file URLs (CAD ZIPs, PDFs) and image URLs per project; 4 attachment links didn't auto-resolve
-- Found actual user comments on Foosball Table (2) and Vertical Tool Cart (1) — not Pinball as previously assumed
-- Corrected contact email to leisurenotes.hsc@gmail.com
-- Identified blocker: sandbox network + view-only Safari prevent direct file downloads; decided to use Hostinger hPanel File Manager bulk export of wp-content/uploads instead
-- Customer exported wp-content/uploads/2021 + 2022 via Hostinger hPanel File Manager; Claude extracted, organized into projects/<name>/ folders, resolved the 4 previously-unresolved attachment links
-- Compressed 2 oversized PDFs (Pinball 111MB→574KB, Mantel Clock 46MB→740KB) using Ghostscript, verified page count + image quality unchanged
-- Removed full-resolution image originals, kept WordPress's smaller pre-generated sizes — repo shrunk from ~1.2GB to 622MB, no file over 100MB
-- Found + kept aside one orphan file (OTA-8in-f6-newt telescope tube CAD, 71MB) not linked from any live page
-- Committed and pushed all 541 harvested files to GitHub
-- Verified coverage: re-fetched all 13 pages individually, confirmed every file/image URL resolves only to 2021/2022 folders — nothing missed from 2023-2026
-- Phase 1 marked complete in implementation-plan.md and content-inventory.md, both pushed
+- Resolved discrepancy between stale Claude.ai project knowledge (Session 1 only, Hostinger-hosting assumption) and the actual current project state (Session 2 docs, GitHub Pages decision) — connected the real project folder as source of truth going forward
+- Created `CLAUDE.md` with autonomy policy and interface preference, refined through discussion to balance "minimize customer actions" against actual tool constraints (Cowork sandbox has no GitHub network access)
+- Verified file access (read/write on real project folder) and GitHub Desktop screen-control access (granted, full tier)
+- Confirmed Cowork's sandboxed terminal cannot reach github.com (403 from proxy) — clarified this is a tool constraint, not a customer preference issue
+- Set up and verified a git push credential (fine-grained PAT via macOS Keychain) on the MacBook Air, enabling future Claude Code terminal sessions to push directly
+- Updated implementation-plan.md with a "Tooling by Phase" table and explicit tool-switch flag before Phase 2C
+- Conducted web research on maker/DIY static site best practices (sitemap/IA, color/typography, homepage layout, project page template conventions, GitHub Pages technical constraints) to inform the design interview
+- Answered a customer question on GitHub storage limits: researched and ruled out Git LFS (incompatible with Pages), confirmed GitHub Releases as the correct fallback mechanism (2GiB/file, no total cap, doesn't count toward Pages 1GB limit, served via GitHub's CDN with no adverse performance impact)
+- Scoped and locked an asset-reduction plan for Phase 3: drop redundant WordPress image sizes + WebP conversion; deferred GitHub Releases migration as a documented fallback with an 800MB monitoring trigger
+- Created `docs/website-design.md`, began Phase 2A structured design interview
+- Phase 2A Q1 (Audience) answered and locked; Q2 (Visual style) proposed with recommendation, session closed before customer answered
 
 ### Key Reference — Permanent Facts
 
 **Architecture:**
 ```
-Claude Code (MacBook) → GitHub [scbeme/leisurenotes-com] → GitHub Pages → leisurenotes.com
+Cowork/Claude Code (MacBook Air) → GitHub [scbeme/leisurenotes-com] → GitHub Pages → leisurenotes.com
 DNS changes: Hostinger hPanel
 ```
+
+**Tooling split (see implementation-plan.md "Tooling by Phase" for full table):**
+- Cowork: Phases 0, 1, 2A, 2B (conversational, light git activity)
+- Claude Code (MacBook Air terminal): Phases 2C onward (iterative build, high commit volume, direct git push via cached PAT)
 
 **MacBook Folder Structure (today):**
 ```
 ~/projects/
 └── web/
     └── leisurenotes-com/       ← GitHub repo + project files
+        ├── CLAUDE.md           ← project instructions (autonomy policy, interface preference)
+        ├── .gitignore
         ├── docs/               ← project documents
         ├── images/             ← site images
         ├── projects/           ← individual project pages
         └── index.html
 ```
-*Folders created by Claude Code in Phase 0C — not manually*
 
 **Customer:**
-- Name: Harvey Carson
+- Name: Harvey Carson (Scott)
 - GitHub: scbeme
 - Contact: leisurenotes.hsc@gmail.com
-- Hostinger: Single plan — domain only after migration
-- Domain expiry: 2027-01-29 (auto-renew ON)
-- MacBook: Dedicated — Claude Code configured
-- Terminal: NOT comfortable — GUI only
+- Hostinger: Single plan — domain only after migration, domain expiry 2027-01-29 (auto-renew ON)
+- MacBook Air: Cowork + Claude Code both used here only (Mac Mini/iPhone/iPad are Claude Chat only)
+- Interface preference: GUI preferred; terminal OK via copy-paste script when more efficient than GUI automation — goal is minimizing customer's total actions, not avoiding terminal at all costs
+- Git push credential: fine-grained PAT, cached in macOS Keychain on MacBook Air, set 2026-07-27, expires ~2027-07-27
 
 **Project Facts:**
-- 13 projects to migrate
-- CAD: Moi3D → STEP format (sizes TBC — must be <100MB)
+- 13 projects to migrate — full inventory in docs/content-inventory.md
+- Current repo size: ~622MB (projects/ folder) — projected ~400-460MB after Phase 3 asset pipeline (WebP + dropping redundant image sizes)
+- CAD: Moi3D → STEP format
 - License: CC BY-NC 4.0
 - WordPress stays live until Phase 5 approved
+- Repo size monitoring trigger: ~800MB → revisit GitHub Releases migration for CAD/PDF files
 
 **AI Capabilities — Honest Summary:**
 | Task | Claude can do? |
@@ -133,21 +128,14 @@ DNS changes: Hostinger hPanel
 
 ## Session Close Protocol
 
-### Every session — Claude Code does automatically:
+### Every session — Claude does automatically:
 - [x] Update all relevant documents in /docs
 - [x] Commit with descriptive message
 - [x] Push to GitHub
-- [x] Remind customer: GitHub Desktop → Fetch/Pull to sync MacBook (n/a — same machine, already in sync)
+- [x] No customer sync step needed — Cowork/Claude Code operate directly on the MacBook Air's local copy, already in sync with GitHub after push
 
-### Phase 0C/0D — completed this session:
-- [x] Create repo + enable GitHub Pages (Phase 0C)
-- [x] Claude Code creates folder structure + /docs
-- [x] Claude Code uploads all documents → commit + push
-- [x] Customer: GitHub Desktop → Fetch/Pull to confirm sync
-
-### Session 02 Close — final state
-- All Phase 0 and Phase 1 checklist items complete (see implementation-plan.md)
-- 4 project docs current: session-notes.md, implementation-plan.md, config-mgmt.md, content-inventory.md
-- 541 project files (622MB) committed + pushed alongside docs
-- Repo: scbeme/leisurenotes-com, GitHub Pages enabled, local copy at ~/projects/web/leisurenotes-com/
-- Next session resumes at Phase 2 — Design Interview
+### Session 03 Close — final state
+- CLAUDE.md, .gitignore, session-notes.md, implementation-plan.md, config-mgmt.md, website-design.md all current and pushed
+- Git PAT configured and verified on MacBook Air
+- Phase 2A in progress — 1 of 10 interview questions confirmed, 1 proposed awaiting answer
+- Next session resumes at Phase 2A, Question 2 (Visual style) — see Quick Start above
