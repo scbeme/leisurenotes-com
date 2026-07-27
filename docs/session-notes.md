@@ -6,9 +6,15 @@
 
 ## ⚡ QUICK START — READ FIRST
 
-- **Resume point:** Phase 2C.1 (homepage build) **done, pending customer review.** Next: **2C.2 — customer reviews homepage** (open `index.html` via Live Preview/local server — not by double-clicking the file, since the project grid loads via `fetch()` and needs an http:// origin), then submit revisions if any.
+- **Resume point:** Phase 2C.2–2C.5 (homepage customer review + revisions) **in progress** — several rounds of feedback already applied this session (see below). Homepage not yet formally approved/locked (2C.6). Next: check whether customer has further homepage feedback; if none, get explicit approval before moving to 2D (project page template).
 - **Tool switch already made:** this and all subsequent sessions run in **Claude Code terminal on the MacBook Air** (`cd ~/projects/web/leisurenotes-com && claude`), not Cowork.
-- **First action for next session:** Read this Quick Start + implementation-plan.md. If the customer has given homepage feedback, apply revisions (2C.3–2C.5). If not yet reviewed, prompt the customer to view the homepage locally and give feedback before moving to 2D (project page template).
+- **First action for next session:** Read this Quick Start + implementation-plan.md. If the customer has given new homepage feedback, apply it (2C.3–2C.5). If the customer has explicitly approved the homepage, mark 2C.6 locked and move to 2D. Don't assume approval — ask if unstated.
+
+### Revisions applied this session (2C.3–2C.5 loop, chronological)
+1. Fixed root-absolute asset paths (`/assets/...`, `/data/...`, image `thumb` paths, card links) → relative paths, after customer reported CSS/JSON 404s
+2. Project grid: replaced auto-fill/minmax with explicit breakpoints — 3 col desktop (≥1024px) / 2 col tablet (640–1023px) / 1 col mobile (<640px)
+3. On-page logo/title casing: "Leisurenotes" → "LeisureNotes" in nav, `<title>` tags, and footer (nav/title/footer only — docs still say "Leisurenotes.com" as the domain/project name, untouched)
+4. Page background darkened for contrast against white project photos: introduced a dedicated `--color-page-bg` token (previously reused `--color-chip-bg`, which would have also darkened the filter chips) — went white → `#eef0f2` → `#e8eaec` (confirmed final by customer). Project cards also got a default subtle box-shadow on top of their existing border.
 
 ---
 
