@@ -5,6 +5,14 @@ Project-level instructions for Claude Code / Cowork sessions working in this rep
 ## Source of truth
 Read `docs/session-notes.md` first each session (Quick Start section), then `docs/implementation-plan.md` for phase status.
 
+## Session startup (do this automatically, no prompting needed)
+At the start of every session in this project, before asking the customer anything:
+1. Request access to the project folder (`mcp__cowork__request_cowork_directory` with the known path) if not already mounted.
+2. Read `docs/session-notes.md` Quick Start section, then `docs/implementation-plan.md`.
+3. Resume at the documented resume point — do not ask the customer what they mean if the docs already answer it.
+
+Note: the folder-access grant itself is a per-session security prompt the customer will still see and must approve — that's a platform consent boundary, not something to solve for. The fix here is only that Claude requests it and reads the docs proactively, instead of waiting to be told to.
+
 ## Autonomy policy (overrides global "ask before every task" preference — this project only)
 
 Default to autonomous execution. Do not ask permission for reversible, in-scope work:

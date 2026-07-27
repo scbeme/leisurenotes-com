@@ -1,13 +1,13 @@
 # Leisurenotes.com — Session Notes
 ## Project: leisurenotes.com Redesign & Migration
-## Last updated: 2026-07-27 | Session: 03
+## Last updated: 2026-07-27 | Session: 04
 
 ---
 
 ## ⚡ QUICK START — READ FIRST
 
-- **Resume point:** Phase 2A — Design Interview, Question 2 of 10
-- **First action:** Ask Question 2 exactly as below and wait for customer answer before proceeding to Question 3.
+- **Resume point:** Phase 2A — Design Interview, Question 2 of 10 (asked again in Session 04, awaiting customer answer)
+- **First action:** Per CLAUDE.md "Session startup" section — request folder access and read these docs automatically, without waiting to be prompted. Then ask Question 2 exactly as below and wait for customer answer before proceeding to Question 3.
 
 > **Question 2 of 10 — Visual style (colors, mood, energy)**
 >
@@ -48,7 +48,7 @@
 - Phase 2A Q2 (Visual style) proposed, not yet confirmed — see Quick Start above
 
 ### Open Items
-- [ ] Resume Phase 2A interview at Question 2 (visual style) — customer to answer next session
+- [ ] Resume Phase 2A interview at Question 2 (visual style) — customer to answer next session (re-asked Session 04)
 - [ ] Questions 3–10 remaining: typography, homepage priority, project page layout, navigation, mobile/desktop priority, reference sites, dislikes, content hierarchy
 - [ ] Git PAT expires ~2027-07-27 — renewal reminder
 - [ ] Monitor repo size — revisit GitHub Releases fallback at ~800MB
@@ -123,6 +123,26 @@ DNS changes: Hostinger hPanel
 | Documentation / markdown | ✅ Fully autonomous |
 | 3D print scripts (CadQuery/OpenSCAD → STL) | ✅ Good |
 | Moi3D / native CAD geometry | ❌ Cannot — your tool |
+
+---
+
+## Session 04 Summary
+
+### Accomplished
+- Customer flagged process friction: Claude required a prompt to read project docs at session start, and had to re-request folder access — asked why session startup isn't automated
+- Root cause: CLAUDE.md already instructed reading `docs/session-notes.md` first each session, but Claude asked clarifying questions instead of acting on it immediately — a Claude execution gap, not a platform limitation
+- Folder-access re-prompting is a genuine platform constraint (Cowork requires a per-session consent grant for folder mounts) — not fixable from this repo, only mitigated by requesting it proactively instead of waiting to be told
+- Added a "Session startup" section to CLAUDE.md: request folder access + read session-notes.md/implementation-plan.md automatically at session start, before asking the customer anything
+- Re-asked Phase 2A Question 2 (visual style) — same recommendation as Session 03 (light/clean base, warm wood-tone accent), still awaiting customer answer
+
+### Open Items carried forward
+- Question 2 (visual style) answer still pending
+- Questions 3–10 remaining: typography, homepage priority, project page layout, navigation, mobile/desktop priority, reference sites, dislikes, content hierarchy
+- Git PAT expires ~2027-07-27 — renewal reminder
+- Monitor repo size — revisit GitHub Releases fallback at ~800MB
+- WordPress stays live until Phase 5 approved
+- Build time estimates on project cards need customer verification (carried from Session 02)
+- Foosball Table (2) + Vertical Tool Cart (1) user comments — preserve as static text (carried from Session 02)
 
 ---
 
