@@ -362,6 +362,27 @@ a { color: inherit; }
   margin: 0 0 1rem;
 }
 
+.prose .lead {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+}
+
+.prose ul {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+}
+
+.prose li {
+  margin-bottom: 0.35rem;
+}
+
+.prose .supplies-note {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--color-text-muted);
+  margin-top: 0.75rem;
+}
+
 .project-gallery {
   margin-top: 2.5rem;
 }
