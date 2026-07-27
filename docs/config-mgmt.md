@@ -9,7 +9,7 @@
 |---|---|---|
 | `session-notes.md` | Active | Includes quick start |
 | `implementation-plan.md` | Active | Phases 0–7 |
-| `website-design.md` | Pending | Created Phase 2A |
+| `website-design.md` | Draft | Created Phase 2A — in progress |
 | `config-mgmt.md` | Active | This document |
 
 ---

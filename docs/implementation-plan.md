@@ -244,6 +244,7 @@ Two different Claude products are used across this project, both on the MacBook 
 | Content missed in harvest | Low | Full crawl + Phase 5 |
 | GitHub policy change | Very low | Local copy always current |
 | Domain renewal lapse | Very low | Auto-renew ON |
+| Repo approaches 1GB Pages limit | Low (projected ~400-460MB after Phase 3 asset pipeline) | Monitor; trigger point ~800MB — move CAD ZIPs/PDFs to GitHub Releases (see website-design.md) |
 
 ---
 
