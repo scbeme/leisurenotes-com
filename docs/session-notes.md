@@ -6,9 +6,23 @@
 
 ## ⚡ QUICK START — READ FIRST
 
-- **Resume point:** Homepage **approved and locked (2C.6, 2026-07-27)**. Phase 2D in progress: sample project page (Foosball Table) built at `/projects/foosball-table/index.html` with **real content pulled live from leisurenotes.com**, not placeholder text — see "Major discovery" below. Next: **2D.2 — customer reviews the Foosball Table page**, then either revise (2D.3–2D.5) or lock the project-page template (2D.6) and move to 2E sign-off.
+- **Resume point:** Session frozen mid-Phase-2D at customer's request — **do not build the remaining 12 project pages and do not lock the Foosball Table template (2D.6) yet.** Homepage is approved and locked (2C.6). Foosball Table sample page exists at `/projects/foosball-table/index.html` with real content pulled live from leisurenotes.com, already restructured once into Instructables-style Intro/Supplies/Steps/Final-Thoughts — but customer has more changes queued before this template is finalized. Do not treat the current Foosball Table page as a template to copy elsewhere.
 - **Tool switch already made:** this and all subsequent sessions run in **Claude Code terminal on the MacBook Air** (`cd ~/projects/web/leisurenotes-com && claude`), not Cowork.
-- **First action for next session:** Read this Quick Start + implementation-plan.md. If the customer has given project-page feedback, apply it. If approved, mark 2D.6/2E and move toward building the remaining 12 project pages (Phase 3) — each will need the same live-fetch content pull described below.
+- **First action for next session:** Read this Quick Start + implementation-plan.md, then work the priority list below in order. Don't start Phase 3 (remaining 12 pages) or mark 2D.6 until both items are done and the customer has explicitly approved the finalized template.
+
+### Next session priority list (in order)
+
+**1. Finalize the category/tag model.**
+Customer is deciding between (a) primary-category-plus-tags vs. (b) true multi-category, and whether to add a 5th category ("Games/Toys") alongside the current four (Woodworking/STEM/Astronomy/Tools). This decision is customer's to make — present the tradeoff, don't pick for them. Once decided, propose a draft category/tag mapping for **all 13 projects** based on `docs/content-inventory.md`, for the customer to review — they explicitly don't want to compile this list manually themselves. Note: current `data/projects.json` categories were Claude's inference (see Open Items below) and will need updating once the model + mapping are confirmed.
+
+**2. Finalize the Foosball Table template.** Open punch list:
+- [ ] Restructure project-body into Instructables-style Supplies (materials + tools, consumables separated from equipment) + numbered Steps, preserving original written content/voice as much as possible — **in progress**, first pass done this session (see below), customer has more changes coming
+- [ ] Remove the "2 thoughts on..." comments section entirely — no live commenting system exists on the new site, and it would only appear on 2 of 13 pages. Fold any worthwhile line into the prose as a short pull-quote if worth preserving, otherwise drop entirely
+- [ ] Make the breadcrumb category segment (e.g., "Woodworking") a clickable link back to a filtered homepage view — currently a plain, non-clickable `<span>`. Needs a homepage mechanism to land pre-filtered (e.g., `/?category=woodworking` read by `site.js` on load) since there are no dedicated category URLs per the locked sitemap
+- [ ] Simplify downloads to one combined ZIP per project (CAD + PDF + any other files) instead of separate buttons per file type — single "Download Project Files (ZIP)" button with a note listing what's inside. Note: Foosball Table currently only has one CAD ZIP (no separate PDF), so this project may not visibly change, but the template/pattern should support projects that do have multiple files (e.g., Crayford Focuser has 4: PDF + STL + SKP + STEP ZIPs)
+- [ ] Confirm the hero-photo section handles both portrait and landscape source images gracefully — photo orientation varies across all 13 projects (current Foosball Table hero is portrait; homepage thumbnails include both orientations)
+
+Only after both items above are resolved and the customer has explicitly approved: lock the template (2D.6), then proceed to Phase 3 (build the remaining 12 pages using this finalized template + the live-fetch content approach + the finalized category mapping).
 
 ### Major discovery: Phase 1 content-harvest gap is resolved
 Earlier sessions (Cowork, sandboxed) couldn't reach leisurenotes.com directly, so only images/CAD/PDFs were harvested — actual page body text (Intro/build narrative/comments) was never captured, only structural metadata in content-inventory.md. **This Claude Code terminal session has real internet access** (confirmed via `curl`), unlike the Cowork sandbox. Fetched the live Foosball Table page (`?page_id=703`) directly and pulled the verbatim build narrative and both real reader comments — no fabricated content was needed. **This unblocks Phase 3**: the same live-fetch approach should be used for all remaining 12 project pages instead of placeholder text. Two small, disclosed edits from the verbatim source: dropped a decorative thumbnail image that WordPress had embedded mid-heading (no textual change), and folded the source's "3D Model CAD Files" paragraph into the download section rather than repeating it in both places.
@@ -18,6 +32,8 @@ Earlier sessions (Cowork, sandboxed) couldn't reach leisurenotes.com directly, s
 2. Project grid: replaced auto-fill/minmax with explicit breakpoints — 3 col desktop (≥1024px) / 2 col tablet (640–1023px) / 1 col mobile (<640px)
 3. On-page logo/title casing: "Leisurenotes" → "LeisureNotes" in nav, `<title>` tags, and footer (nav/title/footer only — docs still say "Leisurenotes.com" as the domain/project name, untouched)
 4. Page background darkened for contrast against white project photos: introduced a dedicated `--color-page-bg` token (previously reused `--color-chip-bg`, which would have also darkened the filter chips) — went white → `#eef0f2` → `#e8eaec` (confirmed final by customer). Project cards also got a default subtle box-shadow on top of their existing border.
+5. Homepage approved and locked (2C.6). Phase 2D.1: built Foosball Table sample project page with real live-fetched content (hero → spec block → downloads → body → gallery → comments), per "Major discovery" above.
+6. First-pass restructure of the Foosball Table body into Intro / Supplies / Steps 1–5 / Final Thoughts (Instructables-compatible shape per Q5) — all original sentences preserved verbatim, only reorganized; Supplies lists extracted from items named in the narrative (materials & hardware / consumables / tools). Customer reviewed and requested further changes — see priority list above. **Session frozen here at customer's request** — remaining 12 pages and template lock explicitly deferred to next session.
 
 ---
 
@@ -30,8 +46,9 @@ Earlier sessions (Cowork, sandboxed) couldn't reach leisurenotes.com directly, s
 | Phase 1 — Content Harvest | ✅ Complete + verified |
 | Phase 2A — Design Interview | ✅ Complete — all 10 questions locked |
 | Phase 2B — Sitemap | ✅ Complete — locked |
-| Phase 2C.1 — Homepage build | ✅ Complete — pending customer review (2C.2) |
-| Phase 2C.2–2E | ⬅️ Next (Claude Code, MacBook Air terminal) |
+| Phase 2C — Homepage build + review | ✅ Complete, approved, locked (2C.6) |
+| Phase 2D — Project page template | 🟡 In progress, **frozen at customer's request** — see Quick Start |
+| Phase 2E — Design Sign-Off | Pending (blocked on 2D) |
 | Phase 3 — Site Build | Pending |
 | Phase 4 — Deployment | Pending |
 | Phase 5 — Client Review | Pending |
@@ -58,11 +75,11 @@ All captured in full in website-design.md. Summary:
 - [ ] **Favicon missing** — site has no favicon yet; tracked as Phase 3 item 3.23, not blocking.
 - [x] ~~Project body/instruction text was never actually harvested~~ — resolved: this Claude Code terminal session has real internet access (unlike the earlier Cowork sandbox) and can fetch live page content directly. See "Major discovery" above. Applies to all remaining 12 project pages in Phase 3.
 - [ ] **Foosball Table spec block (build time, difficulty) left as "Not yet specified"** — not stated anywhere in the source content, so not fabricated. Needs customer input; same will apply to the other 12 pages unless the customer supplies estimates.
-- [ ] Category assignments (Woodworking/STEM/Astronomy/Tools) and "most recent" ordering on the homepage were inferred by Claude from project titles and upload-folder dates (2021/05 through 2022/01) — not yet explicitly customer-confirmed.
+- [ ] **Category assignments superseded — see next-session priority #1 above.** Homepage `data/projects.json` categories (Woodworking/STEM/Astronomy/Tools) were Claude's inference from titles/upload dates, not customer-confirmed, and the category *model itself* is now under active reconsideration (single-category-plus-tags vs. true multi-category, possible 5th "Games/Toys" bucket). Don't treat current categories as final; homepage manifest will need updating once decided.
 - [ ] Git PAT expires ~2027-07-27 — renewal reminder
 - [ ] Monitor repo size — revisit GitHub Releases fallback at ~800MB
 - [ ] WordPress stays live until Phase 5 approved
-- [x] ~~Foosball Table (2) + Vertical Tool Cart (1) user comments — preserve as static text~~ — Foosball Table's 2 comments pulled verbatim (author, date, text) and included on the live-fetched project page. Vertical Tool Cart's comment still pending (Phase 3).
+- [ ] **Reversed:** Foosball Table's 2 comments (pulled verbatim from the live site last session) are now slated for removal from the template — no live commenting system exists on the new site, and it only ever appeared on 2 of 13 pages. Fold anything worthwhile into a prose pull-quote, otherwise drop. Vertical Tool Cart's 1 comment should NOT be added anywhere either, per this same decision.
 - [ ] Instructables cross-posting — decide per-project after redesign ships (not before)
 
 ---
@@ -188,6 +205,10 @@ DNS changes: Hostinger hPanel
 - Built `data/projects.json` manifest for all 13 projects (slug, title, category, thumbnail, dateAdded) — thumbnails picked from existing WordPress-exported images (not yet WebP-converted; that's the Phase 3.20 bulk pass), categories and dates inferred from titles/upload folders (open item above, needs customer confirmation)
 - Verified manifest JSON validity and that all 13 thumbnail paths resolve on disk; verified HTML/CSS/JS element IDs and class names all match up. Did not run a local server this session (skipped per customer request) — customer should sanity-check in a browser via Live Preview before 2C.2 sign-off
 - Surfaced a gap from Phase 1: actual project page body text (Intro/Supplies/Steps copy) was never harvested, only structural metadata — flagged as open item, will need resolving before Phase 2D/3 project page builds
+- Homepage reviewed through several rounds (path fixes, grid breakpoints, logo casing, background contrast) and **approved and locked (2C.6)**
+- Discovered this Claude Code terminal session has real internet access (unlike the earlier Cowork sandbox) — resolved the Phase 1 content-harvest gap by fetching the live Foosball Table page directly. Built Phase 2D.1 sample project page with real body text, real image gallery, and both real reader comments, not placeholders
+- Customer requested the project-body content follow the locked Instructables-compatible structure (Q5) rather than raw narrative — restructured into Intro / Supplies (materials & hardware / consumables / tools, extracted from the narrative) / Steps 1–5 / Final Thoughts, preserving all original sentences verbatim
+- Customer then queued further changes and **froze the session mid-Phase-2D**: don't build the other 12 pages, don't lock the template yet. Two-item priority list set for next session — finalize the category/tag model (with draft mapping proposal for all 13 projects) and finish the Foosball Table template punch list (comments removal, clickable breadcrumb category, combined single-ZIP downloads, hero photo orientation handling) — see Quick Start above for full detail
 
 ---
 
@@ -204,3 +225,9 @@ DNS changes: Hostinger hPanel
 - Phase 2A — COMPLETE (all 10 questions locked)
 - Phase 2B — COMPLETE (sitemap locked)
 - Next session: **Claude Code terminal session on MacBook Air**, Phase 2C — Homepage build (`cd ~/projects/web/leisurenotes-com && claude`)
+
+### Session 06 Close — final state
+- Homepage — COMPLETE, approved, locked (2C.6)
+- Phase 2D — IN PROGRESS, frozen at customer's request. Foosball Table sample page built with real content but **not** locked as a template; do not copy its current structure to other projects yet
+- session-notes.md, implementation-plan.md, index.html, 404.html, assets/css/style.css, assets/js/site.js, data/projects.json, projects/foosball-table/index.html all current and pushed
+- Next session priority (in order): (1) finalize category/tag model + draft mapping proposal for all 13 projects, (2) finish Foosball Table template punch list — see Quick Start above for full detail. Do not start Phase 3 (remaining 12 pages) until both are done and customer has explicitly approved the template
