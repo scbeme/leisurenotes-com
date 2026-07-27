@@ -6,9 +6,12 @@
 
 ## ⚡ QUICK START — READ FIRST
 
-- **Resume point:** Phase 2C.2–2C.5 (homepage customer review + revisions) **in progress** — several rounds of feedback already applied this session (see below). Homepage not yet formally approved/locked (2C.6). Next: check whether customer has further homepage feedback; if none, get explicit approval before moving to 2D (project page template).
+- **Resume point:** Homepage **approved and locked (2C.6, 2026-07-27)**. Phase 2D in progress: sample project page (Foosball Table) built at `/projects/foosball-table/index.html` with **real content pulled live from leisurenotes.com**, not placeholder text — see "Major discovery" below. Next: **2D.2 — customer reviews the Foosball Table page**, then either revise (2D.3–2D.5) or lock the project-page template (2D.6) and move to 2E sign-off.
 - **Tool switch already made:** this and all subsequent sessions run in **Claude Code terminal on the MacBook Air** (`cd ~/projects/web/leisurenotes-com && claude`), not Cowork.
-- **First action for next session:** Read this Quick Start + implementation-plan.md. If the customer has given new homepage feedback, apply it (2C.3–2C.5). If the customer has explicitly approved the homepage, mark 2C.6 locked and move to 2D. Don't assume approval — ask if unstated.
+- **First action for next session:** Read this Quick Start + implementation-plan.md. If the customer has given project-page feedback, apply it. If approved, mark 2D.6/2E and move toward building the remaining 12 project pages (Phase 3) — each will need the same live-fetch content pull described below.
+
+### Major discovery: Phase 1 content-harvest gap is resolved
+Earlier sessions (Cowork, sandboxed) couldn't reach leisurenotes.com directly, so only images/CAD/PDFs were harvested — actual page body text (Intro/build narrative/comments) was never captured, only structural metadata in content-inventory.md. **This Claude Code terminal session has real internet access** (confirmed via `curl`), unlike the Cowork sandbox. Fetched the live Foosball Table page (`?page_id=703`) directly and pulled the verbatim build narrative and both real reader comments — no fabricated content was needed. **This unblocks Phase 3**: the same live-fetch approach should be used for all remaining 12 project pages instead of placeholder text. Two small, disclosed edits from the verbatim source: dropped a decorative thumbnail image that WordPress had embedded mid-heading (no textual change), and folded the source's "3D Model CAD Files" paragraph into the download section rather than repeating it in both places.
 
 ### Revisions applied this session (2C.3–2C.5 loop, chronological)
 1. Fixed root-absolute asset paths (`/assets/...`, `/data/...`, image `thumb` paths, card links) → relative paths, after customer reported CSS/JSON 404s
@@ -50,16 +53,16 @@ All captured in full in website-design.md. Summary:
 - **Sitemap (2B) locked:** `/`, `/about/`, `/projects/<slug>/` × 13 (see full list in website-design.md). No dedicated category URLs (chips handle it client-side). Added: `sitemap.xml` (already on Phase 3 checklist) and a simple 404 page (new addition — old `?page_id=` URLs will all 404 under the new clean-URL structure)
 
 ### Open Items
-- [ ] **Customer needs to review homepage** (2C.2) via Live Preview/local server, not by opening index.html directly — see Quick Start
-- [ ] **Crayford Focuser folder/slug mismatch:** locked sitemap (website-design.md) uses URL slug `crayford-focuser-1-25`, but the existing asset folder is `projects/crayford-focuser/`. Homepage links to `/projects/crayford-focuser-1-25/` per the locked sitemap; the folder itself hasn't been renamed (renaming existing files needs customer sign-off per CLAUDE.md). Resolve when building this project page in Phase 2D/3 — either rename the folder or create the page at the new slug and point assets at the old folder.
-- [ ] **Favicon missing** — site has no favicon yet; tracked as Phase 3 item 3.23, not blocking for 2C.
-- [ ] **Project body/instruction text was never actually harvested** despite Phase 1 marking content harvest complete — content-inventory.md only has a structural table (titles, file lists, page_ids), not full page copy. Only images/CAD/PDFs exist locally per project folder. This will block Phase 2D/3 project page builds (need real Intro/Supplies/Steps text) — will need to re-fetch page text from the live WordPress site or have the customer export it.
-- [ ] Category assignments (Woodworking/STEM/Astronomy/Tools) and "most recent" ordering on the homepage were inferred by Claude from project titles and upload-folder dates (2021/05 through 2022/01) — not customer-confirmed. Flag for customer review during 2C.2.
+- [x] ~~Customer needs to review homepage~~ — reviewed, revised, and approved 2026-07-27 (2C.6 locked)
+- [ ] **Crayford Focuser folder/slug mismatch:** locked sitemap (website-design.md) uses URL slug `crayford-focuser-1-25`, but the existing asset folder is `projects/crayford-focuser/`. Homepage links to `/projects/crayford-focuser-1-25/` per the locked sitemap; the folder itself hasn't been renamed (renaming existing files needs customer sign-off per CLAUDE.md). Resolve when building this project page in Phase 3 — either rename the folder or create the page at the new slug and point assets at the old folder.
+- [ ] **Favicon missing** — site has no favicon yet; tracked as Phase 3 item 3.23, not blocking.
+- [x] ~~Project body/instruction text was never actually harvested~~ — resolved: this Claude Code terminal session has real internet access (unlike the earlier Cowork sandbox) and can fetch live page content directly. See "Major discovery" above. Applies to all remaining 12 project pages in Phase 3.
+- [ ] **Foosball Table spec block (build time, difficulty) left as "Not yet specified"** — not stated anywhere in the source content, so not fabricated. Needs customer input; same will apply to the other 12 pages unless the customer supplies estimates.
+- [ ] Category assignments (Woodworking/STEM/Astronomy/Tools) and "most recent" ordering on the homepage were inferred by Claude from project titles and upload-folder dates (2021/05 through 2022/01) — not yet explicitly customer-confirmed.
 - [ ] Git PAT expires ~2027-07-27 — renewal reminder
 - [ ] Monitor repo size — revisit GitHub Releases fallback at ~800MB
 - [ ] WordPress stays live until Phase 5 approved
-- [ ] Build time estimates on project cards need customer verification (carried from Session 02) — not yet added to homepage cards; deferred to project page spec blocks (Q10) in Phase 2D since no verified data exists yet
-- [ ] Foosball Table (2) + Vertical Tool Cart (1) user comments — preserve as static text (carried from Session 02)
+- [x] ~~Foosball Table (2) + Vertical Tool Cart (1) user comments — preserve as static text~~ — Foosball Table's 2 comments pulled verbatim (author, date, text) and included on the live-fetched project page. Vertical Tool Cart's comment still pending (Phase 3).
 - [ ] Instructables cross-posting — decide per-project after redesign ships (not before)
 
 ---

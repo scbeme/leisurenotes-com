@@ -112,14 +112,14 @@ Two different Claude products are used across this project, both on the MacBook 
 
 ### 2C — Homepage Design *(Claude Code — iterative)*
 - [x] 2C.1 Build homepage per approved website-design.md
-- [ ] 2C.2 Customer reviews (Live Preview in VS Code)
-- [ ] 2C.3 Revisions submitted
-- [ ] 2C.4 Claude Code revises
-- [ ] 2C.5 Repeat until approved
-- [ ] 2C.6 Homepage locked
+- [x] 2C.2 Customer reviews (Live Preview in VS Code)
+- [x] 2C.3 Revisions submitted
+- [x] 2C.4 Claude Code revises
+- [x] 2C.5 Repeat until approved
+- [x] 2C.6 Homepage locked — approved 2026-07-27
 
 ### 2D — Project Page Design *(Claude Code — iterative)*
-- [ ] 2D.1 Build sample project page (Foosball Table)
+- [x] 2D.1 Build sample project page (Foosball Table) — real content pulled live from leisurenotes.com (see note below), not placeholder text
 - [ ] 2D.2 Customer reviews (Live Preview)
 - [ ] 2D.3 Revisions submitted
 - [ ] 2D.4 Claude Code revises
