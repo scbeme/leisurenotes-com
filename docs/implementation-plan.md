@@ -1,5 +1,5 @@
 # Leisurenotes.com — Implementation Plan
-## Last updated: 2026-07-26 | Session: 02 | Status: Active
+## Last updated: 2026-07-27 | Session: 03 | Status: Active
 ## PM: Claude | Customer: Harvey Carson
 
 ---
@@ -9,6 +9,29 @@
 Claude Code (MacBook) → GitHub [scbeme/leisurenotes-com] → GitHub Pages → leisurenotes.com
 DNS managed at Hostinger hPanel
 ```
+
+---
+
+## Tooling by Phase — Cowork vs. Claude Code
+
+Two different Claude products are used across this project, both on the MacBook Air only:
+- **Cowork** — chat-based sessions; git actions require driving GitHub Desktop via screen automation (slower, needs on-screen confirmation each session)
+- **Claude Code** — terminal-based sessions on the MacBook Air; git push is direct and immediate (no GUI automation) since a fine-grained GitHub PAT was cached in macOS Keychain (`credential.helper osxkeychain`) on 2026-07-27, expires ~2027-07-27 (renewal reminder needed)
+
+| Phase | Recommended tool | Why |
+|---|---|---|
+| 0 — MacBook Readiness | Either (completed) | One-time setup |
+| 1 — Content Harvest | Either (completed) | Mostly file organization, light git activity |
+| 2A/2B — Design Interview + Sitemap | **Cowork** | Conversational, no heavy git iteration |
+| 2C/2D — Homepage + Project Page Build | **Claude Code** | Iterative build/review cycles — frequent commits, direct push is faster than GUI automation |
+| 3 — Site Build (all pages) | **Claude Code** | High commit volume — 13 project pages + structure |
+| 3R — Customer Review & Revisions | **Claude Code** | Revision commits, likely frequent |
+| 4 — Deployment | **Claude Code** (+ customer GUI steps at Hostinger/GitHub for DNS) | Push complete site; DNS steps are manual customer actions regardless of tool |
+| 5 — Client Review | Either | Mostly customer review, minor correction commits |
+| 6 — Go Live & WordPress Retirement | Either | Mostly customer actions (backup, cancel hosting) |
+| 7 — Ongoing Operations | **Claude Code** preferred | New-project additions — direct git keeps customer's ~15 min/project estimate accurate |
+
+**Switch point:** at the start of Phase 2C (Homepage Design build), move from this Cowork session to a Claude Code terminal session on the MacBook Air.
 
 ---
 
@@ -84,6 +107,8 @@ DNS managed at Hostinger hPanel
 - [ ] 2B.3 Customer approves
 - [ ] 2B.4 Revisions if needed → committed
 - [ ] 2B.5 Sitemap locked before proceeding
+
+> ⚠️ **TOOL SWITCH HERE:** Close this Cowork session and open a Claude Code terminal session on the MacBook Air for 2C onward. Git PAT already cached in Keychain — no additional setup needed.
 
 ### 2C — Homepage Design *(Claude Code — iterative)*
 - [ ] 2C.1 Build homepage per approved website-design.md

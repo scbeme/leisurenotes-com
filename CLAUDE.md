@@ -31,3 +31,5 @@ GUI is preferred but not exclusive. Goal: minimize the customer's total implemen
 - Contact email: leisurenotes.hsc@gmail.com
 - License: CC BY-NC 4.0
 - 13 projects to migrate — full inventory in docs/content-inventory.md
+- Git push credential: fine-grained PAT cached in macOS Keychain (`credential.helper osxkeychain`) on MacBook Air, set 2026-07-27, expires ~2027-07-27 — renewal reminder needed. Enables direct git push from Claude Code terminal sessions with zero GUI automation.
+- Tool switch: see docs/implementation-plan.md "Tooling by Phase" — Cowork for design interview (2A/2B), Claude Code for build/iterate/deploy (2C onward)
