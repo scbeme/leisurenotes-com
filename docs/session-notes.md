@@ -1,23 +1,14 @@
 # Leisurenotes.com — Session Notes
 ## Project: leisurenotes.com Redesign & Migration
-## Last updated: 2026-07-27 | Session: 04
+## Last updated: 2026-07-27 | Session: 05
 
 ---
 
 ## ⚡ QUICK START — READ FIRST
 
-- **Resume point:** Phase 2A — Design Interview, Question 2 of 10 (asked again in Session 04, awaiting customer answer)
-- **First action:** Per CLAUDE.md "Session startup" section — request folder access and read these docs automatically, without waiting to be prompted. Then ask Question 2 exactly as below and wait for customer answer before proceeding to Question 3.
-
-> **Question 2 of 10 — Visual style (colors, mood, energy)**
->
-> What overall feel should the site have? Think in terms of mood words — clean/minimal, warm/workshop, bold/energetic, technical/blueprint, etc. — and any color instincts you already have (or explicitly don't want).
->
-> My recommendation: **light/clean base with warm wood-tone accents**, calm rather than flashy. Reasoning: this was the direction you confirmed in Session 1 and never walked back — a white/light-gray background lets your project photos (which are the real content) carry visual interest, with one warm accent color (mahogany/walnut-inspired) tying back to the woodworking core of the site without making it feel like a lumber yard. 2026 design trends also favor these calmer, lower-saturation palettes over loud color schemes, and it reads as credible/technical rather than hobbyist-cute — fitting your STEM/astronomy/precision projects too, not just woodworking.
->
-> Does that match your instinct, or did you have a different mood in mind?
-
-- **Remaining interview questions (3–10):** typography, homepage priority, project page layout, navigation, mobile/desktop priority, reference sites, dislikes, content hierarchy. Ask one at a time, always with a recommendation, per customer preference.
+- **Resume point:** Phase 2A + 2B **complete and locked**. Next: **Phase 2C — Homepage build.**
+- **TOOL SWITCH REQUIRED:** Per implementation-plan.md "Tooling by Phase," Phase 2C onward runs in a **Claude Code terminal session on the MacBook Air**, not Cowork. Customer opens Claude Code via `cd ~/projects/web/leisurenotes-com && claude` (or VS Code + Claude Code extension on that same folder) — CLAUDE.md and /docs are read automatically on startup, no re-briefing needed.
+- **First action for the Claude Code session:** Read session-notes.md Quick Start + implementation-plan.md, then begin Phase 2C.1 — build homepage per website-design.md (locked decisions below): intro headline + static filterable/searchable project grid, no scrolling banner.
 
 ---
 
@@ -28,33 +19,37 @@
 |---|---|
 | Phase 0 — MacBook Readiness + Folder Setup | ✅ Complete |
 | Phase 1 — Content Harvest | ✅ Complete + verified |
-| Phase 2A — Design Interview | ⬅️ In progress (Q1 of 10 done, Q2 asked, awaiting answer) |
-| Phase 2B–2E | Pending |
+| Phase 2A — Design Interview | ✅ Complete — all 10 questions locked |
+| Phase 2B — Sitemap | ✅ Complete — locked |
+| Phase 2C–2E | ⬅️ Next (Claude Code, MacBook Air terminal) |
 | Phase 3 — Site Build | Pending |
 | Phase 4 — Deployment | Pending |
 | Phase 5 — Client Review | Pending |
 | Phase 6 — Go Live | Pending |
 | Phase 7 — Ongoing Operations | Pending |
 
-### Decisions Locked This Session
-- Cowork project folder connected: `~/projects/web/leisurenotes-com` — this is now the live source of truth (the separate Claude.ai "Leisurenotes.com website roadmap" project is stale/superseded, Session 1 only)
-- `CLAUDE.md` created at repo root — autonomy policy (default to action on reversible/in-scope work, ask first on irreversible/out-of-scope/customer-sign-off items) + interface preference (GUI preferred, terminal via copy-paste script when more efficient, goal = minimize customer actions)
-- Git push credential: fine-grained PAT cached in macOS Keychain (`credential.helper osxkeychain`) on MacBook Air — verified working via `git push --dry-run`. Expires ~2027-07-27, renewal reminder needed.
-- Tool-switch milestone documented in implementation-plan.md: Cowork for 2A/2B (this phase), switch to a Claude Code terminal session on the MacBook Air starting Phase 2C (Homepage build) — direct git push now possible, no GUI automation needed for high commit-volume phases
-- `.gitignore` added (`.DS_Store`, `.permtest_*`)
-- Asset/image reduction plan locked (see website-design.md): drop redundant WordPress-generated image sizes (keep 2 per photo, not 4–8), convert all images to WebP. CAD ZIPs/PDFs stay in-repo for now.
-- GitHub Releases documented as fallback (not implemented) if repo size grows — release assets don't count toward the Pages 1GB limit, no adverse effect on site speed confirmed. Monitoring trigger: revisit at ~800MB repo size (currently projected ~400–460MB after asset pipeline work, vs. 622MB today)
-- Phase 2A Q1 (Audience) confirmed: hobbyist makers with some technical fluency — comfortable with tools/CAD, not professional engineers
-- Phase 2A Q2 (Visual style) proposed, not yet confirmed — see Quick Start above
+### Decisions Locked This Session (05)
+All captured in full in website-design.md. Summary:
+- **Q2 Visual style:** light/clean base, neutral graphite/charcoal accent + one functional "signal" color (engineering-diagram orange or technical blue), no wood-tone accent — reframed after customer clarified the site is maker/hackerspace-first (end product/function), not woodworking-craft-first; fabrication method (wood, CAD, electronics) is incidental per project, not the identity
+- **Q3 Typography:** sans-serif body/UI (Inter or system-ui), monospace accent (JetBrains Mono / IBM Plex Mono) for spec data only
+- **Q4 Homepage:** reversed Session 1's scrolling-banner-hero decision — research showed carousels get ~1% interaction and 84% single-slide-only views (Notre Dame study), poor fit for showing a 13+ project cross-section. Replaced with: minimal keyword-rich intro headline ("Free plans for functional maker builds...") + static filterable/searchable project grid, all projects visible at once
+- **Q5 Project page layout:** hero photo → spec block (monospace) → downloads (prominent, not buried) → full steps/description. Underlying content authored in Instructables-compatible shape (Intro → Supplies → numbered Steps w/ photos → wrap-up) as dual-purpose source structure; actual cross-posting to Instructables is **optional per-project, decided after redesign ships** (Instructables 25MB/file cap means full CAD downloads stay linked back to leisurenotes.com regardless)
+- **Q6 Navigation:** simple nav (Home/About/Contact) replacing the old WordPress 13-item "Projects" mega-dropdown (verified via live fetch of current menu). Gap closed via: category filter chips + live search box + sort control + result count, all client-side against a JSON project manifest — scales to 50+ projects without a dropdown or nav redesign; secondary tag facets (material/skill level) deferred until ~25–30 projects. Breadcrumbs (`Home / Category / Project Title`) added on project pages only, since most traffic lands directly on a project page from search, not from Home
+- **Q7 Reference sites:** Hackaday.io / Adafruit / Instructables tone (project-first, technical, spec-forward) — explicitly light theme, not Hackaday's dark theme
+- **Q8 Dislikes:** no ads, no popups/modals, no auto-play, no infinite scroll — site is hobby/non-commercial, simplicity prioritized throughout
+- **Q9 Mobile/desktop:** desktop-primary, mobile-friendly (responsive throughout, not mobile-first) — core action (opening CAD/PDF files) happens at a desk; mobile matters for discovery/browsing only
+- **Q10 Spec block order:** build time → difficulty → fabrication method → materials/CAD format (time is the harder constraint and more objective/scannable than difficulty)
+- **Contact:** `mailto:` link only, no contact form — GitHub Pages has no server-side processing (confirmed as the reason a form isn't viable without a third-party service), and old WordPress site never had a dedicated Contact page either
+- **Sitemap (2B) locked:** `/`, `/about/`, `/projects/<slug>/` × 13 (see full list in website-design.md). No dedicated category URLs (chips handle it client-side). Added: `sitemap.xml` (already on Phase 3 checklist) and a simple 404 page (new addition — old `?page_id=` URLs will all 404 under the new clean-URL structure)
 
 ### Open Items
-- [ ] Resume Phase 2A interview at Question 2 (visual style) — customer to answer next session (re-asked Session 04)
-- [ ] Questions 3–10 remaining: typography, homepage priority, project page layout, navigation, mobile/desktop priority, reference sites, dislikes, content hierarchy
+- [ ] **Tool switch now due:** open Claude Code terminal session on MacBook Air for Phase 2C (Homepage build) — see Quick Start above
 - [ ] Git PAT expires ~2027-07-27 — renewal reminder
 - [ ] Monitor repo size — revisit GitHub Releases fallback at ~800MB
 - [ ] WordPress stays live until Phase 5 approved
 - [ ] Build time estimates on project cards need customer verification (carried from Session 02)
 - [ ] Foosball Table (2) + Vertical Tool Cart (1) user comments — preserve as static text (carried from Session 02)
+- [ ] Instructables cross-posting — decide per-project after redesign ships (not before)
 
 ---
 
@@ -146,6 +141,29 @@ DNS changes: Hostinger hPanel
 
 ---
 
+## Session 05 Summary
+
+### Accomplished
+- Customer clarified project framing: leisurenotes.com is maker/hackerspace-first (functional end product), not woodworking-craft-first — fabrication method is incidental per project. This reframed Q2 (visual style) away from a wood-tone accent
+- Completed full Phase 2A design interview (Questions 2–10), each with research-backed recommendations — see "Decisions Locked This Session (05)" above for full list
+- Reversed the Session 1 scrolling-banner-hero decision after carousel-vs-grid UX research (Notre Dame CTR study, Smashing Magazine, thegood.com) showed carousels perform poorly for multi-item discovery — replaced with a static filterable/searchable grid
+- Researched Instructables' publishing format (Intro → Supplies → numbered Steps, 25MB/file cap) to inform a dual-purpose project-page content structure; cross-posting itself deferred as optional, decided per-project after launch
+- Verified the live WordPress site's actual navigation menu via direct fetch (Home / 13-item Projects dropdown / About) to answer a customer question about nav parity — informed the Q6 filter+search+breadcrumb solution
+- Researched faceted-filter and carousel/grid UX best practices to support Q6 and Q4 recommendations with external sources, not just judgment calls
+- Completed Phase 2B: proposed and locked full sitemap (`/`, `/about/`, `/projects/<slug>/` × 13, sitemap.xml, 404 page); confirmed `mailto:` contact link only (no form — GitHub Pages has no server-side processing)
+- Phase 2A and 2B both now complete — reached the documented tool-switch point ahead of Phase 2C
+
+### Open Items carried forward
+- **Tool switch now due** — Phase 2C onward runs in Claude Code on the MacBook Air, not Cowork
+- Git PAT expires ~2027-07-27 — renewal reminder
+- Monitor repo size — revisit GitHub Releases fallback at ~800MB
+- WordPress stays live until Phase 5 approved
+- Build time estimates on project cards need customer verification (carried from Session 02)
+- Foosball Table (2) + Vertical Tool Cart (1) user comments — preserve as static text (carried from Session 02)
+- Instructables cross-posting — decide per-project after redesign ships
+
+---
+
 ## Session Close Protocol
 
 ### Every session — Claude does automatically:
@@ -154,8 +172,8 @@ DNS changes: Hostinger hPanel
 - [x] Push to GitHub
 - [x] No customer sync step needed — Cowork/Claude Code operate directly on the MacBook Air's local copy, already in sync with GitHub after push
 
-### Session 03 Close — final state
+### Session 05 Close — final state
 - CLAUDE.md, .gitignore, session-notes.md, implementation-plan.md, config-mgmt.md, website-design.md all current and pushed
-- Git PAT configured and verified on MacBook Air
-- Phase 2A in progress — 1 of 10 interview questions confirmed, 1 proposed awaiting answer
-- Next session resumes at Phase 2A, Question 2 (Visual style) — see Quick Start above
+- Phase 2A — COMPLETE (all 10 questions locked)
+- Phase 2B — COMPLETE (sitemap locked)
+- Next session: **Claude Code terminal session on MacBook Air**, Phase 2C — Homepage build (`cd ~/projects/web/leisurenotes-com && claude`)

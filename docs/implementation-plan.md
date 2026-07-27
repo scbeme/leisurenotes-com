@@ -1,5 +1,5 @@
 # Leisurenotes.com — Implementation Plan
-## Last updated: 2026-07-27 | Session: 03 | Status: Active
+## Last updated: 2026-07-27 | Session: 05 | Status: Active
 ## PM: Claude | Customer: Harvey Carson
 
 ---
@@ -86,8 +86,8 @@ Two different Claude products are used across this project, both on the MacBook 
 
 ## Phase 2 — Design Interview, Documentation & Build
 
-### 2A — Customer Design Interview *(chat session)*
-- [ ] 2A.1 Claude conducts structured interview:
+### 2A — Customer Design Interview *(chat session)* — ✅ COMPLETE
+- [x] 2A.1 Claude conducts structured interview:
   - Audience definition
   - Visual style (colors, mood, energy)
   - Typography preferences
@@ -98,15 +98,15 @@ Two different Claude products are used across this project, both on the MacBook 
   - Reference websites admired
   - Specific dislikes
   - Content hierarchy per page
-- [ ] 2A.2 Publish website-design.md capturing all requirements
-- [ ] 2A.3 Customer approves before proceeding
+- [x] 2A.2 Publish website-design.md capturing all requirements
+- [x] 2A.3 Customer approves before proceeding — all 10 questions locked Session 05
 
-### 2B — Sitemap *(added to website-design.md)*
-- [ ] 2B.1 Claude Code proposes sitemap based on design document
-- [ ] 2B.2 Added to website-design.md as new section
-- [ ] 2B.3 Customer approves
-- [ ] 2B.4 Revisions if needed → committed
-- [ ] 2B.5 Sitemap locked before proceeding
+### 2B — Sitemap *(added to website-design.md)* — ✅ COMPLETE
+- [x] 2B.1 Claude proposes sitemap based on design document
+- [x] 2B.2 Added to website-design.md as new section
+- [x] 2B.3 Customer approves
+- [x] 2B.4 Revisions if needed → committed (none needed)
+- [x] 2B.5 Sitemap locked before proceeding
 
 > ⚠️ **TOOL SWITCH HERE:** Close this Cowork session and open a Claude Code terminal session on the MacBook Air for 2C onward. Git PAT already cached in Keychain — no additional setup needed.
 

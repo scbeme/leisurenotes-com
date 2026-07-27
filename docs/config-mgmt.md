@@ -1,5 +1,5 @@
 # Leisurenotes.com — Configuration Management Register
-## Last updated: 2026-07-26 | Session: 02
+## Last updated: 2026-07-27 | Session: 05
 
 ---
 
@@ -9,7 +9,7 @@
 |---|---|---|
 | `session-notes.md` | Active | Includes quick start |
 | `implementation-plan.md` | Active | Phases 0–7 |
-| `website-design.md` | Draft | Created Phase 2A — in progress |
+| `website-design.md` | Active | Phase 2A + 2B complete and locked (all 10 interview questions + sitemap) |
 | `config-mgmt.md` | Active | This document |
 
 ---
