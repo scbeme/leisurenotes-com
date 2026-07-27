@@ -1,14 +1,14 @@
 # Leisurenotes.com — Session Notes
 ## Project: leisurenotes.com Redesign & Migration
-## Last updated: 2026-07-27 | Session: 05
+## Last updated: 2026-07-27 | Session: 06
 
 ---
 
 ## ⚡ QUICK START — READ FIRST
 
-- **Resume point:** Phase 2A + 2B **complete and locked**. Next: **Phase 2C — Homepage build.**
-- **TOOL SWITCH REQUIRED:** Per implementation-plan.md "Tooling by Phase," Phase 2C onward runs in a **Claude Code terminal session on the MacBook Air**, not Cowork. Customer opens Claude Code via `cd ~/projects/web/leisurenotes-com && claude` (or VS Code + Claude Code extension on that same folder) — CLAUDE.md and /docs are read automatically on startup, no re-briefing needed.
-- **First action for the Claude Code session:** Read session-notes.md Quick Start + implementation-plan.md, then begin Phase 2C.1 — build homepage per website-design.md (locked decisions below): intro headline + static filterable/searchable project grid, no scrolling banner.
+- **Resume point:** Phase 2C.1 (homepage build) **done, pending customer review.** Next: **2C.2 — customer reviews homepage** (open `index.html` via Live Preview/local server — not by double-clicking the file, since the project grid loads via `fetch()` and needs an http:// origin), then submit revisions if any.
+- **Tool switch already made:** this and all subsequent sessions run in **Claude Code terminal on the MacBook Air** (`cd ~/projects/web/leisurenotes-com && claude`), not Cowork.
+- **First action for next session:** Read this Quick Start + implementation-plan.md. If the customer has given homepage feedback, apply revisions (2C.3–2C.5). If not yet reviewed, prompt the customer to view the homepage locally and give feedback before moving to 2D (project page template).
 
 ---
 
@@ -21,7 +21,8 @@
 | Phase 1 — Content Harvest | ✅ Complete + verified |
 | Phase 2A — Design Interview | ✅ Complete — all 10 questions locked |
 | Phase 2B — Sitemap | ✅ Complete — locked |
-| Phase 2C–2E | ⬅️ Next (Claude Code, MacBook Air terminal) |
+| Phase 2C.1 — Homepage build | ✅ Complete — pending customer review (2C.2) |
+| Phase 2C.2–2E | ⬅️ Next (Claude Code, MacBook Air terminal) |
 | Phase 3 — Site Build | Pending |
 | Phase 4 — Deployment | Pending |
 | Phase 5 — Client Review | Pending |
@@ -43,11 +44,15 @@ All captured in full in website-design.md. Summary:
 - **Sitemap (2B) locked:** `/`, `/about/`, `/projects/<slug>/` × 13 (see full list in website-design.md). No dedicated category URLs (chips handle it client-side). Added: `sitemap.xml` (already on Phase 3 checklist) and a simple 404 page (new addition — old `?page_id=` URLs will all 404 under the new clean-URL structure)
 
 ### Open Items
-- [ ] **Tool switch now due:** open Claude Code terminal session on MacBook Air for Phase 2C (Homepage build) — see Quick Start above
+- [ ] **Customer needs to review homepage** (2C.2) via Live Preview/local server, not by opening index.html directly — see Quick Start
+- [ ] **Crayford Focuser folder/slug mismatch:** locked sitemap (website-design.md) uses URL slug `crayford-focuser-1-25`, but the existing asset folder is `projects/crayford-focuser/`. Homepage links to `/projects/crayford-focuser-1-25/` per the locked sitemap; the folder itself hasn't been renamed (renaming existing files needs customer sign-off per CLAUDE.md). Resolve when building this project page in Phase 2D/3 — either rename the folder or create the page at the new slug and point assets at the old folder.
+- [ ] **Favicon missing** — site has no favicon yet; tracked as Phase 3 item 3.23, not blocking for 2C.
+- [ ] **Project body/instruction text was never actually harvested** despite Phase 1 marking content harvest complete — content-inventory.md only has a structural table (titles, file lists, page_ids), not full page copy. Only images/CAD/PDFs exist locally per project folder. This will block Phase 2D/3 project page builds (need real Intro/Supplies/Steps text) — will need to re-fetch page text from the live WordPress site or have the customer export it.
+- [ ] Category assignments (Woodworking/STEM/Astronomy/Tools) and "most recent" ordering on the homepage were inferred by Claude from project titles and upload-folder dates (2021/05 through 2022/01) — not customer-confirmed. Flag for customer review during 2C.2.
 - [ ] Git PAT expires ~2027-07-27 — renewal reminder
 - [ ] Monitor repo size — revisit GitHub Releases fallback at ~800MB
 - [ ] WordPress stays live until Phase 5 approved
-- [ ] Build time estimates on project cards need customer verification (carried from Session 02)
+- [ ] Build time estimates on project cards need customer verification (carried from Session 02) — not yet added to homepage cards; deferred to project page spec blocks (Q10) in Phase 2D since no verified data exists yet
 - [ ] Foosball Table (2) + Vertical Tool Cart (1) user comments — preserve as static text (carried from Session 02)
 - [ ] Instructables cross-posting — decide per-project after redesign ships (not before)
 
@@ -161,6 +166,19 @@ DNS changes: Hostinger hPanel
 - Build time estimates on project cards need customer verification (carried from Session 02)
 - Foosball Table (2) + Vertical Tool Cart (1) user comments — preserve as static text (carried from Session 02)
 - Instructables cross-posting — decide per-project after redesign ships
+
+---
+
+## Session 06 Summary
+
+### Accomplished
+- First session run in Claude Code terminal on the MacBook Air (tool switch from Cowork now in effect)
+- Built Phase 2C.1 homepage: `index.html`, `assets/css/style.css`, `assets/js/site.js`, `data/projects.json`, `404.html`
+- Homepage implements all locked Session 05 decisions: minimal intro headline (no carousel), static grid with category filter chips (Woodworking/STEM/Astronomy/Tools), live search, sort (A–Z / most recent), result count, simple Home/About/Contact nav, footer with CC BY-NC 4.0 + mailto contact, no ads/popups/autoplay
+- Visual style: light background, graphite/charcoal text, technical blue (`#2563eb`) as the single signal/accent color (chosen over orange for better contrast against warm wood-toned project photos) — system-ui font stack for body, ui-monospace for spec-like UI chrome (result count, category tag) rather than loading Inter/JetBrains Mono from a CDN, to keep the site dependency-free and fast on GitHub Pages — both reasonable-default calls per CLAUDE.md autonomy policy, flagged here rather than blocking
+- Built `data/projects.json` manifest for all 13 projects (slug, title, category, thumbnail, dateAdded) — thumbnails picked from existing WordPress-exported images (not yet WebP-converted; that's the Phase 3.20 bulk pass), categories and dates inferred from titles/upload folders (open item above, needs customer confirmation)
+- Verified manifest JSON validity and that all 13 thumbnail paths resolve on disk; verified HTML/CSS/JS element IDs and class names all match up. Did not run a local server this session (skipped per customer request) — customer should sanity-check in a browser via Live Preview before 2C.2 sign-off
+- Surfaced a gap from Phase 1: actual project page body text (Intro/Supplies/Steps copy) was never harvested, only structural metadata — flagged as open item, will need resolving before Phase 2D/3 project page builds
 
 ---
 

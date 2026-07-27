@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leisurenotes — Free plans for functional maker builds</title>
+<meta name="description" content="Free plans for functional maker builds — CAD files, step-by-step instructions, and downloads for woodworking, STEM, astronomy, and shop tool projects.">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="site-title" href="/">Leisurenotes</a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="mailto:leisurenotes.hsc@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="intro">
+    <div class="container">
+      <h1>Free plans for functional maker builds</h1>
+      <p>CAD files, step-by-step instructions, and downloads for woodworking, STEM, astronomy, and shop tool projects.</p>
+    </div>
+  </section>
+
+  <section class="project-browser">
+    <div class="container">
+      <div class="browser-controls">
+        <div class="chips" role="group" aria-label="Filter by category">
+          <button class="chip is-active" type="button" data-category="all">All</button>
+          <button class="chip" type="button" data-category="woodworking">Woodworking</button>
+          <button class="chip" type="button" data-category="stem">STEM</button>
+          <button class="chip" type="button" data-category="astronomy">Astronomy</button>
+          <button class="chip" type="button" data-category="tools">Tools</button>
+        </div>
+        <div class="search-sort">
+          <label class="visually-hidden" for="project-search">Search projects</label>
+          <input type="search" id="project-search" placeholder="Search projects…" autocomplete="off">
+          <label class="visually-hidden" for="project-sort">Sort projects</label>
+          <select id="project-sort">
+            <option value="alpha">Sort: A–Z</option>
+            <option value="recent">Sort: Most recent</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="result-count" id="result-count" aria-live="polite"></p>
+
+      <div class="project-grid" id="project-grid"></div>
+      <p class="no-results" id="no-results" hidden>No projects match your search.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>&copy; 2026 Leisurenotes. Licensed <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
+    <a href="mailto:leisurenotes.hsc@gmail.com">leisurenotes.hsc@gmail.com</a>
+  </div>
+</footer>
+
+<script src="/assets/js/site.js"></script>
+</body>
+</html>

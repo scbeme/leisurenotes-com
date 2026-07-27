@@ -111,7 +111,7 @@ Two different Claude products are used across this project, both on the MacBook 
 > ⚠️ **TOOL SWITCH HERE:** Close this Cowork session and open a Claude Code terminal session on the MacBook Air for 2C onward. Git PAT already cached in Keychain — no additional setup needed.
 
 ### 2C — Homepage Design *(Claude Code — iterative)*
-- [ ] 2C.1 Build homepage per approved website-design.md
+- [x] 2C.1 Build homepage per approved website-design.md
 - [ ] 2C.2 Customer reviews (Live Preview in VS Code)
 - [ ] 2C.3 Revisions submitted
 - [ ] 2C.4 Claude Code revises
