@@ -36,7 +36,7 @@
         const label = CATEGORY_LABELS[p.category] || p.category;
         return `
           <article class="project-card">
-            <a href="/projects/${p.slug}/">
+            <a href="projects/${p.slug}/">
               <img src="${p.thumb}" alt="${p.title}" loading="lazy">
               <div class="card-body">
                 <span class="card-category">${label}</span>
@@ -64,7 +64,7 @@
   searchInput.addEventListener("input", render);
   sortSelect.addEventListener("change", render);
 
-  fetch("/data/projects.json")
+  fetch("data/projects.json")
     .then((res) => res.json())
     .then((data) => {
       projects = data;
