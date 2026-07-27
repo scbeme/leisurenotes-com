@@ -1,0 +1,5 @@
+# macOS
+.DS_Store
+
+# Session/permission test artifacts
+.permtest_*
