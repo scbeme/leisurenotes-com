@@ -28,6 +28,13 @@ Chip order (left to right): Play, Workshop, Home, Tech (by count, descending).
 
 Confirmed cheap to modify later: category is a plain string field per project in `projects.json`, labels are a 4-line object in `site.js`, chips are plain buttons in `index.html` — no CMS/build step. Adding a 5th category or splitting Play later is a few line-edits, not a redesign.
 
+### Search capability — improved this session (Session 07)
+Customer asked whether search would index full page content or just keywords. Answer: previously title-only substring match (`site.js` `matchesQuery`). Discussed three options — (1) add a `tags` array, (2) add a `summary` text field, (3) full-text search via Lunr.js with a generated index — recommended (2) as the best capability-for-complexity tradeoff for a static, no-build-step site this size; (1) tags remain the already-planned future facet (Q6, deferred to ~25–30 projects) and are a different mechanism (structured filter) than free-text search matching. Customer noted a summary written with deliberate keyword density (materials/tools/technique words) functions as an informal quasi-tag for search purposes even without formal tags — confirmed correct, and worth keeping in mind whenever project summaries/descriptions are written going forward.
+
+**Implemented immediately this session** (customer asked "can this be done now" — turned out yes): discovered mid-session that `mcp__workspace__web_fetch` *can* reach leisurenotes.com directly from this Cowork session, contradicting the earlier documented belief (session-notes Session 02/06) that only the Claude Code terminal has real internet access — that earlier restriction applied specifically to raw `curl` in the Cowork sandbox shell, not this fetch tool. Live-fetched real page content for all 13 projects (the 12 that previously only had structural metadata in `content-inventory.md`, plus re-confirmed Foosball Table) and wrote a keyword-rich 1–2 sentence `summary` field per project — grounded in actual source text, nothing fabricated. Added `summary` to all 13 entries in `data/projects.json` and extended `site.js` `matchesQuery` to check `p.summary` in addition to `p.title`. Verified: valid JSON, all 13 summaries present, `site.js` syntax OK.
+
+**Correction to carry forward:** Cowork sessions **can** reach the live leisurenotes.com site via the `web_fetch` tool (confirmed working this session) — the "Cowork sandbox has no internet access to the live site" note from earlier sessions was only true for direct shell `curl`/`wget`. Worth remembering next time content needs live-fetching and the session happens to be in Cowork rather than Claude Code terminal.
+
 ### Next session priority list
 
 **1. Finalize the Foosball Table template.** Open punch list:
@@ -235,6 +242,9 @@ DNS changes: Hostinger hPanel
 - Applied the final Play/Workshop/Home/Tech model to `data/projects.json` (all 13 projects), `assets/js/site.js` (`CATEGORY_LABELS`), and `index.html` (filter chips + intro copy + meta description)
 - Verified `projects.json` is valid JSON and category counts match the locked mapping (Play 7 / Workshop 3 / Home 2 / Tech 1)
 - Answered customer question on future maintainability: confirmed categories are cheap to add/modify later (plain string field + 4-line label map + button markup, no CMS/build step)
+- Answered customer question on search: clarified current search is title-only substring match; discussed tags vs. summary field vs. full-text (Lunr.js) options, recommended summary field as best capability/complexity tradeoff; clarified summary and the already-planned tag facets (Q6) are complementary, not competing
+- Discovered `web_fetch` can reach leisurenotes.com directly from this Cowork session (corrects earlier documented belief that only Claude Code terminal has live internet access) — live-fetched real content for all 13 projects and wrote grounded, keyword-rich summaries (no fabrication)
+- Implemented: added `summary` field to all 13 projects in `data/projects.json`; extended `site.js` search to match against title + summary. Verified JSON validity, summary presence for all 13, and `site.js` syntax
 
 ### Open Items carried forward
 - **Tool switch still due** — Session 08 should default to Claude Code terminal on the MacBook Air unless customer says otherwise; ask again rather than assuming Cowork is now fine

@@ -21,7 +21,10 @@
 
     let filtered = projects.filter((p) => {
       const matchesCategory = activeCategory === "all" || p.category === activeCategory;
-      const matchesQuery = !query || p.title.toLowerCase().includes(query);
+      const matchesQuery =
+        !query ||
+        p.title.toLowerCase().includes(query) ||
+        (p.summary && p.summary.toLowerCase().includes(query));
       return matchesCategory && matchesQuery;
     });
 
