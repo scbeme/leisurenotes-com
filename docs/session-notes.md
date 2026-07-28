@@ -1,17 +1,17 @@
 # Leisurenotes.com — Session Notes
 ## Project: leisurenotes.com Redesign & Migration
-## Last updated: 2026-07-28 | Session: 09
+## Last updated: 2026-07-28 | Session: 10
 
 ---
 
 ## ⚡ QUICK START — READ FIRST
 
-- **Resume point:** Session 09 (Claude Code terminal) implemented all 5 items of the Session 08 Foosball Table punch list — see "Session 09 Summary" below for details. **Template is implemented but still not locked (2D.6)** — per the punch-list brief, this needs explicit customer review/approval before Phase 3 (remaining 12 pages) starts. Nothing in this session was auto-locked.
+- **Resume point:** Session 10 (Claude Code terminal) implemented punch-list item 6 (spec block rebuild — new Build time/Skill level/Materials/Tools fields, icon-above-label-above-value layout per the revised Q10 spec in `website-design.md`). **All 6 punch-list items are now done — the Foosball Table template is feature-complete.** Template is still **not locked (2D.6)** — needs explicit customer review/approval before Phase 3 (remaining 12 pages) starts. Nothing was auto-locked.
 - **Tool switch:** Currently in Claude Code terminal — correct per division-of-labor policy for coding work.
-- **First action for next session:** Confirm with customer that the punch-list changes look right (category fix, comments removed, clickable breadcrumb + pre-filtered homepage, combined-ZIP download label, hero photo orientation check). If approved, mark 2D.6 locked and proceed to Phase 3. If not, capture requested changes here first.
+- **First action for next session:** Confirm with customer that the full template looks right end-to-end (category fix, comments removed, clickable breadcrumb + pre-filtered homepage, combined-ZIP download label, hero photo orientation, and the new spec block appearance). If approved, mark 2D.6 locked and proceed to Phase 3. If not, capture requested changes here first.
 
-### Foosball Table punch list — Claude Code brief (Session 08)
-Ready-to-implement, in `/projects/foosball-table/index.html` unless noted. Do all five, then flag for customer review before locking 2D.6.
+### Foosball Table punch list — Claude Code brief (Session 08) — ALL 6 ITEMS DONE (Session 09 + 10)
+Ready-to-implement, in `/projects/foosball-table/index.html` unless noted. Items 1–5 completed and committed Session 09; item 6 completed Session 10. Full list done — flagged for customer review before locking 2D.6.
 
 1. **Fix stale category reference (newly found this session):** the Session 07 category-model rollout (Play/Workshop/Home/Tech) updated `data/projects.json`, `site.js`, and `index.html` homepage chips, but **missed the Foosball Table page itself** — line 26 breadcrumb (`<span>Woodworking</span>`) and line 35 `<span class="card-category">Woodworking</span>` still say "Woodworking." Foosball Table's correct category is **Play**. Fix both spots. When building the other 12 pages in Phase 3, use each project's `data/projects.json` category as the source of truth for this field — don't hand-type it.
 2. **Remove the comments section entirely** — delete the `<section class="project-comments">` block (lines 212–228). No live commenting system exists on the new site. Nothing worth preserving as a pull-quote (both comments are generic praise, no unique build info) — confirmed drop, not fold-in.
@@ -25,7 +25,9 @@ Ready-to-implement, in `/projects/foosball-table/index.html` unless noted. Do al
    - **Flag, don't implement bundling logic yet:** some future projects' combined ZIP may exceed the ~60-80MB repo-file working threshold documented in `website-design.md` (GitHub file size section, added this session) — those will need GitHub Releases instead of a repo-committed ZIP. Decide per-project at Phase 3 build time, not now.
 5. **Verify hero photo handles both portrait and landscape source images gracefully** — current Foosball Table hero image (`foosball-table-IMG_4829-e1641488166393-225x300.png`) is portrait (225×300). Check `.hero-photo-wrap` in `assets/css/style.css`: confirm it doesn't hard-code an aspect ratio or fixed height that would crop/distort a landscape hero on a different project page. If it does, fix to handle both (e.g., `max-height` + `object-fit: contain` or `cover` — pick whichever preserves the current Foosball Table look without regressing it). No visual change expected on Foosball Table itself if already handled correctly — this is a defensive check for the other 12 pages, several of which have landscape heroes.
 
-**Not part of this punch list, still open, needs customer input (not a coding task):** Foosball Table spec block build-time/difficulty fields are still "Not yet specified" (lines 43–44) — ask customer directly rather than guessing/fabricating.
+6. **DONE (Session 10). Rebuild the spec block** per the revised Q10 decision in `website-design.md` (added Session 08, after customer review of the Foosball Table template's appearance): new field set (Build time, Skill level, Materials, Tools — replacing Difficulty/Fabrication method/CAD formats), new icon-above-label-above-value layout, exact colors/weights/icon names all specified there. Replaced the old `<dl class="spec-block">` markup with a flex-based `<div class="spec-block">` of 4 `.spec-item` columns (icon circle → label → value), matching the doc's colors/sizes exactly. Icons implemented as inline SVGs using the real Tabler outline paths (`ti-clock`, `ti-stairs`, `ti-stack-2`, `ti-tool`, fetched from the Tabler Icons GitHub source) rather than loading the Tabler icon font/CDN — keeps the site's established no-added-dependency approach (same reasoning as the Session 06 system-font decision) while still matching the spec'd icon set exactly. Materials value ("Wood, acrylic") uses the doc's own example, grounded in the project's real materials list; Tools value ("Router, sander, drill") grounded in the page's existing Supplies > Tools list — neither fabricated. Build time and Skill level values stay "Not yet specified" (styled italic/muted via a `.spec-tbd` modifier class, carried forward from the old markup's TBD treatment since the doc doesn't specify otherwise) pending customer input.
+
+**Not part of this punch list, still open, needs customer input (not a coding task):** Foosball Table spec block build-time/skill-level fields are still "Not yet specified" — ask customer directly rather than guessing/fabricating.
 
 **Reference for future firmware/electronics projects (not urgent, no action needed today):** `website-design.md` "Firmware/electronics projects — packaging rules" section, added this session — covers what to include/exclude if a firmware project (e.g. WLD water leak detector) is ever added to the site. Nothing to build yet.
 
@@ -318,6 +320,30 @@ DNS changes: Hostinger hPanel
 ### Open items carried forward
 - **Punch list implemented but not yet customer-approved** — do not start Phase 3 or mark 2D.6 locked until customer confirms the 5 changes look right (see Quick Start)
 - Foosball Table spec block (build time, difficulty) — still "Not yet specified," needs customer input directly, not a coding task
+- Crayford Focuser folder/slug mismatch — unresolved, deferred to Phase 3 build of that page
+- Favicon missing — Phase 3 item 3.23, not blocking
+- Git PAT expires ~2027-07-27 — renewal reminder
+- Monitor repo size — revisit GitHub Releases fallback at ~800MB (per-file trigger ~60-80MB, see website-design.md)
+- WordPress stays live until Phase 5 approved
+- Instructables cross-posting — decide per-project after redesign ships
+- WLD (water leak detector) firmware project — not yet added to site, packaging rules documented and ready whenever customer decides to add it
+
+---
+
+## Session 10 Summary
+
+### Accomplished
+- Ran in Claude Code terminal — implemented punch-list item 6 (the last open item): rebuilt the Foosball Table spec block per the revised Q10 decision in `website-design.md` (added Session 08 after customer review)
+- Replaced the old `<dl class="spec-block">` (Build time / Difficulty / Fabrication method / CAD formats) with a new field set — Build time, Skill level, Materials, Tools — in an icon-above-label-above-value layout, 4 equal-width flex columns, exact colors/sizes/weights from the spec (`#f7f8f9` row background, `#e6f1fb`/`#1d4ed8` icon circle, 10px uppercase muted labels, 14px monospace regular-weight `#454b52` values)
+- Icons: fetched the real Tabler outline SVG source (`clock`, `stairs`, `stack-2`, `tool`) directly from the Tabler Icons GitHub repo and inlined them as SVG (using `stroke="currentColor"` so CSS controls icon color) rather than adding a Tabler CDN/webfont dependency — consistent with the site's existing no-added-dependency direction (same reasoning as the Session 06 decision to use system fonts instead of Google Fonts/Inter)
+- New CSS rules added to `assets/css/style.css`: `.spec-block`, `.spec-item`, `.spec-icon`, `.spec-icon svg`, `.spec-label`, `.spec-value`, `.spec-value.spec-tbd` — replacing the old `.spec-block`/`dt`/`dd` rules entirely. Confirmed via `grep` that no other page currently references the old markup, so nothing else needed updating
+- Materials value ("Wood, acrylic") taken directly from the design doc's own worked example for this project, grounded in the project's real materials (plywood/MDF/walnut + acrylic playing surface) — not fabricated. Tools value ("Router, sander, drill") grounded in the page's existing Supplies > Tools list (Router, Orbital sander, Drill, Clamps — top 3 used). Build time and Skill level remain "Not yet specified" pending customer input, per the doc's explicit note that this is a content gap, not a design gap
+- Verified via local `python3 -m http.server`: page returns 200, 4 `.spec-item` blocks render, new CSS rules are present in the served stylesheet, div tags balanced, old `<dl>` markup fully removed
+- **All 6 items of the Session 08 punch list are now complete.** The Foosball Table template is feature-complete — flagging back to customer for explicit review/sign-off before marking 2D.6 locked, per standing instruction not to self-approve gated design decisions
+
+### Open items carried forward
+- **Full template implemented, awaiting customer sign-off on 2D.6** — do not start Phase 3 until approved
+- Foosball Table spec block Build time/Skill level values — still "Not yet specified," needs customer input directly, not a coding task
 - Crayford Focuser folder/slug mismatch — unresolved, deferred to Phase 3 build of that page
 - Favicon missing — Phase 3 item 3.23, not blocking
 - Git PAT expires ~2027-07-27 — renewal reminder

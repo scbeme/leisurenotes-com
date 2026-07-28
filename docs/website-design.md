@@ -84,8 +84,20 @@ No ads, no popups/modals, no auto-play video/audio, no infinite scroll. Site is 
 ### Q9 — Mobile vs. desktop priority
 **Desktop-primary, mobile-friendly** (not mobile-first). Core action — opening/using CAD files and multi-page PDFs — happens at a desk. Site stays fully responsive for the discovery/browsing moment (finding a project via phone), just not built around mobile-specific patterns (bottom nav, swipe gestures).
 
-### Q10 — Content hierarchy (spec block order)
-**Build time → difficulty → fabrication method → materials/CAD format.** Time is the harder constraint (a project needing 3 weekends is a no regardless of skill level) and more objective/scannable than difficulty, which is relative to the viewer's own skill.
+### Q10 — Content hierarchy (spec block order) — REVISED Session 08
+**Superseded — original 4 fields (Build time, Difficulty, Fabrication method, CAD formats) revised after customer review of the Foosball Table template.** Two of the original fields had problems: "CAD formats" duplicated the download-note text directly below it, and "Fabrication method" carried little signal since most projects share the same value (Woodworking, CAD-designed) — it also duplicated the category chip already shown on the hero.
+
+**New field set, same left-to-right priority logic (hardest constraint first):** Build time → Skill level (renamed from Difficulty, same meaning) → Materials → Tools. "Materials" replaces fabrication method with something more differentiating (top 1-2 materials, e.g. "Wood, acrylic"). "Tools" (not "Tools needed" or "Equipment" — shorter, and matches the existing Supplies-section "Tools" subheading for consistency) surfaces a real pre-commit question ("do I own this tool?") that was previously buried in the Supplies list further down the page.
+
+**Layout — icon-above-label-above-value, 4 equal-width columns:**
+- Icon: 16px Tabler outline icon, centered in a 30px circle, background `#e6f1fb` (light tint of the site's signal blue), icon color `#1d4ed8` (signal-dark token) — icons: `ti-clock` (Build time), `ti-stairs` (Skill level — chosen over `ti-gauge`/`ti-chart-bar`/`ti-trending-up` as the clearest "levels of experience" metaphor), `ti-stack-2` (Materials), `ti-tool` (Tools — singular, a clean wrench glyph; confirmed via live render test that `ti-screwdriver` doesn't exist in this icon set, and `ti-tools`/`ti-wrench`/`ti-hammer` were the other real alternatives tested)
+- Label: 10px, uppercase, letter-spacing 0.05em, color `#5b6470` (existing `--color-text-muted` token) — directly below icon
+- Value: 14px, monospace (`ui-monospace, Menlo, Consolas` — same stack as rest of site, no new font dependency), font-weight 400 (regular — NOT 500/600, see note below), color `#454b52` (custom, sits between muted and full text-color) — directly below label
+- Row container: `background: #f7f8f9` (existing `--color-bg-alt` token), `border-radius: 10px`, `padding: 16px 18px`, `display: flex; justify-content: space-between`
+
+**Technical note — why weight is 400, not an intermediate value:** system monospace fonts (Menlo/Consolas/ui-monospace) only ship two real weights (~400 regular, ~700 bold) — no true "medium." Any font-weight value between 401-699 gets silently rounded by the browser to whichever of the two is closest, so there's no way to dial in a "slightly bold" look with this font stack. Tested this directly (four weight/color combos side by side) and confirmed: browser renders exactly two visual clusters, not a gradient. Decided to stay within the current no-added-font-dependency stack (per the site's dependency-free design goal) and use regular weight + a color between muted and full-black to get the desired "present but not shouting" look, rather than loading a variable-weight webfont (JetBrains Mono/IBM Plex Mono — the original Q3 recommendation, substituted with system fonts in Session 06 for performance) just to fix this one field's weight.
+
+**Not yet resolved:** Build time and Skill level values are still placeholder/TBD for Foosball Table (and will be for all 13 projects) until the customer supplies estimates — a content gap, not a design gap.
 
 ### Contact method
 **`mailto:` link only** — no contact form. GitHub Pages has no server-side processing (the reason the old Hostinger PHP mail form can't carry over without a third-party service), and the old WordPress site never had a dedicated Contact page either. Consistent with the "no unnecessary complexity" direction from Q8.
