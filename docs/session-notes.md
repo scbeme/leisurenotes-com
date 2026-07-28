@@ -1,21 +1,36 @@
 # Leisurenotes.com — Session Notes
 ## Project: leisurenotes.com Redesign & Migration
-## Last updated: 2026-07-27 | Session: 06
+## Last updated: 2026-07-28 | Session: 07
 
 ---
 
 ## ⚡ QUICK START — READ FIRST
 
-- **Resume point:** Session frozen mid-Phase-2D at customer's request — **do not build the remaining 12 project pages and do not lock the Foosball Table template (2D.6) yet.** Homepage is approved and locked (2C.6). Foosball Table sample page exists at `/projects/foosball-table/index.html` with real content pulled live from leisurenotes.com, already restructured once into Instructables-style Intro/Supplies/Steps/Final-Thoughts — but customer has more changes queued before this template is finalized. Do not treat the current Foosball Table page as a template to copy elsewhere.
-- **Tool switch already made:** this and all subsequent sessions run in **Claude Code terminal on the MacBook Air** (`cd ~/projects/web/leisurenotes-com && claude`), not Cowork.
-- **First action for next session:** Read this Quick Start + implementation-plan.md, then work the priority list below in order. Don't start Phase 3 (remaining 12 pages) or mark 2D.6 until both items are done and the customer has explicitly approved the finalized template.
+- **Resume point:** Category/tag model is now **decided and applied** (see below). Session frozen mid-Phase-2D at customer's request before this — **do not build the remaining 12 project pages and do not lock the Foosball Table template (2D.6) yet.** Homepage is approved and locked (2C.6). Foosball Table sample page exists at `/projects/foosball-table/index.html` with real content pulled live from leisurenotes.com, already restructured once into Instructables-style Intro/Supplies/Steps/Final-Thoughts — but customer has more changes queued before this template is finalized. Do not treat the current Foosball Table page as a template to copy elsewhere.
+- **Tool switch already made:** this and all subsequent sessions are supposed to run in **Claude Code terminal on the MacBook Air** (`cd ~/projects/web/leisurenotes-com && claude`), not Cowork. Session 07 ran in Cowork at customer's explicit choice (asked, customer said continue in Cowork) — flag this again next session rather than assuming it's now the standing preference.
+- **First action for next session:** Read this Quick Start + implementation-plan.md, then work the remaining priority (Foosball Table template punch list) below. Don't start Phase 3 (remaining 12 pages) or mark 2D.6 until the punch list is done and the customer has explicitly approved the finalized template.
 
-### Next session priority list (in order)
+### Category/tag model — DECIDED this session (Session 07)
+**Model:** single primary category per project (no tags layer added yet, no true multi-category). 4 categories: **Play, Workshop, Home, Tech**.
 
-**1. Finalize the category/tag model.**
-Customer is deciding between (a) primary-category-plus-tags vs. (b) true multi-category, and whether to add a 5th category ("Games/Toys") alongside the current four (Woodworking/STEM/Astronomy/Tools). This decision is customer's to make — present the tradeoff, don't pick for them. Once decided, propose a draft category/tag mapping for **all 13 projects** based on `docs/content-inventory.md`, for the customer to review — they explicitly don't want to compile this list manually themselves. Note: current `data/projects.json` categories were Claude's inference (see Open Items below) and will need updating once the model + mapping are confirmed.
+Decision path (for context): started from Woodworking/STEM/Astronomy/Tools + possible 5th "Games/Toys" bucket. Customer redefined the taxonomy entirely to Play/Home/Tech/Workshop/Personal. "Personal" was dropped (only 1 candidate project, confusing label for public visitors) — Flag Display Case folded into Home instead. Considered splitting Play into Games/Toys for better chip balance, but customer's grandkids are now 11–14, so future "play" projects will likely skew older/game-like rather than young-kid "toys" — reverted to a single Play category to stay label-accurate as the project list grows. Astronomy folded into generic Tech (same single-project-category reasoning, and Tech doubles as a placeholder for future electronics/precision builds).
 
-**2. Finalize the Foosball Table template.** Open punch list:
+**Final mapping (applied to `data/projects.json`, `assets/js/site.js` CATEGORY_LABELS, and `index.html` chips):**
+
+| Category | Count | Projects |
+|---|---|---|
+| Play | 7 | Foosball Table, Mechanical Pinball Machine, Cornhole Game Board, Biplane Wooden Toy, Baby Doll Carriage, Fan Powered Toy Car, Fidget Spinner |
+| Workshop | 3 | Tablesaw Vertical Tenon Jig, Bicycle Maintenance Clamp, Vertical Tool Cart |
+| Home | 2 | Mantel Clock, Flag Display Case |
+| Tech | 1 | Crayford Focuser 1¼″ |
+
+Chip order (left to right): Play, Workshop, Home, Tech (by count, descending).
+
+Confirmed cheap to modify later: category is a plain string field per project in `projects.json`, labels are a 4-line object in `site.js`, chips are plain buttons in `index.html` — no CMS/build step. Adding a 5th category or splitting Play later is a few line-edits, not a redesign.
+
+### Next session priority list
+
+**1. Finalize the Foosball Table template.** Open punch list:
 - [ ] Restructure project-body into Instructables-style Supplies (materials + tools, consumables separated from equipment) + numbered Steps, preserving original written content/voice as much as possible — **in progress**, first pass done this session (see below), customer has more changes coming
 - [ ] Remove the "2 thoughts on..." comments section entirely — no live commenting system exists on the new site, and it would only appear on 2 of 13 pages. Fold any worthwhile line into the prose as a short pull-quote if worth preserving, otherwise drop entirely
 - [ ] Make the breadcrumb category segment (e.g., "Woodworking") a clickable link back to a filtered homepage view — currently a plain, non-clickable `<span>`. Needs a homepage mechanism to land pre-filtered (e.g., `/?category=woodworking` read by `site.js` on load) since there are no dedicated category URLs per the locked sitemap
@@ -75,7 +90,7 @@ All captured in full in website-design.md. Summary:
 - [ ] **Favicon missing** — site has no favicon yet; tracked as Phase 3 item 3.23, not blocking.
 - [x] ~~Project body/instruction text was never actually harvested~~ — resolved: this Claude Code terminal session has real internet access (unlike the earlier Cowork sandbox) and can fetch live page content directly. See "Major discovery" above. Applies to all remaining 12 project pages in Phase 3.
 - [ ] **Foosball Table spec block (build time, difficulty) left as "Not yet specified"** — not stated anywhere in the source content, so not fabricated. Needs customer input; same will apply to the other 12 pages unless the customer supplies estimates.
-- [ ] **Category assignments superseded — see next-session priority #1 above.** Homepage `data/projects.json` categories (Woodworking/STEM/Astronomy/Tools) were Claude's inference from titles/upload dates, not customer-confirmed, and the category *model itself* is now under active reconsideration (single-category-plus-tags vs. true multi-category, possible 5th "Games/Toys" bucket). Don't treat current categories as final; homepage manifest will need updating once decided.
+- [x] ~~Category assignments superseded~~ — resolved Session 07: Play/Workshop/Home/Tech model decided and applied to `data/projects.json`, `site.js`, and `index.html`. See "Category/tag model — DECIDED this session" above.
 - [ ] Git PAT expires ~2027-07-27 — renewal reminder
 - [ ] Monitor repo size — revisit GitHub Releases fallback at ~800MB
 - [ ] WordPress stays live until Phase 5 approved
@@ -209,6 +224,28 @@ DNS changes: Hostinger hPanel
 - Discovered this Claude Code terminal session has real internet access (unlike the earlier Cowork sandbox) — resolved the Phase 1 content-harvest gap by fetching the live Foosball Table page directly. Built Phase 2D.1 sample project page with real body text, real image gallery, and both real reader comments, not placeholders
 - Customer requested the project-body content follow the locked Instructables-compatible structure (Q5) rather than raw narrative — restructured into Intro / Supplies (materials & hardware / consumables / tools, extracted from the narrative) / Steps 1–5 / Final Thoughts, preserving all original sentences verbatim
 - Customer then queued further changes and **froze the session mid-Phase-2D**: don't build the other 12 pages, don't lock the template yet. Two-item priority list set for next session — finalize the category/tag model (with draft mapping proposal for all 13 projects) and finish the Foosball Table template punch list (comments removal, clickable breadcrumb category, combined single-ZIP downloads, hero photo orientation handling) — see Quick Start above for full detail
+
+---
+
+## Session 07 Summary
+
+### Accomplished
+- Ran in Cowork (not Claude Code terminal) — flagged the documented tool switch to the customer, who chose to continue in Cowork for this session rather than switch
+- Resolved Priority 1 from Session 06: finalized the category/tag model. Iterated through several taxonomies with the customer (original Woodworking/STEM/Astronomy/Tools+Games/Toys proposal → customer's Play/Home/Tech/Workshop/Personal → dropped Personal → considered/reverted a Games vs. Toys split based on customer's grandkids now being 11–14) — see "Category/tag model — DECIDED this session" above for full reasoning
+- Applied the final Play/Workshop/Home/Tech model to `data/projects.json` (all 13 projects), `assets/js/site.js` (`CATEGORY_LABELS`), and `index.html` (filter chips + intro copy + meta description)
+- Verified `projects.json` is valid JSON and category counts match the locked mapping (Play 7 / Workshop 3 / Home 2 / Tech 1)
+- Answered customer question on future maintainability: confirmed categories are cheap to add/modify later (plain string field + 4-line label map + button markup, no CMS/build step)
+
+### Open Items carried forward
+- **Tool switch still due** — Session 08 should default to Claude Code terminal on the MacBook Air unless customer says otherwise; ask again rather than assuming Cowork is now fine
+- Foosball Table template punch list (comments removal, clickable breadcrumb category, combined single-ZIP downloads, hero photo orientation handling) — see Quick Start above, this is now the sole blocker before Phase 2D.6 lock + Phase 3
+- Crayford Focuser folder/slug mismatch — unresolved, deferred to Phase 3 build of that page
+- Favicon missing — Phase 3 item 3.23, not blocking
+- Foosball Table spec block (build time, difficulty) — still "Not yet specified," needs customer input
+- Git PAT expires ~2027-07-27 — renewal reminder
+- Monitor repo size — revisit GitHub Releases fallback at ~800MB
+- WordPress stays live until Phase 5 approved
+- Instructables cross-posting — decide per-project after redesign ships
 
 ---
 

@@ -1,9 +1,9 @@
 (function () {
   const CATEGORY_LABELS = {
-    woodworking: "Woodworking",
-    stem: "STEM",
-    astronomy: "Astronomy",
-    tools: "Tools",
+    play: "Play",
+    workshop: "Workshop",
+    home: "Home",
+    tech: "Tech",
   };
 
   const grid = document.getElementById("project-grid");
