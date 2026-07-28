@@ -1,5 +1,5 @@
 # Leisurenotes.com — Website Design
-## Status: Phase 2A + 2B LOCKED | Started: 2026-07-27 | Last updated: 2026-07-27 | Session: 05
+## Status: Phase 2A + 2B LOCKED | Started: 2026-07-27 | Last updated: 2026-07-28 | Session: 08
 
 ---
 
@@ -22,6 +22,25 @@ Hobbyist makers with some technical fluency — comfortable with tools and CAD f
 If repo size approaches the monitoring trigger, move CAD ZIPs/PDFs out of the git-tracked tree into a single ongoing GitHub Release; link project pages to the release asset URLs instead. Confirmed via GitHub docs: release assets don't count toward the Pages 1GB published-size limit, support files up to 2GiB each, no total size or bandwidth cap, served via GitHub's own CDN — no adverse effect on site speed or reliability when adopted. Deferred now because nothing is published yet under the new design, so there's no cost to doing this later instead of now.
 
 **Monitoring trigger:** revisit this when the repo approaches ~800MB (vs. current projection of ~400-460MB after asset pipeline changes).
+
+### GitHub file size limits — reference (added Session 08)
+- **Git hard limit: 100MB per file** — git rejects the push outright above this, no exception. Warning issued at 50MB.
+- **GitHub Releases: 2GB per file**, doesn't count against repo/Pages size at all.
+- **Recommended repo total: under ~1GB** (5GB is the hard "don't" ceiling).
+- **Working rule for this site:** any single downloadable file over **~60-80MB** goes to a GitHub Release, not the git-tracked tree — gives headroom under the 100MB wall rather than running up against it. Applies per-file, so a project with several smaller files can still stay in-repo even if projects with one large CAD/firmware bundle can't.
+
+### Firmware/electronics projects — packaging rules (added Session 08, ahead of any firmware project going live)
+Prompted by review of the WLD (water leak detector) ESP32-H2 project folder as a candidate future addition. These rules apply to it and any future firmware/PCB project on the site — **not yet implemented, no firmware project is live on the site today.**
+
+**Mandatory download package** (what a new builder needs to open in VS Code + ESP-IDF and Build → Flash their own device):
+- `main/` (source), `CMakeLists.txt`, `sdkconfig`, `sdkconfig.defaults`, `partitions.csv`, `dependencies.lock`, `managed_components/` (keep committed rather than relying on live component-registry fetch, for build reproducibility)
+
+**Always excluded — never packaged for download:**
+- `build/` — 100% compiler output (object files, generated makefiles, final binaries); regenerated automatically by Build. For the WLD project specifically this folder alone was ~1.2GB of a ~1.27GB total — dropping it resolves the size problem almost entirely.
+- `backups/` — personal working-copy safety net, not part of the buildable project
+- `mfg/` (or equivalent manufacturing/attestation folders) — **security-sensitive, exclude always, no exceptions.** Confirmed on the WLD project: this folder holds one physical unit's Matter/Thread device-attestation data (DAC cert/key, PAI cert, provisioning CSVs) *including private key material* (`DAC_private_key.bin`, `pai_key.pem`). Device-specific, not reusable by a new builder, and would leak private keys if ever zipped up without a second look. If this folder structure is reused on future firmware projects, apply the same exclusion by default — treat any `mfg`/manufacturing/provisioning folder as excluded unless explicitly reviewed.
+
+**Optional, decide per-project:** a small pre-built binary (final `.bin` from a completed build, flashable via `esptool.py` with no toolchain needed) for visitors who want a working unit without building from source. Nice-to-have, not a substitute for the source package — site's maker-audience framing (Q1/Q7) leans toward people who want to inspect/modify code.
 
 ---
 

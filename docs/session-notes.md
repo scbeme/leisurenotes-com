@@ -1,14 +1,33 @@
 # Leisurenotes.com — Session Notes
 ## Project: leisurenotes.com Redesign & Migration
-## Last updated: 2026-07-28 | Session: 07
+## Last updated: 2026-07-28 | Session: 09
 
 ---
 
 ## ⚡ QUICK START — READ FIRST
 
-- **Resume point:** Category/tag model is now **decided and applied** (see below). Session frozen mid-Phase-2D at customer's request before this — **do not build the remaining 12 project pages and do not lock the Foosball Table template (2D.6) yet.** Homepage is approved and locked (2C.6). Foosball Table sample page exists at `/projects/foosball-table/index.html` with real content pulled live from leisurenotes.com, already restructured once into Instructables-style Intro/Supplies/Steps/Final-Thoughts — but customer has more changes queued before this template is finalized. Do not treat the current Foosball Table page as a template to copy elsewhere.
-- **Tool switch already made:** this and all subsequent sessions are supposed to run in **Claude Code terminal on the MacBook Air** (`cd ~/projects/web/leisurenotes-com && claude`), not Cowork. Session 07 ran in Cowork at customer's explicit choice (asked, customer said continue in Cowork) — flag this again next session rather than assuming it's now the standing preference.
-- **First action for next session:** Read this Quick Start + implementation-plan.md, then work the remaining priority (Foosball Table template punch list) below. Don't start Phase 3 (remaining 12 pages) or mark 2D.6 until the punch list is done and the customer has explicitly approved the finalized template.
+- **Resume point:** Session 09 (Claude Code terminal) implemented all 5 items of the Session 08 Foosball Table punch list — see "Session 09 Summary" below for details. **Template is implemented but still not locked (2D.6)** — per the punch-list brief, this needs explicit customer review/approval before Phase 3 (remaining 12 pages) starts. Nothing in this session was auto-locked.
+- **Tool switch:** Currently in Claude Code terminal — correct per division-of-labor policy for coding work.
+- **First action for next session:** Confirm with customer that the punch-list changes look right (category fix, comments removed, clickable breadcrumb + pre-filtered homepage, combined-ZIP download label, hero photo orientation check). If approved, mark 2D.6 locked and proceed to Phase 3. If not, capture requested changes here first.
+
+### Foosball Table punch list — Claude Code brief (Session 08)
+Ready-to-implement, in `/projects/foosball-table/index.html` unless noted. Do all five, then flag for customer review before locking 2D.6.
+
+1. **Fix stale category reference (newly found this session):** the Session 07 category-model rollout (Play/Workshop/Home/Tech) updated `data/projects.json`, `site.js`, and `index.html` homepage chips, but **missed the Foosball Table page itself** — line 26 breadcrumb (`<span>Woodworking</span>`) and line 35 `<span class="card-category">Woodworking</span>` still say "Woodworking." Foosball Table's correct category is **Play**. Fix both spots. When building the other 12 pages in Phase 3, use each project's `data/projects.json` category as the source of truth for this field — don't hand-type it.
+2. **Remove the comments section entirely** — delete the `<section class="project-comments">` block (lines 212–228). No live commenting system exists on the new site. Nothing worth preserving as a pull-quote (both comments are generic praise, no unique build info) — confirmed drop, not fold-in.
+3. **Make the breadcrumb category segment a clickable link, pre-filtering the homepage:**
+   - Change `<span>Play</span>` (post-fix-1) to `<a href="/?category=play">Play</a>` in the breadcrumb.
+   - In `assets/js/site.js`, on page load, read a `category` query param (e.g. `URLSearchParams`) and if present, pre-select/activate that category's filter chip so the grid opens already filtered — same mechanism the chips already use, just triggered from the URL instead of a click.
+   - Category value in the URL should be lowercase, matching the chip's data attribute/value convention already used in `site.js`.
+4. **Downloads: generalize to one combined ZIP with a contents note** — Foosball Table already has only one CAD ZIP (no separate PDF), so the visible change here is small, but implement the *pattern* now since other projects (e.g., Crayford Focuser: PDF + STL + SKP + STEP) need it:
+   - Button label: `Download Project Files (ZIP)` (drop the current "3D Model CAD Files" wording — too specific to this one project).
+   - Keep the `download-note` paragraph, update wording to describe what's inside: `Includes SKP, STEP, OBJ, and 3DM CAD formats.` (unchanged content, just confirm it reads as a contents list, not a CAD-only label).
+   - **Flag, don't implement bundling logic yet:** some future projects' combined ZIP may exceed the ~60-80MB repo-file working threshold documented in `website-design.md` (GitHub file size section, added this session) — those will need GitHub Releases instead of a repo-committed ZIP. Decide per-project at Phase 3 build time, not now.
+5. **Verify hero photo handles both portrait and landscape source images gracefully** — current Foosball Table hero image (`foosball-table-IMG_4829-e1641488166393-225x300.png`) is portrait (225×300). Check `.hero-photo-wrap` in `assets/css/style.css`: confirm it doesn't hard-code an aspect ratio or fixed height that would crop/distort a landscape hero on a different project page. If it does, fix to handle both (e.g., `max-height` + `object-fit: contain` or `cover` — pick whichever preserves the current Foosball Table look without regressing it). No visual change expected on Foosball Table itself if already handled correctly — this is a defensive check for the other 12 pages, several of which have landscape heroes.
+
+**Not part of this punch list, still open, needs customer input (not a coding task):** Foosball Table spec block build-time/difficulty fields are still "Not yet specified" (lines 43–44) — ask customer directly rather than guessing/fabricating.
+
+**Reference for future firmware/electronics projects (not urgent, no action needed today):** `website-design.md` "Firmware/electronics projects — packaging rules" section, added this session — covers what to include/exclude if a firmware project (e.g. WLD water leak detector) is ever added to the site. Nothing to build yet.
 
 ### Category/tag model — DECIDED this session (Session 07)
 **Model:** single primary category per project (no tags layer added yet, no true multi-category). 4 categories: **Play, Workshop, Home, Tech**.
@@ -259,6 +278,56 @@ DNS changes: Hostinger hPanel
 
 ---
 
+## Session 08 Summary
+
+### Accomplished
+- Ran in Cowork (customer's explicit choice again) — planning/advisory only, no code or git touched, per Session 07's division-of-labor policy
+- Answered customer question on post-launch content maintainability: narrative edits are simple text changes inside each project's `index.html` (no CMS); recommended doing edits via Claude Code (find text, edit, commit, push) rather than customer hand-editing raw HTML directly — low friction either way given 1-2 projects/month cadence
+- Answered customer question on GitHub file size limits (git hard cap 100MB/file, Releases 2GB/file, recommended repo <1GB) — researched and confirmed current limits via web search
+- Reviewed customer's VS Code folder screenshots for a candidate future project (WLD — ESP32-H2 water-leak detector) and determined the mandatory vs. excludable folders for a firmware download package: `build/` (compiler output, ~1.2GB of the ~1.27GB total, always regenerable) and `mfg/` (device-specific manufacturing/attestation data — **flagged as security-sensitive: contains private key material, exclude always**) both excluded; `main/`, `CMakeLists.txt`, `sdkconfig(.defaults)`, `partitions.csv`, `dependencies.lock`, `managed_components/` are the mandatory buildable set
+- Logged both the file-size limits and the firmware packaging rules into `website-design.md` (new "GitHub file size limits" and "Firmware/electronics projects — packaging rules" subsections under Technical Decisions) — reference for if/when WLD or a similar project is added to the site; nothing implemented, no firmware project live yet
+- Reviewed the current Foosball Table page against the open punch list (comments removal, clickable breadcrumb, combined ZIP downloads, hero photo orientation) and wrote a fully specified, ready-to-implement brief for Claude Code — see Quick Start above
+- Caught a gap the Session 07 category rollout missed: Foosball Table's own page still says "Woodworking" (breadcrumb + card-category), not updated to "Play" — added as punch-list item 1
+
+### Open items carried forward
+- Foosball Table punch list (5 items, fully specified) — see Quick Start, this is the sole blocker before Phase 2D.6 lock + Phase 3
+- Foosball Table spec block (build time, difficulty) — still "Not yet specified," needs customer input directly, not a coding task
+- Crayford Focuser folder/slug mismatch — unresolved, deferred to Phase 3 build of that page
+- Favicon missing — Phase 3 item 3.23, not blocking
+- Git PAT expires ~2027-07-27 — renewal reminder
+- Monitor repo size — revisit GitHub Releases fallback at ~800MB (now also relevant per-file at ~60-80MB, see website-design.md)
+- WordPress stays live until Phase 5 approved
+- Instructables cross-posting — decide per-project after redesign ships
+- WLD (water leak detector) firmware project — not yet added to site, packaging rules documented and ready whenever customer decides to add it
+
+---
+
+## Session 09 Summary
+
+### Accomplished
+- Ran in Claude Code terminal (correct tool per division-of-labor policy) — implemented the fully-specified Session 08 punch list against `/projects/foosball-table/index.html` and `assets/js/site.js`:
+  1. Fixed stale "Woodworking" category reference (breadcrumb + `card-category` span) to "Play" — the Session 07 category rollout had missed this page
+  2. Removed the `<section class="project-comments">` block entirely — no live commenting system on the new site, nothing worth preserving as a pull-quote
+  3. Made the breadcrumb category segment a clickable link (`<a href="/?category=play">Play</a>`); extended `site.js` to read a `category` URL query param on page load via `URLSearchParams` and pre-activate the matching filter chip, reusing the existing chip-click mechanism
+  4. Generalized the downloads button to `Download Project Files (ZIP)` (was "3D Model CAD Files (ZIP)") and updated the note wording to read as a contents list — pattern now ready for projects with multiple file types (e.g., Crayford Focuser); did not implement any bundling logic, per the brief's explicit flag-don't-build instruction
+  5. Verified hero photo orientation handling — `.hero-photo-wrap` in `style.css` already uses `max-height` + `object-fit: contain` with flex centering, no hard-coded aspect ratio or fixed height, so both portrait and landscape heroes are already handled correctly. No CSS change needed; confirmed via code inspection, not a visual regression risk
+- Verified via local `python3 -m http.server`: homepage and Foosball Table page both return 200, comments section confirmed absent from rendered HTML (grep count 0), `urlCategory` logic present in served `site.js`, breadcrumb link renders with the correct `?category=play` href. Also verified `.breadcrumbs a` CSS already styles the new link consistently with the existing "Home" breadcrumb link (muted color, hover-to-signal-color, no underline) — no CSS changes needed there either
+- No browser extension connected this session (`claude-in-chrome` not set up) — verified via server response inspection and code/CSS review instead of a live visual check; flagging this as a lighter verification bar than the CLAUDE.md "test in a browser" guidance calls for, so customer should do a quick visual pass before sign-off
+- `node -c` confirmed `site.js` syntax is valid after the edit
+
+### Open items carried forward
+- **Punch list implemented but not yet customer-approved** — do not start Phase 3 or mark 2D.6 locked until customer confirms the 5 changes look right (see Quick Start)
+- Foosball Table spec block (build time, difficulty) — still "Not yet specified," needs customer input directly, not a coding task
+- Crayford Focuser folder/slug mismatch — unresolved, deferred to Phase 3 build of that page
+- Favicon missing — Phase 3 item 3.23, not blocking
+- Git PAT expires ~2027-07-27 — renewal reminder
+- Monitor repo size — revisit GitHub Releases fallback at ~800MB (per-file trigger ~60-80MB, see website-design.md)
+- WordPress stays live until Phase 5 approved
+- Instructables cross-posting — decide per-project after redesign ships
+- WLD (water leak detector) firmware project — not yet added to site, packaging rules documented and ready whenever customer decides to add it
+
+---
+
 ## Session Close Protocol
 
 ### Every session — Claude does automatically:
@@ -266,6 +335,8 @@ DNS changes: Hostinger hPanel
 - [x] Commit with descriptive message
 - [x] Push to GitHub
 - [x] No customer sync step needed — Cowork/Claude Code operate directly on the MacBook Air's local copy, already in sync with GitHub after push
+
+**Updated 2026-07-28 (Session 07):** Commit + push now happens from **Claude Code terminal only** — confirmed `git push` fails outright from Cowork (403 from proxy, no GitHub network access in the Cowork sandbox). See CLAUDE.md "Division of labor" section. Cowork sessions close by updating `/docs` files and stopping there; the next Claude Code session commits and pushes anything left pending.
 
 ### Session 05 Close — final state
 - CLAUDE.md, .gitignore, session-notes.md, implementation-plan.md, config-mgmt.md, website-design.md all current and pushed
@@ -278,3 +349,12 @@ DNS changes: Hostinger hPanel
 - Phase 2D — IN PROGRESS, frozen at customer's request. Foosball Table sample page built with real content but **not** locked as a template; do not copy its current structure to other projects yet
 - session-notes.md, implementation-plan.md, index.html, 404.html, assets/css/style.css, assets/js/site.js, data/projects.json, projects/foosball-table/index.html all current and pushed
 - Next session priority (in order): (1) finalize category/tag model + draft mapping proposal for all 13 projects, (2) finish Foosball Table template punch list — see Quick Start above for full detail. Do not start Phase 3 (remaining 12 pages) until both are done and customer has explicitly approved the template
+
+### Session 07 Close — final state
+- Ran in Cowork (customer's explicit choice this session) — see CLAUDE.md "Division of labor" section, added this session, for the standing workflow going forward: Cowork = advisor/planning, Claude Code = coding + git
+- Category/tag model — DECIDED and applied: Play (7) / Workshop (3) / Home (2) / Tech (1), across `data/projects.json`, `assets/js/site.js`, `index.html`
+- Search improved: added a keyword-rich `summary` field to all 13 projects (real content, live-fetched from leisurenotes.com — discovered `web_fetch` reaches the live site from Cowork, correcting an earlier documented assumption), `site.js` search now matches title + summary
+- CLAUDE.md updated with a new "Division of labor" section codifying Cowork-advisor / Claude-Code-implementer split, and confirming `git push` is hard-blocked from Cowork (403 from proxy) — not just a preference, a fixed constraint
+- All changes committed and pushed **successfully** — customer ran `git push` from Terminal after two local commits landed (`e50f76e`, `ba7e155`); confirmed clean push with no errors
+- **This CLAUDE.md + session-notes.md update (the close-out itself) has NOT yet been committed/pushed** — per the new division of labor, that's next Claude Code session's first job
+- Next session priority (in order): (1) finish Foosball Table template punch list (comments removal, clickable breadcrumb category, combined single-ZIP downloads, hero photo orientation handling), (2) lock template (2D.6), (3) build remaining 12 project pages using live-fetched content approach (now proven to work from either Cowork or Claude Code) — see Quick Start above for full detail

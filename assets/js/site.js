@@ -67,6 +67,16 @@
   searchInput.addEventListener("input", render);
   sortSelect.addEventListener("change", render);
 
+  const urlCategory = new URLSearchParams(window.location.search).get("category");
+  if (urlCategory) {
+    const matchingChip = Array.from(chips).find((chip) => chip.dataset.category === urlCategory);
+    if (matchingChip) {
+      chips.forEach((c) => c.classList.remove("is-active"));
+      matchingChip.classList.add("is-active");
+      activeCategory = urlCategory;
+    }
+  }
+
   fetch("data/projects.json")
     .then((res) => res.json())
     .then((data) => {

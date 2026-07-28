@@ -33,6 +33,16 @@ GUI is preferred but not exclusive. Goal: minimize the customer's total implemen
 - If a terminal command is genuinely more efficient than GUI automation (e.g. one-time setup, environment config), Claude provides an exact copy-paste script for the customer to run in their own Mac Terminal — which has full network access that a Cowork sandbox session does not.
 - For git-heavy phases where GUI automation proves slow/unreliable, consider running that phase via a Claude Code terminal session instead (direct, unrestricted git access on the customer's Mac) rather than continuing to drive GitHub Desktop's screen from Cowork.
 
+## Division of labor: Cowork vs. Claude Code (customer's standing workflow)
+
+Customer's intent: **Claude Code does the coding. Cowork is the advisor/interpreter** — used to talk through decisions, clarify requirements, and turn the customer's intent into clear, actionable instructions that Claude Code then executes.
+
+- **Cowork's role:** conversational planning, research, answering questions, presenting tradeoffs, and writing decisions/instructions into `docs/session-notes.md` (and other `/docs` files) so Claude Code has a clear brief to work from. This is documentation, not coding — Cowork owns it.
+- **Claude Code's role:** all actual code and data file edits (`index.html`, `assets/`, `data/projects.json`, project pages, etc.) and all git operations (`add`/`commit`/`push`).
+- **Why git specifically is Claude Code's job, not just a preference:** confirmed 2026-07-28 that `git push` from a Cowork session fails outright (`403 from proxy` — Cowork's sandbox cannot reach github.com). `git commit` sometimes succeeds locally despite `.git` permission warnings, but push never will. Don't attempt `git push` from Cowork going forward — it will fail every time, not just sometimes.
+- **Recommended session order:** start with Cowork for any planning/decision work → Cowork updates `session-notes.md` with the outcome → switch to Claude Code terminal (`cd ~/projects/web/leisurenotes-com && claude`), tell it to read `session-notes.md`, and it implements + commits + pushes.
+- **Exception:** Cowork may still update files under `/docs` directly (that's the advisory output, not "coding"), but should not edit site code/data files or run git commands even if technically possible — reserve that for Claude Code per the customer's stated preference.
+
 ## Standing facts
 - Customer: Harvey Carson (Scott) — GUI preferred, terminal OK via copy-paste scripts when more efficient
 - GitHub: scbeme/leisurenotes-com — hosting via GitHub Pages, DNS/domain stays at Hostinger
