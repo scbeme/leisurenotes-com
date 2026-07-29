@@ -68,7 +68,16 @@ a { color: inherit; }
 
 .intro h1 {
   font-size: 2rem;
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.4rem;
+}
+
+.intro .intro-tagline {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--color-signal-dark);
 }
 
 .intro p {

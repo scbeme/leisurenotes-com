@@ -1,12 +1,13 @@
 # Leisurenotes.com — Session Notes
 ## Project: leisurenotes.com Redesign & Migration
-## Last updated: 2026-07-29 | Session: 11
+## Last updated: 2026-07-29 | Session: 12
 
 ---
 
 ## ⚡ QUICK START — READ FIRST
 
-- **Resume point:** Session 11 (Claude Code terminal) implemented a Cowork-drafted brief covering: homepage headline rewrite, 4-column desktop project grid, Foosball Table Build time/Skill level values (2-3 Weekends / Advanced — first real values, no longer "Not yet specified"), removal of the header `<nav class="site-nav">` and a restructured footer (About/Contact nav + new cookie-free-analytics privacy line) across `index.html`, `projects/foosball-table/index.html`, and `404.html`. Same session, follow-up pass: customer supplied the real Cloudflare Web Analytics site token — the beacon tag on all 3 pages now carries the live token (`e969f64869f440da8109395b251f440a`), TODO comment removed. **All committed and pushed** — see Session 11 Summary below for full detail.
+- **Resume point:** Session 12 (Claude Code terminal) restyled the homepage headline area in `index.html`: split the old single-line `<h1>Free Maker Plans — No Ads, No Cookies, No Login</h1>` into `<h1>Free Maker Plans</h1>` plus a new `<p class="intro-tagline">No Ads · No Cookies · No Login</p>` badge-style line above the existing muted body paragraph. In `assets/css/style.css`, reduced `.intro h1` bottom margin to 0.4rem (from 0.75rem) and added `.intro-tagline` (mono font, signal-blue, same accent treatment as `.card-category`/`.spec-label`). Note: scoped the new rule as `.intro .intro-tagline` rather than a bare `.intro-tagline` — the existing `.intro p` rule (class+element selector) has higher specificity than a single class selector and would otherwise silently override the tagline's color and margin since the tagline is also a `<p>`. **Committed and pushed.**
+- **Previous resume point (Session 11):** implemented a Cowork-drafted brief covering: homepage headline rewrite, 4-column desktop project grid, Foosball Table Build time/Skill level values (2-3 Weekends / Advanced — first real values, no longer "Not yet specified"), removal of the header `<nav class="site-nav">` and a restructured footer (About/Contact nav + new cookie-free-analytics privacy line) across `index.html`, `projects/foosball-table/index.html`, and `404.html`. Same session, follow-up pass: customer supplied the real Cloudflare Web Analytics site token — the beacon tag on all 3 pages now carries the live token (`e969f64869f440da8109395b251f440a`), TODO comment removed. All committed and pushed — see Session 11 Summary below for full detail.
 - **Tool switch:** Currently in Claude Code terminal — correct per division-of-labor policy for coding work.
 - **Still open / needs customer input:**
   1. **Foosball Table template still not locked (2D.6)** — the new spec values and nav/footer restructure are additional changes on top of the Session 10 "feature-complete, awaiting review" state; still needs one explicit customer sign-off pass before Phase 3 (remaining 12 pages) starts.
