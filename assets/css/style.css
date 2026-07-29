@@ -482,9 +482,7 @@ a { color: inherit; }
 }
 
 .footer-privacy {
-  flex-basis: 100%;
   margin: 0;
-  font-size: 0.8rem;
   color: var(--color-text-muted);
 }
 
