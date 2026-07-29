@@ -1,19 +1,21 @@
 # Leisurenotes.com — Session Notes
 ## Project: leisurenotes.com Redesign & Migration
-## Last updated: 2026-07-29 | Session: 14
+## Last updated: 2026-07-29 | Session: 12
 
 ---
 
 ## ⚡ QUICK START — READ FIRST
 
-- **Resume point:** Session 14 (Claude Code terminal) finalized the footer layout in `index.html`, `404.html`, and `projects/foosball-table/index.html`: `.footer-privacy` now spans its own top row (`flex-basis: 100%`), with a new `.footer-bottom-row` div below holding `.footer-copyright` left-justified and the About/Contact `nav` right-justified (`justify-content: space-between`). `.site-footer` also got `background: var(--color-bg-alt)`, giving the whole footer band the same light background as the homepage `.intro` section, visually separated from the content above by the existing `border-top`. **Caveat:** verified the flexbox layout by tracing the CSS rules (flex-basis/flex-grow/wrap behavior), not by an actual rendered screenshot — this sandbox has no Chrome extension connected and Safari/`screencapture` automation requires OS Accessibility/Screen Recording permissions not available here. Customer should give it a quick eyeball on next live view; flag anything off. **Committed and pushed.**
-- **Previous resume point (Session 13):** reordered the footer in `index.html`, `404.html`, and `projects/foosball-table/index.html`: About/Contact nav and the `.footer-privacy` line now share the top row, with the `&copy; 2026 LeisureNotes...` line moved below into a new `.footer-copyright` paragraph. In `assets/css/style.css`, removed `flex-basis: 100%` and `font-size: 0.8rem` from `.footer-privacy` so it sits inline in the flex row and inherits `.footer-inner`'s `0.85rem` font-size instead of its old dedicated size. **Committed and pushed.**
-- **Previous resume point (Session 12):** restyled the homepage headline area in `index.html`: split the old single-line `<h1>Free Maker Plans — No Ads, No Cookies, No Login</h1>` into `<h1>Free Maker Plans</h1>` plus a new `<p class="intro-tagline">No Ads · No Cookies · No Login</p>` badge-style line above the existing muted body paragraph. In `assets/css/style.css`, reduced `.intro h1` bottom margin to 0.4rem (from 0.75rem) and added `.intro-tagline` (mono font, signal-blue, same accent treatment as `.card-category`/`.spec-label`). Note: scoped the new rule as `.intro .intro-tagline` rather than a bare `.intro-tagline` — the existing `.intro p` rule (class+element selector) has higher specificity than a single class selector and would otherwise silently override the tagline's color and margin since the tagline is also a `<p>`. **Committed and pushed.**
-- **Previous resume point (Session 11):** implemented a Cowork-drafted brief covering: homepage headline rewrite, 4-column desktop project grid, Foosball Table Build time/Skill level values (2-3 Weekends / Advanced — first real values, no longer "Not yet specified"), removal of the header `<nav class="site-nav">` and a restructured footer (About/Contact nav + new cookie-free-analytics privacy line) across `index.html`, `projects/foosball-table/index.html`, and `404.html`. Same session, follow-up pass: customer supplied the real Cloudflare Web Analytics site token — the beacon tag on all 3 pages now carries the live token (`e969f64869f440da8109395b251f440a`), TODO comment removed. All committed and pushed — see Session 11 Summary below for full detail.
+- **Resume point:** Session 12 (Claude Code terminal) made three sequential passes on the Foosball Table template's homepage/footer, all committed and pushed:
+  1. Split the homepage `<h1>Free Maker Plans — No Ads, No Cookies, No Login</h1>` into `<h1>Free Maker Plans</h1>` plus a new `<p class="intro-tagline">No Ads · No Cookies · No Login</p>` badge line (mono font, signal-blue, same treatment as `.card-category`/`.spec-label`).
+  2. Reordered the footer across `index.html`, `404.html`, and `projects/foosball-table/index.html` so About/Contact and the privacy line shared a row, copyright moved to its own line below.
+  3. Superseded that with a final footer layout (same 3 files): `.footer-privacy` alone on its own top row (`flex-basis: 100%`), a new `.footer-bottom-row` div below with `.footer-copyright` left / About-Contact `nav` right (`justify-content: space-between`), and `.site-footer` given `background: var(--color-bg-alt)` to match the homepage `.intro` band.
+  - **Caveat carried forward:** the final footer layout was verified by tracing the CSS flexbox rules, not an actual rendered screenshot — this sandbox has no Chrome extension connected and Safari/`screencapture` automation needs OS Accessibility/Screen Recording permissions unavailable here. Worth a live eyeball next time the site is viewed.
+  - See Session 12 Summary below for full per-pass detail.
 - **Tool switch:** Currently in Claude Code terminal — correct per division-of-labor policy for coding work.
 - **Still open / needs customer input:**
-  1. **Foosball Table template still not locked (2D.6)** — the new spec values and nav/footer restructure are additional changes on top of the Session 10 "feature-complete, awaiting review" state; still needs one explicit customer sign-off pass before Phase 3 (remaining 12 pages) starts.
-- **First action for next session:** Continue toward Foosball Table template sign-off / Phase 3 kickoff. Cloudflare Web Analytics is now live on all 3 pages — worth a quick check of the Cloudflare dashboard for incoming beacon data once the site is next deployed/viewed.
+  1. **Foosball Table template still not locked (2D.6)** — this session's headline/footer changes are additional changes on top of the Session 10 "feature-complete, awaiting review" state; still needs one explicit customer sign-off pass before Phase 3 (remaining 12 pages) starts.
+- **First action for next session:** Continue toward Foosball Table template sign-off / Phase 3 kickoff. Cloudflare Web Analytics is live on all 3 pages — worth a quick check of the Cloudflare dashboard for incoming beacon data once the site is next deployed/viewed. Also worth a live visual check of this session's footer layout (see caveat above).
 
 ### Foosball Table punch list — Claude Code brief (Session 08) — ALL 6 ITEMS DONE (Session 09 + 10)
 Ready-to-implement, in `/projects/foosball-table/index.html` unless noted. Items 1–5 completed and committed Session 09; item 6 completed Session 10. Full list done — flagged for customer review before locking 2D.6.
@@ -388,6 +390,34 @@ DNS changes: Hostinger hPanel
 - Instructables cross-posting — decide per-project after redesign ships
 - WLD (water leak detector) firmware project — not yet added to site, packaging rules documented and ready whenever customer decides to add it
 - Phase 3 image-selection two-pass workflow now documented (website-design.md) — ready to use once Phase 3 build starts on the remaining 12 projects
+
+---
+
+## Session 12 Summary
+
+### Accomplished
+Ran in Claude Code terminal, three sequential fully-specified briefs (no clarification needed on any), each read `session-notes.md` per standard startup before starting:
+
+1. **Homepage headline restyle** (`index.html`, `assets/css/style.css`): split `<h1>Free Maker Plans — No Ads, No Cookies, No Login</h1>` into `<h1>Free Maker Plans</h1>` plus a new `<p class="intro-tagline">No Ads · No Cookies · No Login</p>` badge line, sitting between the h1 and the existing muted body paragraph. `.intro h1` bottom margin reduced to 0.4rem (from 0.75rem); new `.intro-tagline` rule added (mono font, signal-blue, matching `.card-category`/`.spec-label` treatment). **Caught and fixed a spec bug before implementing:** the literal instructions specified a bare `.intro-tagline` class selector, but the existing `.intro p` rule (class+element, specificity 0-1-1) would have silently overridden the tagline's color and margin since the tagline is also a `<p>` (bare class selector is only 0-1-0). Scoped the new rule as `.intro .intro-tagline` instead to actually win the cascade.
+
+2. **Footer reorder, pass 1** (`index.html`, `404.html`, `projects/foosball-table/index.html`): About/Contact nav and `.footer-privacy` moved to share the top row; copyright moved below into a new `.footer-copyright` paragraph. `.footer-privacy` lost its `flex-basis: 100%` (so it could sit inline) and its dedicated `font-size: 0.8rem` (so it inherits `.footer-inner`'s `0.85rem` instead).
+
+3. **Footer reorder, pass 2 — final layout** (same 3 files, superseding pass 1 same session): `.footer-privacy` restored to its own full-width top row (`flex-basis: 100%`, plus `margin: 0 0 0.6rem` for spacing below); new `.footer-bottom-row` div wraps `.footer-copyright` and the About/Contact `nav`, `justify-content: space-between` putting copyright left / nav right; new `.footer-copyright` rule (`margin: 0`, previously unstyled); `.site-footer` given `background: var(--color-bg-alt)` so the whole footer band reads as a distinct lighter section matching the homepage `.intro` background, separated from content above by the existing `border-top`.
+
+**Verification note:** attempted to visually confirm the final footer layout via a local `python3 -m http.server` + browser screenshot, but no visual verification tool was available this session — Chrome extension not connected, and Safari/`screencapture` AppleScript automation failed on missing OS Accessibility/Screen Recording permissions (`osascript is not allowed assistive access`, `screencapture: could not create image from display`). Verified correctness by tracing the CSS flexbox rules by hand instead (flex-basis forces the privacy line to its own row; the bottom-row div then gets the full second row via `flex: 1`, with `justify-content: space-between` splitting its two children). Flagged this caveat to the customer before committing pass 2; customer chose to proceed on the logic review rather than block for a live check.
+
+**Session-numbering correction (this closing pass):** the three passes above were originally logged as Sessions 12, 13, and 14 — one bump per user turn — inconsistent with this doc's actual convention where a session number covers one full sitting regardless of how many sub-changes it contains (see Session 11, which bundled five). Consolidated back down to a single Session 12 covering all three passes; the header date/session and Quick Start section above were rewritten accordingly.
+
+### Open items carried forward
+- **Foosball Table template still awaiting final customer sign-off (2D.6)** — this session's headline/footer changes are additional changes since Session 10's "feature-complete" flag; do not start Phase 3 until approved
+- **Footer layout not yet visually confirmed live** — traced correct via CSS reasoning, not screenshotted; worth a quick customer eyeball next live view
+- Crayford Focuser folder/slug mismatch — unresolved, deferred to Phase 3 build of that page
+- Favicon missing — Phase 3 item 3.23, not blocking
+- Git PAT expires ~2027-07-27 — renewal reminder
+- Monitor repo size — revisit GitHub Releases fallback at ~800MB (per-file trigger ~60-80MB, see website-design.md)
+- WordPress stays live until Phase 5 approved
+- Instructables cross-posting — decide per-project after redesign ships
+- WLD (water leak detector) firmware project — not yet added to site, packaging rules documented and ready whenever customer decides to add it
 
 ---
 
