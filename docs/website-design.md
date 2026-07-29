@@ -1,5 +1,5 @@
 # Leisurenotes.com — Website Design
-## Status: Phase 2A + 2B LOCKED | Started: 2026-07-27 | Last updated: 2026-07-28 | Session: 08
+## Status: Phase 2A + 2B LOCKED | Started: 2026-07-27 | Last updated: 2026-07-29 | Session: 11
 
 ---
 
@@ -41,6 +41,18 @@ Prompted by review of the WLD (water leak detector) ESP32-H2 project folder as a
 - `mfg/` (or equivalent manufacturing/attestation folders) — **security-sensitive, exclude always, no exceptions.** Confirmed on the WLD project: this folder holds one physical unit's Matter/Thread device-attestation data (DAC cert/key, PAI cert, provisioning CSVs) *including private key material* (`DAC_private_key.bin`, `pai_key.pem`). Device-specific, not reusable by a new builder, and would leak private keys if ever zipped up without a second look. If this folder structure is reused on future firmware projects, apply the same exclusion by default — treat any `mfg`/manufacturing/provisioning folder as excluded unless explicitly reviewed.
 
 **Optional, decide per-project:** a small pre-built binary (final `.bin` from a completed build, flashable via `esptool.py` with no toolchain needed) for visitors who want a working unit without building from source. Nice-to-have, not a substitute for the source package — site's maker-audience framing (Q1/Q7) leans toward people who want to inspect/modify code.
+
+### Phase 3 — Image selection workflow (process, added Session 11)
+Two-pass process for picking/ordering the photo set on each of the remaining 12 project pages (Foosball Table's gallery is already finalized and not affected). **Process documentation only — no files renamed yet, nothing to do until each project's Phase 3 build.**
+
+**Pass 1 (Claude Code, per project folder):** first-pass rename assigning `01-`, `02-`, `03-`... prefixes to one representative file per distinct photo — skip duplicate WordPress-export crops of the same shot (multiple sizes of one photo), keep the largest/original-resolution file as the representative.
+
+**Review (customer):** reviews the numbered folder and hands back an ordered list of numbers, with the hero pick marked using a `hero-` prefix — e.g. `hero-04, 1, 9, 2, 15, 7`.
+
+**Pass 2 (Claude Code):** applies the customer's list —
+- Rename the hero pick to `hero-<original filename>`
+- Renumber the rest `01-`, `02-`, `03-`... in the customer's listed order
+- Leave anything not listed unprefixed — unprefixed files are excluded from the page (not deleted, just not referenced)
 
 ---
 
@@ -97,7 +109,11 @@ No ads, no popups/modals, no auto-play video/audio, no infinite scroll. Site is 
 
 **Technical note — why weight is 400, not an intermediate value:** system monospace fonts (Menlo/Consolas/ui-monospace) only ship two real weights (~400 regular, ~700 bold) — no true "medium." Any font-weight value between 401-699 gets silently rounded by the browser to whichever of the two is closest, so there's no way to dial in a "slightly bold" look with this font stack. Tested this directly (four weight/color combos side by side) and confirmed: browser renders exactly two visual clusters, not a gradient. Decided to stay within the current no-added-font-dependency stack (per the site's dependency-free design goal) and use regular weight + a color between muted and full-black to get the desired "present but not shouting" look, rather than loading a variable-weight webfont (JetBrains Mono/IBM Plex Mono — the original Q3 recommendation, substituted with system fonts in Session 06 for performance) just to fix this one field's weight.
 
-**Not yet resolved:** Build time and Skill level values are still placeholder/TBD for Foosball Table (and will be for all 13 projects) until the customer supplies estimates — a content gap, not a design gap.
+**Resolved for Foosball Table (Session 11):** Build time = "2-3 Weekends", Skill level = "Advanced". Still a per-project content gap for the other 12 pages until the customer supplies estimates for each.
+
+**Standing rules for Build time / Skill level values, all 13 projects (added Session 11):**
+- **Skill level** is always one of exactly three values: **Beginner, Intermediate, Advanced** — matches the three-rung "levels of experience" metaphor of the existing `ti-stairs` icon (Q10 above). Don't introduce a fourth tier or synonyms (e.g. "Expert", "Easy") — pick the closest of the three.
+- **Build time** uses flexible, scale-appropriate units per project — hours for short builds (e.g. "2-3 Hours"), weekends for larger ones (e.g. "2-3 Weekends") — rather than one fixed unit across all projects. Keep it short: 1-3 words, no parenthetical ranges or footnotes, matching the existing terse `.spec-value` style (e.g. "2-3 Weekends", not "2-3 Weekends (approx., assuming prior woodworking experience)").
 
 ### Contact method
 **`mailto:` link only** — no contact form. GitHub Pages has no server-side processing (the reason the old Hostinger PHP mail form can't carry over without a third-party service), and the old WordPress site never had a dedicated Contact page either. Consistent with the "no unnecessary complexity" direction from Q8.

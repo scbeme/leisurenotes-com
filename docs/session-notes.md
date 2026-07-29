@@ -1,14 +1,17 @@
 # Leisurenotes.com — Session Notes
 ## Project: leisurenotes.com Redesign & Migration
-## Last updated: 2026-07-28 | Session: 10
+## Last updated: 2026-07-29 | Session: 11
 
 ---
 
 ## ⚡ QUICK START — READ FIRST
 
-- **Resume point:** Session 10 (Claude Code terminal) implemented punch-list item 6 (spec block rebuild — new Build time/Skill level/Materials/Tools fields, icon-above-label-above-value layout per the revised Q10 spec in `website-design.md`). **All 6 punch-list items are now done — the Foosball Table template is feature-complete.** Template is still **not locked (2D.6)** — needs explicit customer review/approval before Phase 3 (remaining 12 pages) starts. Nothing was auto-locked.
+- **Resume point:** Session 11 (Claude Code terminal) implemented a Cowork-drafted brief covering: homepage headline rewrite, 4-column desktop project grid, Foosball Table Build time/Skill level values (2-3 Weekends / Advanced — first real values, no longer "Not yet specified"), removal of the header `<nav class="site-nav">` and a restructured footer (About/Contact nav + new cookie-free-analytics privacy line) across `index.html`, `projects/foosball-table/index.html`, and `404.html`, and a stubbed Cloudflare Web Analytics beacon tag (token still a TODO — **customer has not created the Cloudflare account yet**) in those same 3 files. **All committed and pushed** — see Session 11 Summary below for full detail.
 - **Tool switch:** Currently in Claude Code terminal — correct per division-of-labor policy for coding work.
-- **First action for next session:** Confirm with customer that the full template looks right end-to-end (category fix, comments removed, clickable breadcrumb + pre-filtered homepage, combined-ZIP download label, hero photo orientation, and the new spec block appearance). If approved, mark 2D.6 locked and proceed to Phase 3. If not, capture requested changes here first.
+- **Still open / needs customer input:**
+  1. **Cloudflare Web Analytics token** — beacon script tag is in place on all 3 pages but the token is a placeholder (`TODO-add-cloudflare-web-analytics-token`) pending the customer creating a Cloudflare account and generating a site token. Not blocking other work.
+  2. **Foosball Table template still not locked (2D.6)** — the new spec values and nav/footer restructure are additional changes on top of the Session 10 "feature-complete, awaiting review" state; still needs one explicit customer sign-off pass before Phase 3 (remaining 12 pages) starts.
+- **First action for next session:** If customer has created the Cloudflare account, get the real site token and drop it into the 3 stubbed beacon tags. Otherwise, continue toward Foosball Table template sign-off / Phase 3 kickoff.
 
 ### Foosball Table punch list — Claude Code brief (Session 08) — ALL 6 ITEMS DONE (Session 09 + 10)
 Ready-to-implement, in `/projects/foosball-table/index.html` unless noted. Items 1–5 completed and committed Session 09; item 6 completed Session 10. Full list done — flagged for customer review before locking 2D.6.
@@ -351,6 +354,38 @@ DNS changes: Hostinger hPanel
 - WordPress stays live until Phase 5 approved
 - Instructables cross-posting — decide per-project after redesign ships
 - WLD (water leak detector) firmware project — not yet added to site, packaging rules documented and ready whenever customer decides to add it
+
+---
+
+## Session 11 Summary
+
+### Accomplished
+- Ran in Claude Code terminal — implemented a fully-specified brief drafted by a same-day Cowork planning session, no clarification needed. Read `session-notes.md` and `implementation-plan.md` per standard startup before starting.
+- **Homepage headline:** replaced `<h1>Free plans for functional maker builds</h1>` with `<h1>Free Maker Plans — No Ads, No Cookies, No Login</h1>` in `index.html`; subhead paragraph left unchanged.
+- **Homepage grid:** changed the desktop (`min-width: 1024px`) `.project-grid` breakpoint from 3 columns to 4 in `assets/css/style.css`; tablet (2-col) and mobile (1-col) breakpoints untouched.
+- **Foosball Table spec values:** Build time and Skill level, both "Not yet specified" since Session 10, now have real values supplied by the customer — "2-3 Weekends" and "Advanced" — with the `spec-tbd` placeholder class removed from both (that class is still defined in `style.css` for use on the other 12 pages' placeholder values until their own build-time/skill-level content arrives).
+- **Header/footer restructure**, applied to `index.html`, `projects/foosball-table/index.html`, and `404.html` (customer flagged 404.html duplicated the old nav too, so it was folded into the same pass rather than left inconsistent):
+  - Removed `<nav class="site-nav">` entirely from inside `<header class="site-header">` — header now contains only the site-title link. Corresponding `.site-nav a` / `.site-nav a:hover` CSS rules removed from `style.css` (verified nothing else in the repo referenced `site-nav` before deleting).
+  - Replaced the footer's plain `mailto:` line with a structured footer: copyright/license line, a `<nav aria-label="Footer">` with About + Contact links (Home is not repeated in the footer — same reasoning as the old header nav not needing a "Home" link when the site-title already links there), and a new `.footer-privacy` line disclosing cookie-free, privacy-respecting analytics with no personal data collected.
+  - Added `.footer-privacy` CSS (small, muted, matching `--color-text-muted`, `flex-basis: 100%` so it wraps below the copyright/nav line in the existing flex footer) and `.footer-inner nav a` spacing rules; the footer nav links inherit the pre-existing `.footer-inner a` styling (muted color via parent, hover → signal blue, no underline) — same visual treatment the old `.site-nav a` had, so nothing needed to be re-derived there.
+- **Cloudflare Web Analytics (flagged item, implemented as instructed):** added the beacon `<script>` tag to `index.html`, `404.html`, and `projects/foosball-table/index.html`, each preceded by an explicit `<!-- TODO: add Cloudflare Web Analytics token -->` comment and a placeholder token string in the `data-cf-beacon` attribute. **Customer has not created a Cloudflare account yet — this does not function until a real token is dropped in.** Did not block on this, per the brief's explicit instruction.
+- **Documentation (this session's own job, not Cowork's):**
+  - `website-design.md` Q10 section: added two new standing rules for all 13 projects — Skill level is always one of Beginner/Intermediate/Advanced (matches the existing `ti-stairs` 3-rung icon), and Build time uses flexible per-project units (hours vs. weekends) kept to 1-3 words with no parenthetical ranges. Also updated the old "Not yet resolved" note to record Foosball Table's values are now resolved, with the other 12 pages still open.
+  - `website-design.md`: added a new "Phase 3 — Image selection workflow" subsection documenting the two-pass numbering process for the remaining 12 project folders (Pass 1: Claude Code first-pass `01-`/`02-`/`03-`... numbering, one file per distinct photo, largest/original resolution, duplicate WordPress crops skipped; Review: customer hands back an ordered number list with a `hero-` marked pick; Pass 2: Claude Code renames the hero pick to `hero-<original filename>`, renumbers the rest in the customer's order, leaves unlisted files unprefixed/excluded). Explicitly process documentation only — no project folders touched this session.
+  - `session-notes.md` Quick Start updated to this session's resume point; this Session 11 summary added.
+- Verified via local `python3 -m http.server`: `index.html`, `404.html`, and the Foosball Table page all serve with zero remaining `site-nav` references; Foosball Table's 4 `.spec-value` fields render correctly (2-3 Weekends / Advanced / Wood, acrylic / Router, sander, drill); grid CSS confirms `repeat(4, 1fr)` at the 1024px breakpoint.
+
+### Open items carried forward
+- **Cloudflare Web Analytics token** — stubbed on all 3 pages, needs the customer to create a Cloudflare account and supply the real site token
+- **Foosball Table template still awaiting final customer sign-off (2D.6)** — new spec values + nav/footer restructure are additional changes since Session 10's "feature-complete" flag; do not start Phase 3 until approved
+- Crayford Focuser folder/slug mismatch — unresolved, deferred to Phase 3 build of that page
+- Favicon missing — Phase 3 item 3.23, not blocking
+- Git PAT expires ~2027-07-27 — renewal reminder
+- Monitor repo size — revisit GitHub Releases fallback at ~800MB (per-file trigger ~60-80MB, see website-design.md)
+- WordPress stays live until Phase 5 approved
+- Instructables cross-posting — decide per-project after redesign ships
+- WLD (water leak detector) firmware project — not yet added to site, packaging rules documented and ready whenever customer decides to add it
+- Phase 3 image-selection two-pass workflow now documented (website-design.md) — ready to use once Phase 3 build starts on the remaining 12 projects
 
 ---
 
