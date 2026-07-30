@@ -12,15 +12,15 @@
     "title": "Mechanical Pinball Machine",
     "category": "play",
     "summary": "Wooden mechanical pinball machine with a functional plunger, flippers, marble-dispensing targets, and a manual wheel scoreboard, sized for 5/8\" balls. CAD model included (STEP, SketchUp, MoI 3dm) plus PDF instructions.",
-    "thumb": "projects/mechanical-pinball-machine/pinball-mechanical-example-20210708-1-768x1024.png",
+    "thumb": "projects/mechanical-pinball-machine/08-pinball-mechanical-example-20210708-1-1536x2048.png",
     "dateAdded": "2021-07"
   },
   {
     "slug": "crayford-focuser-1-25",
-    "title": "Crayford Focuser 1¼″",
+    "title": "Crayford Focuser 1\u00bc\u2033",
     "category": "tech",
-    "summary": "3D-printed (PLA) Crayford-style telescope focuser sized for 1¼\" eyepieces on a 10\" Newtonian tube, with smooth drawtube travel and adjustable friction. STL, STEP, and SketchUp CAD files included, plus Prusa print settings and PDF instructions.",
-    "thumb": "projects/crayford-focuser/focuser-125-ex-PLA-parts-768x576.jpeg",
+    "summary": "3D-printed (PLA) Crayford-style telescope focuser sized for 1\u00bc\" eyepieces on a 10\" Newtonian tube, with smooth drawtube travel and adjustable friction. STL, STEP, and SketchUp CAD files included, plus Prusa print settings and PDF instructions.",
+    "thumb": "projects/crayford-focuser/08-focuser-125-ex-PLA-parts-768x576.jpeg",
     "dateAdded": "2021-12"
   },
   {
@@ -28,7 +28,7 @@
     "title": "Flag Display Case",
     "category": "home",
     "summary": "Hardwood flag display case sized for a folded 5' x 9.5' U.S. burial/interment flag, with a laser-etched glass panel. CAD model included (STEP) plus the glass etching design (EPS file) and PDF instructions.",
-    "thumb": "projects/flag-display-case/flag-display-case-example-20210523-768x430.png",
+    "thumb": "projects/flag-display-case/01-flag-display-case-example-20210523-2048x1145.png",
     "dateAdded": "2021-05"
   },
   {
@@ -36,7 +36,7 @@
     "title": "Mantel Clock",
     "category": "home",
     "summary": "Mantel clock built from Colorado cedar with a Hermle pendulum movement (model 791-681) and a rotating pedestal base for rear-access winding. CAD model included (STEP, SketchUp) plus PDF instructions.",
-    "thumb": "projects/mantel-clock/mantel-clock-example-case-interior-clock-front-768x1024.png",
+    "thumb": "projects/mantel-clock/08-mantel-clock-example-case-interior-clock-front-1536x2048.png",
     "dateAdded": "2021-06"
   },
   {
@@ -44,7 +44,7 @@
     "title": "Vertical Tool Cart",
     "category": "workshop",
     "summary": "Rolling vertical tool storage cart (Adam Savage-inspired design) built from baltic birch plywood with PVC-pipe tool holders, electrical-box bins, and 5\" casters. CAD model included (STEP, SketchUp, OBJ).",
-    "thumb": "projects/vertical-tool-cart/tool-cart-front-768x1049.png",
+    "thumb": "projects/vertical-tool-cart/05-tool-cart-front-1125x1536.png",
     "dateAdded": "2022-01"
   },
   {
@@ -52,7 +52,7 @@
     "title": "Bicycle Maintenance Clamp",
     "category": "workshop",
     "summary": "Vise-mounted, padded V-shaped bicycle clamp for chain oiling, cable adjustments, and other maintenance, designed to hold a carbon-frame road bike without damage. CAD model included (STEP) plus PDF instructions.",
-    "thumb": "projects/bicycle-maintenance-clamp/bike-clamp-example-use-2-768x561.png",
+    "thumb": "projects/bicycle-maintenance-clamp/03-bike-clamp-example-use-2-1536x1121.png",
     "dateAdded": "2021-06"
   },
   {
@@ -60,7 +60,7 @@
     "title": "Cornhole Game Board",
     "category": "play",
     "summary": "Pair of foldable-leg cornhole boards built from baltic birch and poplar, with routed 6\" holes and a spar-varnish finish. CAD model included (STEP) for the board and leg frame.",
-    "thumb": "projects/cornhole-game-board/cornhole-3d-768x480.png",
+    "thumb": "projects/cornhole-game-board/02-cornhole-3d-2048x1281.png",
     "dateAdded": "2021-06"
   },
   {
@@ -68,7 +68,7 @@
     "title": "Biplane Wooden Toy",
     "category": "play",
     "summary": "Walnut-and-maple wooden biplane toy with a spinning propeller, built using printed 2D templates traced from 3D CAD files. CAD model included (STEP, SketchUp).",
-    "thumb": "projects/biplane-wooden-toy/biplane-render-20210606-768x545.png",
+    "thumb": "projects/biplane-wooden-toy/03-biplane-render-20210606-1024x727.png",
     "dateAdded": "2021-06"
   },
   {
@@ -76,7 +76,7 @@
     "title": "Baby Doll Carriage",
     "category": "play",
     "summary": "Baltic birch plywood doll carriage joined with glued dado and tenon joints (no fasteners), sized to fit typical baby dolls. CAD model included (STEP, SketchUp).",
-    "thumb": "projects/baby-doll-carriage/babydoll-carriage-rendered-768x622.png",
+    "thumb": "projects/baby-doll-carriage/05-babydoll-carriage-rendered-1536x1243.png",
     "dateAdded": "2021-06"
   },
   {
@@ -84,7 +84,7 @@
     "title": "Fan Powered Toy Car",
     "category": "play",
     "summary": "Foam-board fan-powered toy car built with a DC motor/wheel/fan kit, designed as a hands-on electricity project for kids covering motors, batteries, and switches. CAD model included (SketchUp, STEP).",
-    "thumb": "projects/fan-powered-toy-car/fan-powered-car-example-2-3D-768x1024.png",
+    "thumb": "projects/fan-powered-toy-car/04-fan-powered-car-example-2-3D-1536x2048.png",
     "dateAdded": "2021-07"
   },
   {
@@ -92,7 +92,7 @@
     "title": "Fidget Spinner",
     "category": "play",
     "summary": "Compact 3D-printed fidget spinner sized for younger kids, built around a 0.25\" shaft bearing and 3/8-16 hex nuts. CAD model included (3dm, STEP, SketchUp).",
-    "thumb": "projects/fidget-spinner/fidget-025-shaft-375-nut00011-768x1024.png",
+    "thumb": "projects/fidget-spinner/01-fidget-025-shaft-375-nut00011-1536x2048.png",
     "dateAdded": "2021-12"
   },
   {
@@ -100,7 +100,7 @@
     "title": "Tablesaw Vertical Tenon Jig",
     "category": "workshop",
     "summary": "Tablesaw jig for cutting precise 22.5-degree miter angles on frame pieces, built to make the Flag Display Case. CAD model included (STEP) plus PDF instructions.",
-    "thumb": "projects/tablesaw-vertical-tenon-jig/tenon-jig-3d-example-back-photo-768x777.jpg",
+    "thumb": "projects/tablesaw-vertical-tenon-jig/03-tenon-jig-3d-example-back-photo-2024x2048.jpg",
     "dateAdded": "2021-05"
   }
 ]

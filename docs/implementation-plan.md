@@ -1,5 +1,5 @@
 # Leisurenotes.com — Implementation Plan
-## Last updated: 2026-07-30 | Session: 14 | Status: Active
+## Last updated: 2026-07-30 | Session: 15 | Status: Active
 ## PM: Claude | Customer: Harvey Carson
 
 ---
@@ -123,29 +123,29 @@ Two different Claude products are used across this project, both on the MacBook 
 - [x] 2D.1a Foosball Table template punch list (6 items: category fix, comments removal, clickable breadcrumb + URL category filter, combined-ZIP downloads, hero photo orientation check, spec block rebuild) — all complete as of Session 10. Template is feature-complete, awaiting customer review below
 - [x] 2D.1b Session 13: hero section redesign (combined two-column hero + spec grid, icons dropped, click-to-enlarge lightbox added) — additional change layered on top of the Session 10 "feature-complete" state, implemented on Foosball Table only. Still awaiting customer review below before Phase 3 rollout.
 - [x] 2D.1c Session 14: hero photo blur fix (re-cropped from the higher-res rotated source instead of the 225x300 thumbnail) + Phase 3 image-selection workflow doc updated (website-design.md, now 3 passes). Session 12 footer layout customer-confirmed and closed out — no longer an open item.
-- [ ] 2D.2 Customer reviews (Live Preview) — both known visual issues (footer, hero resolution) now resolved; still needs one explicit final-look sign-off pass, see 2D.6
-- [ ] 2D.3 Revisions submitted
-- [ ] 2D.4 Claude Code revises
-- [ ] 2D.5 Repeat until approved
-- [ ] 2D.6 Project page template locked
+- [x] 2D.2 Customer reviews (Live Preview) — customer reviewed the live Foosball Table page (footer + hero, Sessions 12/14 fixes) and approved outright
+- [x] 2D.3 Revisions submitted — none requested; approval was direct
+- [x] 2D.4 Claude Code revises — n/a, no revisions requested
+- [x] 2D.5 Repeat until approved — n/a, approved on first final-look pass
+- [x] 2D.6 Project page template locked — **2026-07-30**
 
 ### 2E — Design Sign-Off
-- [ ] 2E.1 Update website-design.md with build decisions
-- [ ] 2E.2 Customer formally approves homepage + project page template
-- [ ] 2E.3 website-design.md marked LOCKED in header
-- [ ] 2E.4 All subsequent pages built to approved templates
+- [x] 2E.1 Update website-design.md with build decisions — verified current for all Session 06–14 decisions during this pass; found and fixed two real gaps that had only ever been recorded in session-notes.md: the Q6 category-chip labels (still said the original Woodworking/STEM/Astronomy/Tools draft, not the Session 07 Play/Workshop/Home/Tech model — now documented with the full mapping) and the Q10 spec-block layout (still described the Session 08 icon layout as current, with no mention of the Session 13 combined two-column hero / 2x2 no-icon grid / lightbox component, or the Session 14 hero-resolution fix — now documented, old layout marked superseded and kept for history)
+- [x] 2E.2 Customer formally approves homepage + project page template — homepage 2026-07-27 (2C.6), project page template 2026-07-30 (2D.6)
+- [x] 2E.3 website-design.md marked LOCKED in header
+- [x] 2E.4 All subsequent pages built to approved templates — standing rule from this point forward: all 12 remaining pages use the locked Foosball Table template (combined two-column hero, 2x2 spec grid, no icons, lightbox) as-is; any further template-level change requires a new customer decision, not built ad hoc during a page build
 
 ---
 
 ## Phase 3 — Site Build *(Claude Code autonomous)*
 
-### Structure
-- [ ] 3.1 Build site architecture (folders, navigation, templates)
-- [ ] 3.2 Build homepage with scrolling project banner + project grid
-- [ ] 3.3 Build category filtering (Woodworking / STEM / Astronomy / Tools)
-- [ ] 3.4 Build About page
-- [ ] 3.5 Add leisurenotes@gmail.com mailto link (footer + contact page)
-- [ ] 3.6 Add CC BY-NC 4.0 license footer
+### Structure — audited Session 15, see session-notes.md for full detail
+- [x] 3.1 Build site architecture (folders, navigation, templates) — done via 2C/2D: `assets/{css,js}`, `data/projects.json`, `docs/`, `projects/<slug>/`, `index.html`, `404.html`, header/footer nav on every page, Foosball Table as the locked project-page template
+- [x] 3.2 Build homepage with project grid — **wording corrected:** the original "scrolling project banner" text predates the Q4 carousel-reversal decision (Session 05) and was never actually built that way. Live homepage is a static keyword-rich intro headline + filterable/searchable/sortable project grid, no banner. Confirmed built and matches website-design.md Q4.
+- [x] 3.3 Build category filtering — **wording corrected:** categories are **Play / Workshop / Home / Tech** (Session 07 decision), not the original draft "Woodworking / STEM / Astronomy / Tools." Confirmed built: chips in `index.html`, `CATEGORY_LABELS` in `site.js`, `category` field in `data/projects.json`, URL-param pre-filtering from project-page breadcrumbs.
+- [ ] 3.4 Build About page — **does not exist yet** (`/about/` is linked from every footer but 404s). Flagged, not built blind — needs actual page content/copy from the customer (what the page should say about the site/maker), not just a template. Open item for next session.
+- [x] 3.5 Add mailto link — **wording corrected:** locked sitemap (website-design.md, Phase 2B) explicitly rules out a separate Contact page ("mailto: link in footer/nav, not a standalone page") — the original checklist text ("footer + contact page") was already stale against that decision. `mailto:leisurenotes.hsc@gmail.com` confirmed present in the footer nav on every page. Whether the About page (once built, see 3.4) should also surface contact info is a content question for that page's copy, not a separate build task — flagged alongside 3.4, not decided here.
+- [x] 3.6 Add CC BY-NC 4.0 license footer — confirmed present on every page (`footer-copyright`, links to the CC BY-NC 4.0 license).
 
 ### All 13 Project Pages
 - [ ] 3.7 Foosball Table

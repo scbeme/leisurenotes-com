@@ -1,5 +1,5 @@
 # Leisurenotes.com — Website Design
-## Status: Phase 2A + 2B LOCKED | Started: 2026-07-27 | Last updated: 2026-07-30 | Session: 14
+## Status: LOCKED (Phase 2A–2E, all design decisions + homepage + project page template approved) | Started: 2026-07-27 | Last updated: 2026-07-30 | Session: 15
 
 ---
 
@@ -89,11 +89,13 @@ Order: **hero photo → spec block (monospace) → downloads (prominent, not bur
 
 ### Q6 — Navigation
 **Simple top nav: Home / About / Contact** — replacing the old WordPress "Projects" mega-dropdown (13 individual project links), confirmed via live fetch of the current site menu. Gap closed by:
-- **Category filter chips** (Woodworking / STEM / Astronomy / Tools) on the homepage grid
+- **Category filter chips** — **Play / Workshop / Home / Tech** (renamed from the original Woodworking/STEM/Astronomy/Tools draft, decided Session 07 — see category/tag model note below) on the homepage grid
 - **Live text search box** next to the chips (client-side, against a JSON project manifest — title/category/tags/difficulty/build time)
 - **Sort control** (alphabetical / most recent) + result count ("Showing 8 of 13 projects")
 - Scales cleanly to 50+ projects with no nav redesign; **secondary tag facets** (material, skill level) deferred until ~25–30 projects, per faceted-search best practice of not exposing filters that don't yet earn their keep
 - **Breadcrumbs** (`Home / Category / Project Title`) on project pages only — most traffic lands directly on a project page from search, not from Home, so orientation matters there specifically. Home/About don't need one (not nested).
+
+**Category/tag model — decided Session 07:** single primary category per project (no tags layer yet, no true multi-category). Final mapping — **Play** (7: Foosball Table, Mechanical Pinball Machine, Cornhole Game Board, Biplane Wooden Toy, Baby Doll Carriage, Fan Powered Toy Car, Fidget Spinner), **Workshop** (3: Tablesaw Vertical Tenon Jig, Bicycle Maintenance Clamp, Vertical Tool Cart), **Home** (2: Mantel Clock, Flag Display Case), **Tech** (1: Crayford Focuser 1¼″). Chip order left to right is by count, descending. Implemented in `data/projects.json` (per-project `category` field), `assets/js/site.js` (`CATEGORY_LABELS`), and `index.html` chip buttons — cheap to extend (a 5th category or Play split is a line-edit, not a redesign). Breadcrumb category segments link to `/?category=<slug>` on project pages, pre-filtering the homepage grid on load via a URL param read in `site.js`.
 
 ### Q7 — Reference sites
 **Hackaday.io / Adafruit / Instructables** as tonal reference points (project-first, technical, spec-forward, photo-forward with prominent downloads) — explicitly **light theme**, not Hackaday's dark theme.
@@ -109,13 +111,19 @@ No ads, no popups/modals, no auto-play video/audio, no infinite scroll. Site is 
 
 **New field set, same left-to-right priority logic (hardest constraint first):** Build time → Skill level (renamed from Difficulty, same meaning) → Materials → Tools. "Materials" replaces fabrication method with something more differentiating (top 1-2 materials, e.g. "Wood, acrylic"). "Tools" (not "Tools needed" or "Equipment" — shorter, and matches the existing Supplies-section "Tools" subheading for consistency) surfaces a real pre-commit question ("do I own this tool?") that was previously buried in the Supplies list further down the page.
 
-**Layout — icon-above-label-above-value, 4 equal-width columns:**
+**Layout — icon-above-label-above-value, 4 equal-width columns (SUPERSEDED Session 13, kept for history):**
 - Icon: 16px Tabler outline icon, centered in a 30px circle, background `#e6f1fb` (light tint of the site's signal blue), icon color `#1d4ed8` (signal-dark token) — icons: `ti-clock` (Build time), `ti-stairs` (Skill level — chosen over `ti-gauge`/`ti-chart-bar`/`ti-trending-up` as the clearest "levels of experience" metaphor), `ti-stack-2` (Materials), `ti-tool` (Tools — singular, a clean wrench glyph; confirmed via live render test that `ti-screwdriver` doesn't exist in this icon set, and `ti-tools`/`ti-wrench`/`ti-hammer` were the other real alternatives tested)
 - Label: 10px, uppercase, letter-spacing 0.05em, color `#5b6470` (existing `--color-text-muted` token) — directly below icon
 - Value: 14px, monospace (`ui-monospace, Menlo, Consolas` — same stack as rest of site, no new font dependency), font-weight 400 (regular — NOT 500/600, see note below), color `#454b52` (custom, sits between muted and full text-color) — directly below label
 - Row container: `background: #f7f8f9` (existing `--color-bg-alt` token), `border-radius: 10px`, `padding: 16px 18px`, `display: flex; justify-content: space-between`
 
 **Technical note — why weight is 400, not an intermediate value:** system monospace fonts (Menlo/Consolas/ui-monospace) only ship two real weights (~400 regular, ~700 bold) — no true "medium." Any font-weight value between 401-699 gets silently rounded by the browser to whichever of the two is closest, so there's no way to dial in a "slightly bold" look with this font stack. Tested this directly (four weight/color combos side by side) and confirmed: browser renders exactly two visual clusters, not a gradient. Decided to stay within the current no-added-font-dependency stack (per the site's dependency-free design goal) and use regular weight + a color between muted and full-black to get the desired "present but not shouting" look, rather than loading a variable-weight webfont (JetBrains Mono/IBM Plex Mono — the original Q3 recommendation, substituted with system fonts in Session 06 for performance) just to fix this one field's weight.
+
+**Layout — combined two-column hero, 2x2 spec grid, no icons (CURRENT, Session 13/14):** customer reviewed both the icon and no-icon versions after the spec grid compressed from 4-across to 2x2 (a layout change needed because the hero photo now takes the other half of the row) and confirmed icons added clutter at that density — reversed the Session 08 icon decision. Current layout, all in `assets/css/style.css`:
+- `.hero-grid`: CSS grid inside the existing `.container` (1100px max-width), `grid-template-columns: 1fr 1fr`, `grid-template-areas: "content photo"`, `gap: 2.5rem`. Left area (`.hero-content`) holds category label → `<h1>` → spec grid → download button/note, vertically centered (`flex; justify-content: center`) against whatever row height the photo tile establishes. Right area (`.hero-photo-tile`) is a fixed `aspect-ratio: 4/3` tile, `object-fit: cover`, `background: var(--color-page-bg)` as a letterbox fallback. Below 640px, `grid-template-areas` flips to a single column with the photo on top.
+- `.spec-grid`: `display: grid; grid-template-columns: 1fr 1fr`, four `.spec-item` label/value pairs (label/value styling — size, weight, color, font-stack — unchanged from the superseded layout above, just no icon and no row-container background/border-radius/padding).
+- **New site-wide component, same session:** click-to-enlarge lightbox (`assets/js/lightbox.js`, vanilla JS, no dependency) — applies to the hero tile and every `.project-gallery` image. Dimmed full-viewport overlay, image shown at native aspect ratio (not stretched), fit-to-viewport, closes via click-outside/close-button/Escape. The hero tile shows a cropped 4:3 derivative but its lightbox opens the original uncropped photo — the tile is an `<a>` wrapping the `<img>`, with the anchor's `href` carrying the original file's path.
+- **Hero photo resolution (Session 14 fix):** always crop the hero-tile derivative from the highest-resolution source file available for that photo, not just whichever file has the "expected" WordPress crop suffix — see the Phase 3 image-selection workflow note above for the general rule this generalizes to (a smaller-looking filename isn't always the lower-resolution one).
 
 **Resolved for Foosball Table (Session 11):** Build time = "2-3 Weekends", Skill level = "Advanced". Still a per-project content gap for the other 12 pages until the customer supplies estimates for each.
 

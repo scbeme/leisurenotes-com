@@ -1,21 +1,23 @@
 # Leisurenotes.com — Session Notes
 ## Project: leisurenotes.com Redesign & Migration
-## Last updated: 2026-07-30 | Session: 14
+## Last updated: 2026-07-30 | Session: 15
 
 ---
 
 ## ⚡ QUICK START — READ FIRST
 
-- **Resume point:** Session 14 (Claude Code terminal) fixed the Session 13 hero photo blur and updated the Phase 3 image-selection workflow doc, per a same-day Cowork review of the live Session 13 result.
-  1. **Hero photo blur fix:** the Session 13 hero-tile derivative was cropped from the 225×300 portrait thumbnail and browser-upscaled ~2.4x to fill the ~530px tile — visibly soft, customer flagged it. Root cause: a higher-resolution source of the same photo existed all along (`foosball-table-IMG_4829-768x576.png`) but was stored rotated ~90° (table sideways), so it read as a different/unusable image rather than a bigger version of the portrait hero. Rotated it back to true portrait (576×768, `sips -r 90`) and re-cropped to the same 4:3 hero-tile framing from that source — 2.56x the linear resolution of the old derivative. New file `foosball-table-IMG_4829-hero-576x432.png` replaces (old one deleted) `foosball-table-IMG_4829-e1641488166393-hero-224x168.png` as the tile's `<img src>`. Both original files (`...-768x576.png` and the `...-e1641488166393-225x300.png` portrait) are untouched — the 225×300 portrait remains the lightbox target for the hero tile, unchanged from Session 13.
-  2. **Phase 3 image-selection workflow updated** (`website-design.md`) — now three passes instead of two: Pass 1 gains a "visual-check before discarding smaller siblings" rule (this session's own `IMG_4829-768x576.png` mixup is now the cited cautionary example in the doc) and an `_archive/` subfolder for redundant sizes instead of deletion; new Pass 3 generates capped derivative sizes (homepage thumb, 4:3 hero crop, ~1600px-longest-edge gallery/lightbox size) instead of serving raw survivor resolution uncapped. Documentation only — no other project folders touched.
-  3. **Session 12 footer layout — customer-confirmed, closed out.** No further action needed on that item.
-  - **Caveat carried forward:** still no visual/screenshot verification tool in this sandbox (Chrome extension not connected) — verified the rotation/crop by reading the actual output file back and checking the composition matches the original portrait photo (bookshelf, door, full table body, rod handles in frame). Worth a live eyeball next time the site is viewed, same as prior sessions.
-  - See Session 14 Summary below for full detail.
+- **Resume point:** Session 15 (Claude Code terminal) — **customer approved the live Foosball Table page outright** (footer + hero, both now resolved), so this session locked 2D.6 and closed out Phase 2E, then did Phase 3 kickoff prep: a structural audit of the non-page-specific checklist, and Pass 1 of the image-selection workflow across all 12 remaining project folders.
+  1. **2D.6 locked, 2E closed out** (`implementation-plan.md`): 2D.2–2D.6 and 2E.1–2E.4 all marked complete. While verifying 2E.1 ("website-design.md reflects all build decisions"), found and fixed two real gaps that had only ever lived in session-notes.md, not the design doc: the Q6 category-chip labels (still described the original Woodworking/STEM/Astronomy/Tools draft, not the actual Session 07 Play/Workshop/Home/Tech model) and the Q10 spec-block layout (still described the Session 08 icon layout as current, no mention of the Session 13 combined two-column hero / 2x2 no-icon grid / lightbox, or the Session 14 resolution fix). Both fixed in `website-design.md`, old layout kept and marked superseded for history. `website-design.md` header now reads **LOCKED**.
+  2. **Phase 3 structural audit** (`implementation-plan.md` 3.1–3.6): 3.1 (site architecture), 3.3 (category filtering), 3.6 (CC BY-NC footer) confirmed already done, checked off. 3.2 and 3.3's checklist *wording* was stale (predated the Q4 carousel-reversal and Session 07 category rename respectively) — corrected in place, not rebuilt. 3.5 (mailto) confirmed present in the footer on every page; the original "+ contact page" wording was already stale against the locked sitemap decision (no separate Contact page) — corrected. **3.4 (About page) does not exist yet** — `/about/` 404s from every footer link — flagged as a real open item needing customer content/copy, not built blind.
+  3. **Image-selection workflow Pass 1 run across all 12 remaining project folders** (not just one) — 88 distinct photos identified project-wide, deduped, redundant sizes moved to each project's new `_archive/` subfolder (398 files renamed/moved via `git mv`, nothing deleted), survivors renumbered `01-`, `02-`, `03-`... per project. Applied the Session 14 lesson directly: did a visual check before merging or discarding any file, not just filename pattern. Two genuine cases found where a naive filename-based rule would have gotten it wrong — see Session 15 Summary for both. `data/projects.json` `thumb` paths for all 12 projects updated to the new filenames so the live homepage grid keeps working uninterrupted.
+  - **Caveat carried forward:** still no visual/screenshot verification tool in this sandbox — the homepage grid thumbnails should still render (paths verified to exist on disk) but weren't checked in an actual browser.
+  - See Session 15 Summary below for full detail.
 - **Tool switch:** Currently in Claude Code terminal — correct per division-of-labor policy for coding work.
 - **Still open / needs customer input:**
-  1. **Foosball Table template still not locked (2D.6)** — footer (Session 12) and hero photo resolution (this session) are both now resolved; **2D.6 is still explicitly the customer's call**, not automatic — needs one final full-page live look before locking and starting Phase 3 on the remaining 12 pages.
-- **First action for next session:** Get the customer a final full-page look at the Foosball Table template (footer + hero, both now resolved) and get an explicit 2D.6 lock decision. If approved, Phase 3 kickoff on the remaining 12 pages can start, using the updated three-pass image-selection workflow. Cloudflare Web Analytics is live on all 3 pages — worth a quick check of the dashboard for incoming beacon data once next deployed/viewed.
+  1. **About page (3.4) doesn't exist** — needs customer-supplied content/copy before it can be built, not a template task.
+  2. **Image review, 12 folders, whenever the customer is ready, in whatever order they choose:** each remaining project's `_archive/`-cleaned, numbered photo folder is ready for the customer's Pass-1-review step (per the three-pass workflow, website-design.md) — review the numbered photos, hand back a hero pick + sequence per project. Pass 2 (apply the customer's list), Pass 3 (generate capped derivatives), and the actual page builds are blocked on this per project.
+  3. **Build time / Skill level values still needed for all 12 remaining projects** (standing gap, website-design.md Q10) — customer needs to supply these per project before spec grids can be filled in.
+- **First action for next session:** Depends on customer availability — either (a) start reviewing the 12 numbered photo folders and hand back hero picks/sequences, project by project, or (b) if the customer wants to batch it, Claude Code can proceed with Phase 3 page builds using placeholder/TBD spec values and best-guess photo ordering, then revise once real picks come in. Recommend (a) since it avoids rework. Cloudflare Web Analytics is live on all 3 built pages — worth a check of the dashboard for incoming beacon data.
 
 ### Foosball Table punch list — Claude Code brief (Session 08) — ALL 6 ITEMS DONE (Session 09 + 10)
 Ready-to-implement, in `/projects/foosball-table/index.html` unless noted. Items 1–5 completed and committed Session 09; item 6 completed Session 10. Full list done — flagged for customer review before locking 2D.6.
@@ -97,9 +99,9 @@ Earlier sessions (Cowork, sandboxed) couldn't reach leisurenotes.com directly, s
 | Phase 2A — Design Interview | ✅ Complete — all 10 questions locked |
 | Phase 2B — Sitemap | ✅ Complete — locked |
 | Phase 2C — Homepage build + review | ✅ Complete, approved, locked (2C.6) |
-| Phase 2D — Project page template | 🟡 In progress, **frozen at customer's request** — see Quick Start |
-| Phase 2E — Design Sign-Off | Pending (blocked on 2D) |
-| Phase 3 — Site Build | Pending |
+| Phase 2D — Project page template | ✅ Complete, approved, locked (2D.6) — 2026-07-30 |
+| Phase 2E — Design Sign-Off | ✅ Complete — website-design.md marked LOCKED |
+| Phase 3 — Site Build | 🟡 In progress — structural items audited (3.1–3.6), image-selection Pass 1 done across all 12 remaining project folders, page builds not yet started (blocked on customer photo review + build time/skill level values) |
 | Phase 4 — Deployment | Pending |
 | Phase 5 — Client Review | Pending |
 | Phase 6 — Go Live | Pending |
@@ -465,6 +467,44 @@ Ran in Claude Code terminal, two fully-specified items from a same-day Cowork re
 
 ### Open items carried forward
 - **Foosball Table template still awaiting final customer sign-off (2D.6)** — both open visual issues (footer, hero resolution) are now resolved; 2D.6 itself is still an explicit customer decision, not implied by "nothing left to fix." Needs one final full-page live look before Phase 3 starts on the remaining 12 pages.
+- Crayford Focuser folder/slug mismatch — unresolved, deferred to Phase 3 build of that page
+- Favicon missing — Phase 3 item 3.23, not blocking
+- Git PAT expires ~2027-07-27 — renewal reminder
+- Monitor repo size — revisit GitHub Releases fallback at ~800MB (per-file trigger ~60-80MB, see website-design.md)
+- WordPress stays live until Phase 5 approved
+- Instructables cross-posting — decide per-project after redesign ships
+- WLD (water leak detector) firmware project — not yet added to site, packaging rules documented and ready whenever customer decides to add it
+
+---
+
+## Session 15 Summary
+
+### Accomplished
+Ran in Claude Code terminal. Customer approved the live Foosball Table page outright (no revisions) after reviewing the Session 12/14 footer and hero fixes — this session's job was to lock that approval into the docs, audit what Phase 3's non-page-specific checklist items actually still need doing, and unblock the customer's next step (photo review) across all 12 remaining projects at once.
+
+1. **2D.6 locked, Phase 2E closed out** (`implementation-plan.md`): marked 2D.2–2D.6 complete (customer's direct approval satisfies the revision loop trivially — nothing to revise). For 2E.1 ("update website-design.md with build decisions"), treated it as a real verification pass rather than a rubber stamp — grepped the doc for the actual current category labels and spec-block layout and found both were stale:
+   - Q6 still described the pre-Session-07 category draft (Woodworking/STEM/Astronomy/Tools) — added the real Play/Workshop/Home/Tech mapping with counts, matching what's actually in `data/projects.json`/`site.js`/`index.html`.
+   - Q10 still presented the Session 08 icon-based spec-block layout as current, with zero mention of the Session 13 combined two-column hero, 2x2 no-icon spec grid, new lightbox component, or the Session 14 resolution fix. Added a new "CURRENT, Session 13/14" layout block, marked the old one superseded and kept it for history (matches how the doc already handled the Session 08 field-set revision).
+   - `website-design.md` header changed to **Status: LOCKED (Phase 2A–2E...)**. 2E.2 (customer approval) and 2E.4 (standing rule: all future pages use the locked template, no more ad hoc template changes) both marked complete.
+2. **Phase 3 structural audit** (`implementation-plan.md` 3.1–3.6), checked against the actual repo state rather than assumed:
+   - **3.1 (site architecture)** — confirmed done: `assets/{css,js}`, `data/projects.json`, `docs/`, `projects/<slug>/`, `index.html`, `404.html`, header/footer nav on every page. Checked off.
+   - **3.2 (homepage grid)** — the checklist text ("scrolling project banner") predates the Q4 carousel-reversal decision from Session 05 and was never actually built that way; corrected the wording to match the real static filterable/searchable/sortable grid. Checked off.
+   - **3.3 (category filtering)** — same kind of stale-wording issue (said "Woodworking/STEM/Astronomy/Tools", actual categories are Play/Workshop/Home/Tech per Session 07). Corrected wording, confirmed chips/labels/JSON field/URL-param pre-filtering all present and working. Checked off.
+   - **3.4 (About page)** — checked `find` for any `/about/` content: **none exists**. Every page's footer links to it (404s live right now). Flagged as a genuine open item needing customer-supplied copy — explicitly did not draft placeholder content, since the brief was clear this needs real content decisions, not a guess.
+   - **3.5 (mailto)** — confirmed `mailto:leisurenotes.hsc@gmail.com` present in the footer nav on every page. The checklist's original "+ contact page" wording was already stale against the locked Phase 2B sitemap decision (mailto only, explicitly no separate Contact page) — corrected the wording rather than building a page the sitemap already ruled out. Whether the About page (once it exists) should also restate contact info is a content question for that page's copy, not a separate build task — left bundled with the 3.4 flag, not decided unilaterally.
+   - **3.6 (CC BY-NC footer)** — confirmed present site-wide. Checked off.
+3. **Image-selection workflow Pass 1, all 12 remaining project folders** (417 total files audited): wrote a grouping script (base-filename + WordPress `-WIDTHxHEIGHT` suffix parsing) to identify one "distinct photo" identity per group and its largest available file, then applied the Session 14 lesson directly — **flagged every case where a same-subject file family looked ambiguous by filename alone and visually checked it before merging or discarding, rather than trusting the pattern.** Two real findings from that check (both included in the website-design.md workflow doc as the concrete cases, alongside the original Foosball one):
+   - **`mechanical-pinball-machine`**: `pinball-mechanical-example-20210708-1` (plain) vs. `...-e1625848163126` (WordPress-edited) looked like the same Foosball-style risk pattern. Visual check showed they're genuinely **different photos** — the plain version is a wide shot of the whole machine, the edited version is a cropped detail shot of just the scoreboard. Correctly kept as two separate distinct-photo entries, each deduped to its own largest version.
+   - **`cornhole-game-board`**: `cornhole-example` vs. `cornhole-example-e1622929223937` looked like the same risk pattern but visually turned out to be **near-duplicate crops of the same shot** (same board, same angle, marginally different crop box) — correctly merged into one identity, kept the larger of the two, archived the other.
+   - Also caught two **non-obvious duplicate patterns** the same script surfaced: `vertical-tool-cart` had three CAD-render pairs (`tool-cart-CAD0000{1,2,3}` vs. `...-1`) and one photo (`tool-cart00004` vs. `...-1`) with identical WordPress-generated size cascades — visually confirmed one pair pixel-identical, treated the pattern as WordPress's same-filename-reupload collision rename and merged all four pairs. Two files (`bike-clamp-3d-example-scaled.jpg`, `mantel-clock-example-3D-scaled.jpg`) had no dimension suffix at all (WordPress's "-scaled" full-resolution export name) and were initially mis-grouped as false singletons by the script until `sips`-based real-dimension lookup was added — both turned out to be the actual largest version of an existing photo group and now anchor those groups' keepers.
+   - Net result: **88 distinct photos** identified across the 12 folders. Every group's smaller siblings moved to a new per-project `projects/<slug>/_archive/` folder via `git mv` (nothing deleted, fully recoverable) — chosen specifically because GitHub Pages' default Jekyll processing excludes underscore-prefixed folders from the built site automatically (same convention already used by the pre-existing `projects/_unsorted/` folder), so no extra Pages/Jekyll config was needed to keep archived files unpublished. Surviving keeper files renamed with a sequential `01-`, `02-`, `03-`... prefix per project (398 total files renamed/moved).
+   - **`data/projects.json` `thumb` field updated for all 12 affected projects** to point at each project's new keeper filename — none of these projects have a built page yet, but their homepage grid card thumbnails are live right now, and Pass 1's renames/archiving would have silently 404'd every one of them without this fix. Verified all 12 new thumb paths resolve to real files on disk after the rename.
+4. **Verification:** no browser available (same sandbox limitation as prior sessions). Verified file-move correctness via `git status` (398 renames, no unexpected deletions/additions), verified archived-vs-kept counts reconcile against original per-folder file counts for all 12 projects, and verified all 12 updated `thumb` paths resolve on disk. Did not verify the homepage grid renders correctly in an actual browser.
+
+### Open items carried forward
+- **About page (3.4) needs customer content** — not built, needs real copy decisions first.
+- **Photo review needed per project, all 12 folders** — numbered/archived and ready; customer reviews each folder's numbered photos and returns a hero pick + sequence (`hero-04, 1, 9, 2, 15, 7` style) whenever ready, in whatever order they want to tackle the 12. Pass 2/3 and the actual page builds are blocked on this per project.
+- **Build time / Skill level values needed for all 12 remaining projects** — standing gap from Session 11, still unresolved; needed before spec grids can be filled in for any of them.
 - Crayford Focuser folder/slug mismatch — unresolved, deferred to Phase 3 build of that page
 - Favicon missing — Phase 3 item 3.23, not blocking
 - Git PAT expires ~2027-07-27 — renewal reminder
