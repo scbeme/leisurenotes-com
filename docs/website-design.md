@@ -1,5 +1,5 @@
 # Leisurenotes.com — Website Design
-## Status: Phase 2A + 2B LOCKED | Started: 2026-07-27 | Last updated: 2026-07-29 | Session: 11
+## Status: Phase 2A + 2B LOCKED | Started: 2026-07-27 | Last updated: 2026-07-30 | Session: 14
 
 ---
 
@@ -42,17 +42,25 @@ Prompted by review of the WLD (water leak detector) ESP32-H2 project folder as a
 
 **Optional, decide per-project:** a small pre-built binary (final `.bin` from a completed build, flashable via `esptool.py` with no toolchain needed) for visitors who want a working unit without building from source. Nice-to-have, not a substitute for the source package — site's maker-audience framing (Q1/Q7) leans toward people who want to inspect/modify code.
 
-### Phase 3 — Image selection workflow (process, added Session 11)
-Two-pass process for picking/ordering the photo set on each of the remaining 12 project pages (Foosball Table's gallery is already finalized and not affected). **Process documentation only — no files renamed yet, nothing to do until each project's Phase 3 build.**
+### Phase 3 — Image selection workflow (process, updated Session 14)
+Three-pass process for picking/ordering the photo set on each of the remaining 12 project pages (Foosball Table's gallery is already finalized and not affected by Passes 1/2 — see Session 14 hero-photo fix below for why Pass 1's visual-check rule exists). **Process documentation only — no files renamed yet, nothing to do until each project's Phase 3 build.**
 
-**Pass 1 (Claude Code, per project folder):** first-pass rename assigning `01-`, `02-`, `03-`... prefixes to one representative file per distinct photo — skip duplicate WordPress-export crops of the same shot (multiple sizes of one photo), keep the largest/original-resolution file as the representative.
+**Pass 1 (Claude Code, per project folder):**
+- Group files by distinct photo, keeping only the largest version of each. **Do a quick visual check before discarding smaller siblings — don't rely on filename pattern alone.** Cautionary example: Foosball Table's own `IMG_4829-768x576.png` looked like a simple bigger duplicate of `IMG_4829-...-225x300.png` by filename convention, but was actually a different, rotated composition of the same photo (the true portrait shot stored sideways in a landscape-dimensioned file) — a purely mechanical largest-by-name rule would have picked the wrong one as the "clean" representative and either produced a sideways hero or discarded the higher-resolution source entirely. Fixed in Session 14 by rotating the 768x576 file back to true portrait and re-cropping the hero tile from it instead of the lower-res 225x300 file — see session-notes.md Session 14 summary.
+- Move the redundant smaller sizes to a new per-project `_archive/` subfolder (outside any path the site serves) rather than deleting them — recoverable if a keep/discard call turns out wrong.
+- Rename each surviving file with a sequential `01-`, `02-`, `03-`... prefix (unchanged from the original documented behavior) — this is the customer's reference numbering for the review step below.
 
-**Review (customer):** reviews the numbered folder and hands back an ordered list of numbers, with the hero pick marked using a `hero-` prefix — e.g. `hero-04, 1, 9, 2, 15, 7`.
+**Review (customer, unchanged):** reviews the numbered folder and hands back an ordered list of numbers, with the hero pick marked using a `hero-` prefix — e.g. `hero-04, 1, 9, 2, 15, 7`.
 
-**Pass 2 (Claude Code):** applies the customer's list —
+**Pass 2 (Claude Code, unchanged):** applies the customer's list —
 - Rename the hero pick to `hero-<original filename>`
 - Renumber the rest `01-`, `02-`, `03-`... in the customer's listed order
 - Leave anything not listed unprefixed — unprefixed files are excluded from the page (not deleted, just not referenced)
+
+**Pass 3 (Claude Code, new):** from the final numbered/hero-tagged surviving files, generate whatever derivative sizes the template actually needs, rather than serving whatever raw resolution survived Pass 1 uncapped:
+- Homepage card thumbnail
+- The cropped 4:3 hero-tile derivative (see the two-column hero layout, Session 13)
+- A capped display size (~1600px longest edge) for the gallery grid and lightbox
 
 ---
 

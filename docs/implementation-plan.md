@@ -1,5 +1,5 @@
 # Leisurenotes.com — Implementation Plan
-## Last updated: 2026-07-30 | Session: 13 | Status: Active
+## Last updated: 2026-07-30 | Session: 14 | Status: Active
 ## PM: Claude | Customer: Harvey Carson
 
 ---
@@ -122,7 +122,8 @@ Two different Claude products are used across this project, both on the MacBook 
 - [x] 2D.1 Build sample project page (Foosball Table) — real content pulled live from leisurenotes.com (see note below), not placeholder text
 - [x] 2D.1a Foosball Table template punch list (6 items: category fix, comments removal, clickable breadcrumb + URL category filter, combined-ZIP downloads, hero photo orientation check, spec block rebuild) — all complete as of Session 10. Template is feature-complete, awaiting customer review below
 - [x] 2D.1b Session 13: hero section redesign (combined two-column hero + spec grid, icons dropped, click-to-enlarge lightbox added) — additional change layered on top of the Session 10 "feature-complete" state, implemented on Foosball Table only. Still awaiting customer review below before Phase 3 rollout.
-- [ ] 2D.2 Customer reviews (Live Preview)
+- [x] 2D.1c Session 14: hero photo blur fix (re-cropped from the higher-res rotated source instead of the 225x300 thumbnail) + Phase 3 image-selection workflow doc updated (website-design.md, now 3 passes). Session 12 footer layout customer-confirmed and closed out — no longer an open item.
+- [ ] 2D.2 Customer reviews (Live Preview) — both known visual issues (footer, hero resolution) now resolved; still needs one explicit final-look sign-off pass, see 2D.6
 - [ ] 2D.3 Revisions submitted
 - [ ] 2D.4 Claude Code revises
 - [ ] 2D.5 Repeat until approved
