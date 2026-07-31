@@ -149,18 +149,20 @@ Two different Claude products are used across this project, both on the MacBook 
 
 ### All 13 Project Pages
 - [x] 3.7 Foosball Table — **wording corrected, this was already done and just never checked off:** built under 2C/2D (not this Phase 3 checklist), template locked 2D.6. Materials/Tools spec values updated Session 18 to match the final 13-project spreadsheet (website-design.md Q10).
-- [ ] 3.8 Mechanical Pinball Machine — **Session 18: Pass 3 (derivative generation) done** — homepage thumbnail, cropped 4:3 hero-tile, capped 1600px gallery derivatives, all WebP, `data/projects.json` thumb updated. **Paused here for a visual check before the remaining 11 projects' Pass 3 runs and before the actual page build** (page HTML not yet written).
-- [ ] 3.9 Crayford Focuser 1¼″
-- [ ] 3.10 Flag Display Case
-- [ ] 3.11 Mantel Clock
-- [ ] 3.12 Vertical Tool Cart
-- [ ] 3.13 Bicycle Maintenance Clamp
-- [ ] 3.14 Cornhole Game Board
-- [ ] 3.15 Biplane Wooden Toy
-- [ ] 3.16 Baby Doll Carriage
-- [ ] 3.17 Fan Powered Toy Car
-- [ ] 3.18 Fidget Spinner
-- [ ] 3.19 Tablesaw Vertical Tenon Jig
+**Pass 3 (derivative generation) — DONE for all 12 remaining projects (Session 18)**, per website-design.md's tooling writeup: homepage thumbnail, cropped 4:3 hero-tile capped at 1600px, capped ~1600px gallery/lightbox derivatives, all WebP, `data/projects.json` thumb updated and verified for every project. Actual page HTML (below) is the remaining work per project. **Exception: Flag Display Case's hero is an interim CAD-render substitute pending a customer privacy decision — see website-design.md and session-notes.md.**
+
+- [ ] 3.8 Mechanical Pinball Machine — Pass 3 done, customer-approved crop framing. Page HTML not yet written.
+- [ ] 3.9 Crayford Focuser 1¼″ — Pass 3 done (hero source is small, 281×300 — derivatives kept native-res, not upscaled). Page HTML not yet written.
+- [ ] 3.10 Flag Display Case — Pass 3 done with the interim CAD-render hero substitution above. Page HTML not yet written.
+- [ ] 3.11 Mantel Clock — Pass 3 done. Page HTML not yet written.
+- [ ] 3.12 Vertical Tool Cart — Pass 3 done (14 gallery photos, no explicit Pass 2 hero — position-1 used as hero source). Page HTML not yet written.
+- [ ] 3.13 Bicycle Maintenance Clamp — Pass 3 done. Page HTML not yet written.
+- [ ] 3.14 Cornhole Game Board — Pass 3 done. Page HTML not yet written.
+- [ ] 3.15 Biplane Wooden Toy — Pass 3 done (no explicit hero, position-1 used). Page HTML not yet written.
+- [ ] 3.16 Baby Doll Carriage — Pass 3 done (no explicit hero, position-1 used). Page HTML not yet written.
+- [ ] 3.17 Fan Powered Toy Car — Pass 3 done. Page HTML not yet written.
+- [ ] 3.18 Fidget Spinner — Pass 3 done. Page HTML not yet written.
+- [ ] 3.19 Tablesaw Vertical Tenon Jig — Pass 3 done (no explicit hero, position-1 used). Page HTML not yet written.
 
 **Build time / Skill level standing gap (Session 11) — RESOLVED Session 18:** customer supplied final spec values for all 13 projects via a completed specs spreadsheet — see the full table in website-design.md Q10. Values get applied to each page's spec-grid as that page is built.
 
