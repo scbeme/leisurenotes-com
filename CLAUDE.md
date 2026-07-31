@@ -9,7 +9,8 @@ Read `docs/session-notes.md` first each session (Quick Start section), then `doc
 At the start of every session in this project, before asking the customer anything:
 1. Request access to the project folder (`mcp__cowork__request_cowork_directory` with the exact path `/Users/ai/projects/web/leisurenotes-com`) if not already mounted.
 2. Read the live docs **inside that mounted folder**: `docs/session-notes.md` Quick Start section, then `docs/implementation-plan.md`.
-3. Resume at the documented resume point — do not ask the customer what they mean if the docs already answer it.
+3. Run `git status` across the repo and flag any untracked files before starting other work — this catches images the customer has manually dropped into a project folder between sessions without them having to remember to mention every one. See website-design.md's "Adding a new image" workflow for how to handle a flagged file.
+4. Resume at the documented resume point — do not ask the customer what they mean if the docs already answer it.
 
 **Do not treat Claude.ai imported project knowledge (any `memory.md` or cached files under a `.project-cache` path, separate from the mounted folder) as current.** That cache reflects only Session 01 (2026-06-29) and is stale — later sessions superseded its architecture (Hostinger → GitHub Pages), platform (WordPress → static site details), and phase status. It's fine to skim for pre-Session-2 history if asked, but the mounted folder's `docs/session-notes.md` and `docs/implementation-plan.md` are the only source of truth for current state. If both are present, mounted-folder docs always win.
 

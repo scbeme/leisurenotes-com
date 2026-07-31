@@ -1,5 +1,5 @@
 # Leisurenotes.com — Website Design
-## Status: LOCKED (Phase 2A–2E, all design decisions + homepage + project page template approved) | Started: 2026-07-27 | Last updated: 2026-07-30 | Session: 15
+## Status: LOCKED (Phase 2A–2E, all design decisions + homepage + project page template approved) | Started: 2026-07-27 | Last updated: 2026-07-31 | Session: 16
 
 ---
 
@@ -50,7 +50,7 @@ Three-pass process for picking/ordering the photo set on each of the remaining 1
 - Move the redundant smaller sizes to a new per-project `_archive/` subfolder (outside any path the site serves) rather than deleting them — recoverable if a keep/discard call turns out wrong.
 - Rename each surviving file with a sequential `01-`, `02-`, `03-`... prefix (unchanged from the original documented behavior) — this is the customer's reference numbering for the review step below.
 
-**Review (customer, unchanged):** reviews the numbered folder and hands back an ordered list of numbers, with the hero pick marked using a `hero-` prefix — e.g. `hero-04, 1, 9, 2, 15, 7`.
+**Review (customer, unchanged):** reviews the numbered folder and hands back an ordered list of numbers, with the hero pick marked using a `hero-` prefix — e.g. `hero-04, 1, 9, 2, 15, 7`. **Shorthand confirmed Session 16:** if the customer just gives a plain sequence with no explicit `hero-` tag (e.g. `02, 03, new image`), the **first item in that list is both the hero pick and gallery position 1** — it becomes `hero-<filename>` with no number (per Pass 2 below), and the remaining items are numbered `01-`, `02-`, ... continuing in the order given, starting from the second list item.
 
 **Pass 2 (Claude Code, unchanged):** applies the customer's list —
 - Rename the hero pick to `hero-<original filename>`
@@ -61,6 +61,13 @@ Three-pass process for picking/ordering the photo set on each of the remaining 1
 - Homepage card thumbnail
 - The cropped 4:3 hero-tile derivative (see the two-column hero layout, Session 13)
 - A capped display size (~1600px longest edge) for the gallery grid and lightbox
+
+### Adding a new image to an already-processed project folder (process, added Session 16)
+Standing process once a project has gone through Pass 1 (or further) — replaces any assumption that the customer names/numbers files themselves:
+- **Customer:** copies the file into the correct project folder under any filename — export default, screenshot UUID name, whatever the source gives it. No renaming needed on their end.
+- **Customer:** flags that it exists (directly, or caught automatically by the git-status check now part of session startup — see CLAUDE.md) and states the desired position in plain language — e.g. "insert as image 3, shift the rest down," or a full sequence like the Bicycle Maintenance Clamp example (Session 16: customer's sequence `02, 03, new image` → first item is hero + position 1, per the shorthand rule above).
+- **Claude Code:** renames to match the project's naming convention, assigns the correct number(s), and performs any renumbering shift needed to honor the stated position — all in the same pass via `git mv`, not a separate cleanup step.
+- **If the project hasn't had its hero-pick/sequence review yet:** the new file just takes the next available Pass 1 number (a plain distinct-photo entry, deduped/visual-checked same as any other Pass 1 file). Final position is decided whenever the customer submits that project's full sequence, same as every other file in the folder.
 
 ---
 

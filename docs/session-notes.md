@@ -1,23 +1,22 @@
 # Leisurenotes.com — Session Notes
 ## Project: leisurenotes.com Redesign & Migration
-## Last updated: 2026-07-30 | Session: 15
+## Last updated: 2026-07-31 | Session: 16
 
 ---
 
 ## ⚡ QUICK START — READ FIRST
 
-- **Resume point:** Session 15 (Claude Code terminal) — **customer approved the live Foosball Table page outright** (footer + hero, both now resolved), so this session locked 2D.6 and closed out Phase 2E, then did Phase 3 kickoff prep: a structural audit of the non-page-specific checklist, and Pass 1 of the image-selection workflow across all 12 remaining project folders.
-  1. **2D.6 locked, 2E closed out** (`implementation-plan.md`): 2D.2–2D.6 and 2E.1–2E.4 all marked complete. While verifying 2E.1 ("website-design.md reflects all build decisions"), found and fixed two real gaps that had only ever lived in session-notes.md, not the design doc: the Q6 category-chip labels (still described the original Woodworking/STEM/Astronomy/Tools draft, not the actual Session 07 Play/Workshop/Home/Tech model) and the Q10 spec-block layout (still described the Session 08 icon layout as current, no mention of the Session 13 combined two-column hero / 2x2 no-icon grid / lightbox, or the Session 14 resolution fix). Both fixed in `website-design.md`, old layout kept and marked superseded for history. `website-design.md` header now reads **LOCKED**.
-  2. **Phase 3 structural audit** (`implementation-plan.md` 3.1–3.6): 3.1 (site architecture), 3.3 (category filtering), 3.6 (CC BY-NC footer) confirmed already done, checked off. 3.2 and 3.3's checklist *wording* was stale (predated the Q4 carousel-reversal and Session 07 category rename respectively) — corrected in place, not rebuilt. 3.5 (mailto) confirmed present in the footer on every page; the original "+ contact page" wording was already stale against the locked sitemap decision (no separate Contact page) — corrected. **3.4 (About page) does not exist yet** — `/about/` 404s from every footer link — flagged as a real open item needing customer content/copy, not built blind.
-  3. **Image-selection workflow Pass 1 run across all 12 remaining project folders** (not just one) — 88 distinct photos identified project-wide, deduped, redundant sizes moved to each project's new `_archive/` subfolder (398 files renamed/moved via `git mv`, nothing deleted), survivors renumbered `01-`, `02-`, `03-`... per project. Applied the Session 14 lesson directly: did a visual check before merging or discarding any file, not just filename pattern. Two genuine cases found where a naive filename-based rule would have gotten it wrong — see Session 15 Summary for both. `data/projects.json` `thumb` paths for all 12 projects updated to the new filenames so the live homepage grid keeps working uninterrupted.
-  - **Caveat carried forward:** still no visual/screenshot verification tool in this sandbox — the homepage grid thumbnails should still render (paths verified to exist on disk) but weren't checked in an actual browser.
-  - See Session 15 Summary below for full detail.
+- **Resume point:** Session 16 (Claude Code terminal) — two workflow/doc updates plus the first real Pass 2 of the image-selection workflow (Bicycle Maintenance Clamp), triggered by the customer dropping a new file into that project's folder between sessions.
+  1. **Session startup now includes a `git status` check** (`CLAUDE.md`): added as step 3 of the existing startup sequence, right after reading the docs and before anything else — catches customer-added files (like this session's) automatically instead of relying on the customer remembering to flag every one.
+  2. **New standing workflow documented: "Adding a new image to an already-processed project folder"** (`website-design.md`, after the Pass 1/2/3 workflow) — customer drops a file under any filename, flags it (or it's caught by the new git-status check), states the desired position in plain language; Claude Code renames/numbers/shifts in one pass via `git mv`. If the project hasn't had its hero-pick/sequence review yet, the new file just takes the next Pass 1 number. Also documented a shorthand confirmed this session: a plain sequence with no explicit `hero-` tag treats the **first listed item as both the hero pick and gallery position 1**.
+  3. **Bicycle Maintenance Clamp — Pass 2 applied** (`projects/bicycle-maintenance-clamp/`): customer's sequence `02, 03, new image` (new image = a customer-added 4-panel Moi3D CAD-views screenshot, kept uncropped per their instruction). Applied via `git mv`: `02-bike-clamp-3d-example-scaled.jpg` → `hero-bike-clamp-3d-example-scaled.jpg` (hero + position 1); `03-bike-clamp-example-use-2-1536x1121.png` → `01-bike-clamp-example-use-2-1536x1121.png`; the new file → `02-bike-clamp-cad-views-2890x2666.png`; the PDF-instructions cover scan (`01-bicycle-clamp-...-pdf-...jpg`, not in the customer's list) had its numeric prefix stripped per the existing "leave anything not listed unprefixed" rule — kept, not deleted. **Pass 3 (derivative generation) and the actual page build are separate, not done this session.**
+  - See Session 16 Summary below for full detail.
 - **Tool switch:** Currently in Claude Code terminal — correct per division-of-labor policy for coding work.
 - **Still open / needs customer input:**
   1. **About page (3.4) doesn't exist** — needs customer-supplied content/copy before it can be built, not a template task.
-  2. **Image review, 12 folders, whenever the customer is ready, in whatever order they choose:** each remaining project's `_archive/`-cleaned, numbered photo folder is ready for the customer's Pass-1-review step (per the three-pass workflow, website-design.md) — review the numbered photos, hand back a hero pick + sequence per project. Pass 2 (apply the customer's list), Pass 3 (generate capped derivatives), and the actual page builds are blocked on this per project.
+  2. **Image review, 11 remaining folders** (Bicycle Maintenance Clamp now done) — whenever the customer is ready, in whatever order they choose: review each folder's numbered photos, hand back a hero pick + sequence. Pass 2/3 and the page builds are blocked on this per project.
   3. **Build time / Skill level values still needed for all 12 remaining projects** (standing gap, website-design.md Q10) — customer needs to supply these per project before spec grids can be filled in.
-- **First action for next session:** Depends on customer availability — either (a) start reviewing the 12 numbered photo folders and hand back hero picks/sequences, project by project, or (b) if the customer wants to batch it, Claude Code can proceed with Phase 3 page builds using placeholder/TBD spec values and best-guess photo ordering, then revise once real picks come in. Recommend (a) since it avoids rework. Cloudflare Web Analytics is live on all 3 built pages — worth a check of the dashboard for incoming beacon data.
+- **First action for next session:** Run the new git-status startup check as usual. Continue image review for the remaining 11 project folders as the customer works through them, applying Pass 2 (and eventually Pass 3 + page build) per project as sequences come in — Bicycle Maintenance Clamp this session is the template for how that goes. Cloudflare Web Analytics is live on all 3 built pages — worth a check of the dashboard for incoming beacon data.
 
 ### Foosball Table punch list — Claude Code brief (Session 08) — ALL 6 ITEMS DONE (Session 09 + 10)
 Ready-to-implement, in `/projects/foosball-table/index.html` unless noted. Items 1–5 completed and committed Session 09; item 6 completed Session 10. Full list done — flagged for customer review before locking 2D.6.
@@ -505,6 +504,36 @@ Ran in Claude Code terminal. Customer approved the live Foosball Table page outr
 - **About page (3.4) needs customer content** — not built, needs real copy decisions first.
 - **Photo review needed per project, all 12 folders** — numbered/archived and ready; customer reviews each folder's numbered photos and returns a hero pick + sequence (`hero-04, 1, 9, 2, 15, 7` style) whenever ready, in whatever order they want to tackle the 12. Pass 2/3 and the actual page builds are blocked on this per project.
 - **Build time / Skill level values needed for all 12 remaining projects** — standing gap from Session 11, still unresolved; needed before spec grids can be filled in for any of them.
+- Crayford Focuser folder/slug mismatch — unresolved, deferred to Phase 3 build of that page
+- Favicon missing — Phase 3 item 3.23, not blocking
+- Git PAT expires ~2027-07-27 — renewal reminder
+- Monitor repo size — revisit GitHub Releases fallback at ~800MB (per-file trigger ~60-80MB, see website-design.md)
+- WordPress stays live until Phase 5 approved
+- Instructables cross-posting — decide per-project after redesign ships
+- WLD (water leak detector) firmware project — not yet added to site, packaging rules documented and ready whenever customer decides to add it
+
+---
+
+## Session 16 Summary
+
+### Accomplished
+Ran in Claude Code terminal. Three items: two small workflow/doc updates prompted by the customer having manually dropped a new image into the Bicycle Maintenance Clamp folder between sessions, plus applying that project's actual Pass 2.
+
+1. **`git status` added to session startup** (`CLAUDE.md`): new step 3 in the existing numbered startup sequence — after reading `session-notes.md`/`implementation-plan.md`, before anything else, run `git status` and flag any untracked files. Directly closes the gap this session opened with: the customer's new CAD screenshot sat in the Bicycle Maintenance Clamp folder with no prior flag beyond this session's own instructions describing it — a `git status` check would have surfaced it automatically at the top of any session touching that project, regardless of whether the customer remembered to mention it.
+2. **"Adding a new image" workflow documented** (`website-design.md`, new subsection right after the Pass 1/2/3 workflow): formalizes the pattern used for Bicycle Maintenance Clamp as the standing process for any future one-off image addition to an already-Pass-1'd folder — customer drops the file under any filename (no renaming on their end), flags it or it's caught by the new git-status check, states the desired position in plain language ("insert as image 3, shift the rest down," or a full sequence). Claude Code does the rename/number/shift in one `git mv` pass, not a separate cleanup step. If the target project hasn't had its hero/sequence review yet, the new file just takes the next available Pass 1 number and its final position waits for that project's full sequence like every other file in the folder. Also documented a **shorthand confirmed this session**: when the customer's sequence has no explicit `hero-` tag, the first listed item is implicitly both the hero pick and gallery position 1 (matters for how Pass 2 below was applied).
+3. **Bicycle Maintenance Clamp Pass 2 applied** (`projects/bicycle-maintenance-clamp/`), all via `git mv` to preserve history:
+   - Customer's sequence: `02, 03, new image`. Per the shorthand above, `02` is both hero and position 1.
+   - `02-bike-clamp-3d-example-scaled.jpg` → `hero-bike-clamp-3d-example-scaled.jpg`
+   - `03-bike-clamp-example-use-2-1536x1121.png` → `01-bike-clamp-example-use-2-1536x1121.png`
+   - The customer-added file (`E6D2F3BF-7281-44A3-BB56-105081D6F1A0.png`, 2890×2666, a 4-panel Moi3D viewport screenshot — Top/3D/Front/Right views with dimensions, kept uncropped per the customer's instruction since it's a different convention from the site's single-view `dwg-*` CAD images) → `02-bike-clamp-cad-views-2890x2666.png`. Verified the pixel dimensions matched the customer's stated 2890x2666 before renaming, and viewed it directly to confirm the description (4-panel dimensioned CAD view) and pick the `cad-views` slug.
+   - `01-bicycle-clamp-20210601-pdf-791x1024.jpg` (the PDF-instructions cover-page scan, not in the customer's list) → `bicycle-clamp-20210601-pdf-791x1024.jpg` — numeric prefix stripped per the existing "leave anything not listed unprefixed" rule from the Pass 2 spec. Kept on disk, not deleted.
+   - **Pass 3 (capped derivative generation) and the actual page build were explicitly out of scope this session** — not started.
+4. **Verification:** confirmed via `git status` before starting that the only untracked file in the whole repo was the one expected new Bicycle Maintenance Clamp image (validating that the new startup-check habit would have caught exactly this, and nothing else was silently added elsewhere). Confirmed final folder listing matches the brief's expected end state exactly (4 files: two numbered, one hero-prefixed, one unprefixed PDF-cover jpg, plus the untouched PDF/ZIP originals and `_archive/`).
+
+### Open items carried forward
+- **About page (3.4) needs customer content** — not built, needs real copy decisions first.
+- **Photo review needed per project, 11 remaining folders** (Bicycle Maintenance Clamp now done) — numbered/archived and ready; customer reviews each folder's numbered photos and returns a hero pick + sequence whenever ready, in whatever order they want to tackle the rest. Pass 2/3 and the actual page builds are blocked on this per project.
+- **Build time / Skill level values needed for all 12 remaining projects** — standing gap from Session 11, still unresolved.
 - Crayford Focuser folder/slug mismatch — unresolved, deferred to Phase 3 build of that page
 - Favicon missing — Phase 3 item 3.23, not blocking
 - Git PAT expires ~2027-07-27 — renewal reminder
