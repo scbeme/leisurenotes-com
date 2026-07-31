@@ -1,5 +1,5 @@
 # Leisurenotes.com — Website Design
-## Status: LOCKED (Phase 2A–2E, all design decisions + homepage + project page template approved) | Started: 2026-07-27 | Last updated: 2026-07-31 | Session: 16
+## Status: LOCKED (Phase 2A–2E, all design decisions + homepage + project page template approved) | Started: 2026-07-27 | Last updated: 2026-07-31 | Session: 17
 
 ---
 
@@ -102,6 +102,8 @@ Order: **hero photo → spec block (monospace) → downloads (prominent, not bur
 - **Sort control** (alphabetical / most recent) + result count ("Showing 8 of 13 projects")
 - Scales cleanly to 50+ projects with no nav redesign; **secondary tag facets** (material, skill level) deferred until ~25–30 projects, per faceted-search best practice of not exposing filters that don't yet earn their keep
 - **Breadcrumbs** (`Home / Category / Project Title`) on project pages only — most traffic lands directly on a project page from search, not from Home, so orientation matters there specifically. Home/About don't need one (not nested).
+
+**Amendment — Session 17 (2026-07-31):** customer requested broader consistency over the original per-page-type reasoning above. Breadcrumbs now apply to **About and all 13 project pages**; the homepage remains the only page without one (standard convention — a breadcrumb pointing back to the root is redundant on the root itself). About's breadcrumb has no category level (`Home / About`), since About isn't categorized. This supersedes the original "project pages only" scope but the original reasoning (most traffic lands direct from search, not from Home) is left in place above as the historical rationale for why breadcrumbs were introduced at all — it just no longer limits which page types get one.
 
 **Category/tag model — decided Session 07:** single primary category per project (no tags layer yet, no true multi-category). Final mapping — **Play** (7: Foosball Table, Mechanical Pinball Machine, Cornhole Game Board, Biplane Wooden Toy, Baby Doll Carriage, Fan Powered Toy Car, Fidget Spinner), **Workshop** (3: Tablesaw Vertical Tenon Jig, Bicycle Maintenance Clamp, Vertical Tool Cart), **Home** (2: Mantel Clock, Flag Display Case), **Tech** (1: Crayford Focuser 1¼″). Chip order left to right is by count, descending. Implemented in `data/projects.json` (per-project `category` field), `assets/js/site.js` (`CATEGORY_LABELS`), and `index.html` chip buttons — cheap to extend (a 5th category or Play split is a line-edit, not a redesign). Breadcrumb category segments link to `/?category=<slug>` on project pages, pre-filtering the homepage grid on load via a URL param read in `site.js`.
 

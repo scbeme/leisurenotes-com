@@ -1,5 +1,5 @@
 # Leisurenotes.com — Implementation Plan
-## Last updated: 2026-07-31 | Session: 16 | Status: Active
+## Last updated: 2026-07-31 | Session: 17 | Status: Active
 ## PM: Claude | Customer: Harvey Carson
 
 ---
@@ -143,8 +143,8 @@ Two different Claude products are used across this project, both on the MacBook 
 - [x] 3.1 Build site architecture (folders, navigation, templates) — done via 2C/2D: `assets/{css,js}`, `data/projects.json`, `docs/`, `projects/<slug>/`, `index.html`, `404.html`, header/footer nav on every page, Foosball Table as the locked project-page template
 - [x] 3.2 Build homepage with project grid — **wording corrected:** the original "scrolling project banner" text predates the Q4 carousel-reversal decision (Session 05) and was never actually built that way. Live homepage is a static keyword-rich intro headline + filterable/searchable/sortable project grid, no banner. Confirmed built and matches website-design.md Q4.
 - [x] 3.3 Build category filtering — **wording corrected:** categories are **Play / Workshop / Home / Tech** (Session 07 decision), not the original draft "Woodworking / STEM / Astronomy / Tools." Confirmed built: chips in `index.html`, `CATEGORY_LABELS` in `site.js`, `category` field in `data/projects.json`, URL-param pre-filtering from project-page breadcrumbs.
-- [ ] 3.4 Build About page — **does not exist yet** (`/about/` is linked from every footer but 404s). Flagged, not built blind — needs actual page content/copy from the customer (what the page should say about the site/maker), not just a template. Open item for next session.
-- [x] 3.5 Add mailto link — **wording corrected:** locked sitemap (website-design.md, Phase 2B) explicitly rules out a separate Contact page ("mailto: link in footer/nav, not a standalone page") — the original checklist text ("footer + contact page") was already stale against that decision. `mailto:leisurenotes.hsc@gmail.com` confirmed present in the footer nav on every page. Whether the About page (once built, see 3.4) should also surface contact info is a content question for that page's copy, not a separate build task — flagged alongside 3.4, not decided here.
+- [x] 3.4 Build About page — **built Session 17** (`about/index.html`), customer-approved copy (Projects/CAD Programs/Copyright/Disclaimer/Contact sections, Contact rewritten to drop the old comment-system reference and typo'd email). Same site chrome as index.html/Foosball Table. Breadcrumb scope amended same session — see website-design.md Q6 amendment.
+- [x] 3.5 Add mailto link — **wording corrected:** locked sitemap (website-design.md, Phase 2B) explicitly rules out a separate Contact page ("mailto: link in footer/nav, not a standalone page") — the original checklist text ("footer + contact page") was already stale against that decision. `mailto:leisurenotes.hsc@gmail.com` confirmed present in the footer nav on every page, **and** now also in About's own Contact section (Session 17) — resolves the open question this item previously flagged.
 - [x] 3.6 Add CC BY-NC 4.0 license footer — confirmed present on every page (`footer-copyright`, links to the CC BY-NC 4.0 license).
 
 ### All 13 Project Pages
