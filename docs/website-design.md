@@ -55,7 +55,7 @@ Three-pass process for picking/ordering the photo set on each of the remaining 1
 **Pass 2 (Claude Code, unchanged):** applies the customer's list —
 - Rename the hero pick to `hero-<original filename>`
 - Renumber the rest `01-`, `02-`, `03-`... in the customer's listed order
-- Leave anything not listed unprefixed — unprefixed files are excluded from the page (not deleted, just not referenced)
+- Anything not listed is excluded from the page. **Default:** leave it unprefixed, in place, in the main project folder (not deleted, just not referenced) — this is the assumed behavior unless told otherwise. **Alternate, only when the customer explicitly says so** (e.g. "archive 02, 01" — Crayford Focuser, Session 16): move the excluded file(s) into the project's `_archive/` subfolder instead, same mechanism as Pass 1 archiving. Follow whichever convention the customer actually states for that project's exclusions — don't assume it defaults to one or the other going forward just because a prior project used it.
 
 **Pass 3 (Claude Code, new):** from the final numbered/hero-tagged surviving files, generate whatever derivative sizes the template actually needs, rather than serving whatever raw resolution survived Pass 1 uncapped:
 - Homepage card thumbnail
