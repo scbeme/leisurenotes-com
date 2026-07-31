@@ -3,3 +3,6 @@
 
 # Session/permission test artifacts
 .permtest_*
+
+# Claude Code local settings (machine-specific permission allowlist)
+.claude/settings.local.json
