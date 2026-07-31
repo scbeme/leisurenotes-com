@@ -326,6 +326,15 @@ a { color: inherit; }
 
 .hero-download {
   margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 0.75rem;
+  align-items: flex-start;
+}
+
+.hero-download .download-note {
+  flex-basis: 100%;
+  margin-top: 0;
 }
 
 .project-downloads {

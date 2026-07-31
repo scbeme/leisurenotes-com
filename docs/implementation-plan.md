@@ -151,7 +151,7 @@ Two different Claude products are used across this project, both on the MacBook 
 - [x] 3.7 Foosball Table — **wording corrected, this was already done and just never checked off:** built under 2C/2D (not this Phase 3 checklist), template locked 2D.6. Materials/Tools spec values updated Session 18 to match the final 13-project spreadsheet (website-design.md Q10).
 **Pass 3 (derivative generation) — DONE for all 12 remaining projects (Session 18)**, per website-design.md's tooling writeup: homepage thumbnail, cropped 4:3 hero-tile capped at 1600px, capped ~1600px gallery/lightbox derivatives, all WebP, `data/projects.json` thumb updated and verified for every project. Actual page HTML (below) is the remaining work per project. **Exception: Flag Display Case's hero is an interim CAD-render substitute pending a customer privacy decision — see website-design.md and session-notes.md.**
 
-- [ ] 3.8 Mechanical Pinball Machine — Pass 3 done, customer-approved crop framing. Page HTML not yet written.
+- [x] 3.8 Mechanical Pinball Machine — built Session 18. Content from live WordPress page + the 13-page instructions PDF (Misc. Materials list, Construction Tips, Possible Improvements). Two download buttons (PDF + CAD ZIP), no combined-zip fabrication.
 - [ ] 3.9 Crayford Focuser 1¼″ — Pass 3 done (hero source is small, 281×300 — derivatives kept native-res, not upscaled). Page HTML not yet written.
 - [ ] 3.10 Flag Display Case — Pass 3 done with the interim CAD-render hero substitution above. Page HTML not yet written.
 - [ ] 3.11 Mantel Clock — Pass 3 done. Page HTML not yet written.
