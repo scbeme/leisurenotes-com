@@ -161,7 +161,7 @@ Two different Claude products are used across this project, both on the MacBook 
 - [x] 3.15 Biplane Wooden Toy — built Session 18. No instructions PDF (CAD zip only); content from the live page.
 - [x] 3.16 Baby Doll Carriage — built Session 18. No instructions PDF (CAD zip only); content from the live page.
 - [x] 3.17 Fan Powered Toy Car — built Session 18. No instructions PDF; content from the live page, including the full 10-step verbatim assembly list.
-- [ ] 3.18 Fidget Spinner — Pass 3 done. Page HTML not yet written.
+- [x] 3.18 Fidget Spinner — built Session 18. No instructions PDF; content from the live page.
 - [ ] 3.19 Tablesaw Vertical Tenon Jig — Pass 3 done (no explicit hero, position-1 used). Page HTML not yet written.
 
 **Build time / Skill level standing gap (Session 11) — RESOLVED Session 18:** customer supplied final spec values for all 13 projects via a completed specs spreadsheet — see the full table in website-design.md Q10. Values get applied to each page's spec-grid as that page is built.
