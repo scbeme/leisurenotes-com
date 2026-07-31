@@ -155,7 +155,7 @@ Two different Claude products are used across this project, both on the MacBook 
 - [x] 3.9 Crayford Focuser 1¼″ — built Session 18. Content from live page + 5-page instructions PDF (design specs, printer settings, full build steps, parts list). 4 download files (PDF + 3 CAD formats) — PDF as primary button, CAD formats as inline links rather than 4 big buttons or a fabricated combined zip.
 - [x] 3.10 Flag Display Case — built Session 18, using the interim CAD-render hero (see above). **Hero photo still needs the customer's explicit decision** — new context found while fetching this page's content (this is the customer's own tribute to his late father-in-law, a USAF veteran; the exact photo with the same partial redaction is already the large cover image on the customer's own published instructions PDF) makes it likely the original photo was always meant to be prominent, and an attempt to restore it as hero was blocked by a system safety check rather than completed. Content otherwise complete: full parts list, construction tips, and final-assembly steps from the 8-page instructions PDF. Gallery currently shows only the 3 CAD renders — the original personal photo has no gallery derivative and isn't referenced anywhere on the page pending the hero decision.
 - [x] 3.11 Mantel Clock — built Session 18. Content from live page + 13-page instructions PDF (grandparents' cedar story, rotating pedestal design, full Construction Tips).
-- [ ] 3.12 Vertical Tool Cart — Pass 3 done (14 gallery photos, no explicit Pass 2 hero — position-1 used as hero source). Page HTML not yet written.
+- [x] 3.12 Vertical Tool Cart — built Session 18. Content from live page (Adam Savage origin story, design notes, build steps). Its one reader comment (a genuinely useful tip — power strip for charging, paper towel dispenser) folded into Final Thoughts as prose rather than dropped, unlike Foosball's 2 comments (generic praise, confirmed drop Session 09) — see 3.21 below, that item's premise was wrong.
 - [ ] 3.13 Bicycle Maintenance Clamp — Pass 3 done. Page HTML not yet written.
 - [ ] 3.14 Cornhole Game Board — Pass 3 done. Page HTML not yet written.
 - [ ] 3.15 Biplane Wooden Toy — Pass 3 done (no explicit hero, position-1 used). Page HTML not yet written.
@@ -168,7 +168,7 @@ Two different Claude products are used across this project, both on the MacBook 
 
 ### Assets & Polish
 - [ ] 3.20 Optimize all images for web
-- [ ] 3.21 Preserve Foosball + Pinball comments as static text
+- [x] 3.21 Preserve comments as static text — **wording corrected:** this item's premise (Foosball + Pinball) was already flagged wrong in content-inventory.md Session 02 — the actual crawl found comments on Foosball (2, generic praise) and Vertical Tool Cart (1, a genuinely useful build tip), not Pinball (0). Foosball's 2 comments were confirmed dropped, not folded in, back in Session 09. Vertical Tool Cart's 1 comment was folded into that page's Final Thoughts as prose (Session 18) since it has real content value, unlike Foosball's.
 - [ ] 3.22 Generate sitemap.xml for SEO
 - [ ] 3.23 Add favicon
 - [ ] 3.24 Verify all download links working
