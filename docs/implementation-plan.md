@@ -159,7 +159,7 @@ Two different Claude products are used across this project, both on the MacBook 
 - [x] 3.13 Bicycle Maintenance Clamp — built Session 18. Content from live page + 6-page instructions PDF (full parts list table with dimensions, construction tips).
 - [x] 3.14 Cornhole Game Board — built Session 18. No instructions PDF for this project (CAD zip only) — content built from the live WordPress page, using the tool's directly-quoted phrases as the verbatim anchor since two separate fetch attempts both returned lightly-processed summaries rather than pure sentence-by-sentence text.
 - [x] 3.15 Biplane Wooden Toy — built Session 18. No instructions PDF (CAD zip only); content from the live page.
-- [ ] 3.16 Baby Doll Carriage — Pass 3 done (no explicit hero, position-1 used). Page HTML not yet written.
+- [x] 3.16 Baby Doll Carriage — built Session 18. No instructions PDF (CAD zip only); content from the live page.
 - [ ] 3.17 Fan Powered Toy Car — Pass 3 done. Page HTML not yet written.
 - [ ] 3.18 Fidget Spinner — Pass 3 done. Page HTML not yet written.
 - [ ] 3.19 Tablesaw Vertical Tenon Jig — Pass 3 done (no explicit hero, position-1 used). Page HTML not yet written.
