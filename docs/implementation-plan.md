@@ -1,5 +1,5 @@
 # Leisurenotes.com — Implementation Plan
-## Last updated: 2026-07-31 | Session: 17 | Status: Active
+## Last updated: 2026-07-31 | Session: 18 | Status: Active
 ## PM: Claude | Customer: Harvey Carson
 
 ---
@@ -148,8 +148,8 @@ Two different Claude products are used across this project, both on the MacBook 
 - [x] 3.6 Add CC BY-NC 4.0 license footer — confirmed present on every page (`footer-copyright`, links to the CC BY-NC 4.0 license).
 
 ### All 13 Project Pages
-- [ ] 3.7 Foosball Table
-- [ ] 3.8 Mechanical Pinball Machine
+- [x] 3.7 Foosball Table — **wording corrected, this was already done and just never checked off:** built under 2C/2D (not this Phase 3 checklist), template locked 2D.6. Materials/Tools spec values updated Session 18 to match the final 13-project spreadsheet (website-design.md Q10).
+- [ ] 3.8 Mechanical Pinball Machine — **Session 18: Pass 3 (derivative generation) done** — homepage thumbnail, cropped 4:3 hero-tile, capped 1600px gallery derivatives, all WebP, `data/projects.json` thumb updated. **Paused here for a visual check before the remaining 11 projects' Pass 3 runs and before the actual page build** (page HTML not yet written).
 - [ ] 3.9 Crayford Focuser 1¼″
 - [ ] 3.10 Flag Display Case
 - [ ] 3.11 Mantel Clock
@@ -161,6 +161,8 @@ Two different Claude products are used across this project, both on the MacBook 
 - [ ] 3.17 Fan Powered Toy Car
 - [ ] 3.18 Fidget Spinner
 - [ ] 3.19 Tablesaw Vertical Tenon Jig
+
+**Build time / Skill level standing gap (Session 11) — RESOLVED Session 18:** customer supplied final spec values for all 13 projects via a completed specs spreadsheet — see the full table in website-design.md Q10. Values get applied to each page's spec-grid as that page is built.
 
 ### Assets & Polish
 - [ ] 3.20 Optimize all images for web

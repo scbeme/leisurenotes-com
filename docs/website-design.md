@@ -1,5 +1,5 @@
 # Leisurenotes.com — Website Design
-## Status: LOCKED (Phase 2A–2E, all design decisions + homepage + project page template approved) | Started: 2026-07-27 | Last updated: 2026-07-31 | Session: 17
+## Status: LOCKED (Phase 2A–2E, all design decisions + homepage + project page template approved) | Started: 2026-07-27 | Last updated: 2026-07-31 | Session: 18
 
 ---
 
@@ -62,6 +62,16 @@ Three-pass process for picking/ordering the photo set on each of the remaining 1
 - Homepage card thumbnail
 - The cropped 4:3 hero-tile derivative (see the two-column hero layout, Session 13)
 - A capped display size (~1600px longest edge) for the gallery grid and lightbox
+
+**Pass 3 — tooling and exact settings (established Session 18, first real run — Mechanical Pinball Machine was project 1 of 12):**
+- **Tooling:** no CLI on the MacBook could write WebP out of the box — `sips` (macOS built-in) reads/crops/resizes but can't write the WebP format, no ImageMagick or Pillow installed. Installed `webp` via Homebrew (`brew install webp`, plus its `libtiff` runtime dependency which the bottle didn't pull in automatically) to get `cwebp`/`dwebp`. Pipeline per derivative: `sips` for crop/resize (producing an intermediate PNG), then `cwebp` for the final WebP encode. This is now a standing local dependency — if a future session hits `cwebp: command not found`, the fix is that one `brew install webp` (+ `libtiff` if the dylib-not-found error recurs).
+- **WebP quality:** `cwebp -q 85` for every derivative (thumbnail, hero-tile, gallery/display). Chosen for strong fidelity on product/detail photos (hardware, fine textures) while still capturing most of WebP's size win over PNG — file-size tests on the first project showed roughly 78-86% smaller than the source PNGs at this setting.
+- **Homepage card thumbnail:** 600×450 (4:3, matches `.project-card img`'s `aspect-ratio: 4/3; object-fit: cover`), generated as a scaled-down version of the *same* hero crop used for the hero-tile derivative (not a separately-chosen photo) — keeps the homepage card and the project page's hero visually consistent for a given project. Filename: `<slug>-thumb-<W>x<H>.webp`.
+- **Hero-tile derivative:** cropped to 4:3 at the source's native resolution first (full width, height = width × 0.75, vertically positioned by eye to frame the most representative content — same manual-crop judgment call as Foosball Table's Session 14 hero), then capped to **1600px on the long edge** (same cap as the gallery/display rule below, applied consistently rather than leaving the hero at full native crop resolution when the display box is only ~500-560 CSS px wide even at retina). Filename: `<slug>-hero-<W>x<H>.webp` — a **new** file, distinct from the Pass 2 survivor that's the crop source; per Foosball Table's established pattern, the hero tile's wrapping `<a>` still points to the **original uncropped Pass 2 file** as the lightbox target, unchanged by Pass 3.
+- **Gallery/display derivatives (the non-hero numbered photos):** capped to **1600px on the longest edge**, only when the source exceeds it — if already ≤1600px, encode to WebP at native resolution, no resize. Filename keeps the existing numbered-prefix + descriptive base from Pass 2, with the dimension suffix updated to match the derivative's actual (possibly resized) dimensions and the extension changed to `.webp`, e.g. `05-pinball-mechanical-...-2048x1298.png` (Pass 2 survivor, kept untouched) → `05-pinball-mechanical-...-1600x1014.webp` (Pass 3 derivative, new file).
+- **Lightbox target for gallery photos:** unlike the hero tile (which deliberately opens the full-resolution original), the capped 1600px WebP derivative **is** the lightbox target for ordinary gallery photos — there's no separate crop involved for these (Pass 3 only resizes, never crops non-hero photos), and 1600px is already large enough that opening a bigger original wouldn't look different at any realistic viewing size, so serving the same lightweight file for both grid and lightbox avoids shipping a second, larger copy of the same image for no visible benefit.
+- **`data/projects.json` `thumb` field:** updated to the new `<slug>-thumb-<W>x<H>.webp` path for each project as its Pass 3 runs (same discipline as the Session 16 thumb-breakage fix — verify the path resolves before moving to the next project).
+- **What Pass 3 does *not* touch:** the original Pass 1/2 survivor files (PNG/JPEG, full resolution) stay in the project folder untouched — they're the crop/lightbox source for the hero and simply superseded-but-kept for the gallery photos, not deleted or archived.
 
 ### Adding a new image to an already-processed project folder (process, added Session 16)
 Standing process once a project has gone through Pass 1 (or further) — replaces any assumption that the customer names/numbers files themselves:
@@ -140,6 +150,26 @@ No ads, no popups/modals, no auto-play video/audio, no infinite scroll. Site is 
 **Standing rules for Build time / Skill level values, all 13 projects (added Session 11):**
 - **Skill level** is always one of exactly three values: **Beginner, Intermediate, Advanced** — matches the three-rung "levels of experience" metaphor of the existing `ti-stairs` icon (Q10 above). Don't introduce a fourth tier or synonyms (e.g. "Expert", "Easy") — pick the closest of the three.
 - **Build time** uses flexible, scale-appropriate units per project — hours for short builds (e.g. "2-3 Hours"), weekends for larger ones (e.g. "2-3 Weekends") — rather than one fixed unit across all projects. Keep it short: 1-3 words, no parenthetical ranges or footnotes, matching the existing terse `.spec-value` style (e.g. "2-3 Weekends", not "2-3 Weekends (approx., assuming prior woodworking experience)").
+
+**All 13 projects RESOLVED — final spec values (Session 18, from the customer's completed specs spreadsheet, supersedes the earlier "ignore the template.xlsx" note):**
+
+| Project | Build time | Skill level | Materials | Tools |
+|---|---|---|---|---|
+| Foosball Table | 2-3 Weekends | Advanced | Wood, acrylic, hardware | Stationary power tools |
+| Mechanical Pinball Machine | 1 Weekend | Intermediate | Wood, hardware | Shop tools |
+| Cornhole Game Board | 1/2 Day | Beginner | Wood | Shop tools |
+| Biplane Wooden Toy | 1/2 Day | Intermediate | Wood | Shop tools |
+| Baby Doll Carriage | 1/2 Day | Intermediate | Wood | Shop tools |
+| Fan Powered Toy Car | 1-2 Hours | Beginner | Foam board, toy car parts | Craft tools |
+| Fidget Spinner | 1-2 Hours | Beginner | 3D printer filament, bearings | 3D printer, hand tools |
+| Tablesaw Vertical Tenon Jig | 2 Hours | Intermediate | Wood | Tablesaw + shop tools |
+| Bicycle Maintenance Clamp | 2 Hours | Beginner | Wood, metal brackets, hardware | Shop tools |
+| Vertical Tool Cart | 1/2 Day | Intermediate | Wood | Shop tools |
+| Mantel Clock | 1 Weekend | Advanced | Wood, glass, mechanical | Shop tools |
+| Flag Display Case | 1/2 Day | Advanced | Wood, glass | Tablesaw + shop tools |
+| Crayford Focuser 1¼″ | 1/2 Day | Advanced | 3D printer filament, hardware | 3D printer, hand tools |
+
+Foosball Table's Materials/Tools values also updated this session (was "Wood, acrylic" / "Router, sander, drill") to match the spreadsheet's phrasing convention across all 13 — Build time/Skill level were already correct and untouched. Values applied to each of the other 12 pages' spec-grid as each page is built (Phase 3, 3.7-3.19).
 
 ### Contact method
 **`mailto:` link only** — no contact form. GitHub Pages has no server-side processing (the reason the old Hostinger PHP mail form can't carry over without a third-party service), and the old WordPress site never had a dedicated Contact page either. Consistent with the "no unnecessary complexity" direction from Q8.

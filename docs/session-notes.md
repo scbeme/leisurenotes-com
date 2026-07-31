@@ -1,23 +1,23 @@
 # Leisurenotes.com — Session Notes
 ## Project: leisurenotes.com Redesign & Migration
-## Last updated: 2026-07-31 | Session: 17
+## Last updated: 2026-07-31 | Session: 18
 
 ---
 
 ## ⚡ QUICK START — READ FIRST
 
-- **Resume point:** Session 17 (Claude Code terminal) — built the site's first non-project content page, `/about/`, and amended the locked Q6 breadcrumb decision to cover it.
-  1. **Q6 breadcrumb decision amended** (`website-design.md`): breadcrumbs previously scoped to "project pages only." Customer requested broader consistency (2026-07-31) — breadcrumbs now apply to About and all 13 project pages; only the homepage stays breadcrumb-free (standard convention, root pointing to itself is redundant). Recorded as a **dated amendment appended below the original Q6 text**, not an overwrite — original reasoning (most traffic lands direct on a project page from search) stays intact as historical rationale for why breadcrumbs exist at all.
-  2. **`/about/index.html` built** — sibling to `index.html`, not nested under `/projects/`. Same site chrome as the homepage and Foosball Table (header, footer, breadcrumb pattern `Home / About` with no category level). Body: intro paragraph, then `Projects`/`CAD Programs`/`Copyright`/`Disclaimer`/`Contact` as real `<h2>` headings inside `.prose` (converted from the old WordPress page's bold inline labels). Content is the customer-approved copy verbatim except **Contact, deliberately rewritten** — the WordPress source referenced a comment system this site doesn't have and had a typo'd email; the new version is a plain mailto sentence. `<title>`/meta description written fresh, not ported from the old SEO plugin tags.
-  3. **Path-depth check, since this repo has had root-vs-relative bugs before:** `/about/` sits at the same depth as `/projects/` (both direct children of repo root), so its asset path is `../assets/css/style.css` — **one level up**, not two like project pages (`../../assets/...`). Verified with a local `python3 -m http.server` test before committing: confirmed `/about/` returns 200, the resolved stylesheet path (`/assets/css/style.css`) returns 200, and the raw HTML source shows the correct relative href — not just eyeballed.
-  4. **Implementation plan updated:** Phase 3 item 3.4 (About page) checked off — it was flagged as a real open item as recently as Session 16's audit, now resolved with real content. Item 3.5 (mailto) note updated too — About's own Contact section now also surfaces the mailto link, closing the open question that item had been carrying.
-  - See Session 17 Summary below for full detail.
+- **Resume point:** Session 18 (Claude Code terminal) — Foosball Table spec fix, the standing Build time/Skill level gap resolved for all 13 projects, and the first real Pass 3 (derivative generation) run — **paused after project 1 of 12 for a visual check, per the brief.**
+  1. **Foosball Table spec-block fixed**: Materials `"Wood, acrylic"` → `"Wood, acrylic, hardware"`, Tools `"Router, sander, drill"` → `"Stationary power tools"` — Build time/Skill level unchanged. The separate Supplies > Tools list further down the page was left alone, as instructed.
+  2. **Build time/Skill level standing gap (Session 11) — RESOLVED.** Customer supplied final spec values for all 13 projects via a completed specs spreadsheet — **this supersedes the earlier "ignore the template.xlsx" note from earlier the same day.** Full table recorded in `website-design.md` Q10. Values get applied to each of the other 12 pages' spec-grid as that page is actually built (not yet — see below).
+  3. **Pass 3 (derivative generation) — tooling stood up from scratch, then run for project 1 of 12 (Mechanical Pinball Machine).** No CLI on this Mac could write WebP out of the box (`sips` reads/crops/resizes but can't write WebP; no ImageMagick/Pillow installed) — installed `cwebp`/`dwebp` via `brew install webp` (+ `libtiff`, a runtime dependency the bottle didn't pull in automatically). Pipeline: `sips` crop/resize → `cwebp -q 85` encode. Generated for Mechanical Pinball Machine: a 600×450 homepage thumbnail, a 4:3 hero-tile crop capped at 1600×1200, and capped-at-1600px-longest-edge WebP derivatives for all 6 gallery photos (2 of the 6 needed resizing, the other 4 were already under the cap). `data/projects.json` thumb updated to the new thumbnail path. Full tooling/settings/naming-convention writeup added to `website-design.md`'s Pass 3 section, since this was the first real run (Foosball's hero crop was a manual one-off, not part of this pipeline).
+  - **Stopped here, as instructed — did not batch-run Pass 3 for the other 11 projects, and did not build any project page HTML yet.** Flagging Mechanical Pinball Machine's 8 new derivative files for a visual check before proceeding.
+  - See Session 18 Summary below for full detail.
 - **Tool switch:** Currently in Claude Code terminal — correct per division-of-labor policy for coding work.
 - **Still open / needs customer input:**
-  1. **Pass 3 + page builds, all 12 remaining projects** — image review (hero pick + sequence) is done for every project (Session 16); the next phase is generating capped derivative sizes (Pass 3, per website-design.md's three-pass workflow) and actually building each project page. Not started yet for any of the 12.
-  2. **Build time / Skill level values still needed for all 12 remaining projects** (standing gap, website-design.md Q10) — customer needs to supply these per project before spec grids can be filled in.
-  3. **Not an open item, just a note:** `docs/leisurenotes-project-specs-template.xlsx` is untracked in the repo (customer confirmed 2026-07-31 it should be ignored, not built into anything). If `git status` surfaces it again, that's expected — no action needed unless the customer says otherwise.
-- **First action for next session:** Run the new git-status startup check as usual. Decide how to sequence Pass 3 + page builds across the 12 remaining projects (all at once vs. one at a time). Cloudflare Web Analytics is live on all 4 built pages (Home, 404, Foosball Table, About) — worth a check of the dashboard for incoming beacon data.
+  1. **Visual check needed on Mechanical Pinball Machine's Pass 3 derivatives** before Pass 3 runs for the remaining 11 projects and before any project page HTML gets built. Files are in `projects/mechanical-pinball-machine/`: `mechanical-pinball-machine-thumb-600x450.webp`, `mechanical-pinball-machine-hero-1600x1200.webp`, and `01`–`06` gallery WebPs.
+  2. **Pass 3 + page builds, remaining 11 projects** — blocked on the visual check above.
+  3. **Not an open item, just a note:** `docs/leisurenotes-project-specs-template.xlsx` remains untracked/ignored per the customer's 2026-07-31 instruction — unrelated to the *new* specs spreadsheet used to resolve the Build time/Skill level gap this session (that one was supplied directly in chat, not as this xlsx file).
+- **First action for next session:** Get the customer's go-ahead on the Mechanical Pinball Machine derivatives, then batch-run Pass 3 for the remaining 11 projects using the now-documented tooling/settings, then build all 12 remaining project pages against the locked Foosball Table template. Cloudflare Web Analytics is live on all 4 built pages (Home, 404, Foosball Table, About) — worth a check of the dashboard for incoming beacon data.
 
 ### Foosball Table punch list — Claude Code brief (Session 08) — ALL 6 ITEMS DONE (Session 09 + 10)
 Ready-to-implement, in `/projects/foosball-table/index.html` unless noted. Items 1–5 completed and committed Session 09; item 6 completed Session 10. Full list done — flagged for customer review before locking 2D.6.
@@ -644,6 +644,41 @@ Ran in Claude Code terminal. One fully-specified brief: build the site's first n
 - **Pass 3 + page builds, all 12 remaining projects** — image review (Session 16) is complete for all 12; next phase is Pass 3 (capped derivative generation) and the actual page builds. Not started.
 - **Build time / Skill level values still needed for all 12 remaining projects** — standing gap from Session 11, still unresolved.
 - Crayford Focuser folder/slug mismatch — unresolved, deferred to Phase 3 build of that page
+- Favicon missing — Phase 3 item 3.23, not blocking
+- Git PAT expires ~2027-07-27 — renewal reminder
+- Monitor repo size — revisit GitHub Releases fallback at ~800MB (per-file trigger ~60-80MB, see website-design.md)
+- WordPress stays live until Phase 5 approved
+- Instructables cross-posting — decide per-project after redesign ships
+- WLD (water leak detector) firmware project — not yet added to site, packaging rules documented and ready whenever customer decides to add it
+
+---
+
+## Session 18 Summary
+
+### Accomplished
+Ran in Claude Code terminal. A Cowork-drafted brief with four parts: a quick Foosball spec fix, recording the customer's final 13-project spec spreadsheet, standing up and running Pass 3 (derivative generation) with an explicit stop-after-project-1 checkpoint, then (gated on that checkpoint) building the 12 remaining project pages. Completed the first three parts; the fourth is blocked on the checkpoint as instructed.
+
+1. **Foosball Table spec-block fix** (`projects/foosball-table/index.html`): Materials `"Wood, acrylic"` → `"Wood, acrylic, hardware"`; Tools `"Router, sander, drill"` → `"Stationary power tools"`. Build time/Skill level untouched. Confirmed the separate Supplies > Tools list further down the page (a different section, `<h3>Tools</h3>` under Supplies) wasn't touched — grepped for both "Materials"/"Tools" occurrences in the file first to make sure the edit targeted only the spec-grid instance.
+2. **Final spec values recorded for all 13 projects** (`website-design.md` Q10): customer supplied Build time/Skill level/Materials/Tools for the 12 remaining projects via a completed specs spreadsheet, explicitly noted as superseding the "ignore the template.xlsx" note from earlier the same day (a *different* file — the spreadsheet's values were supplied directly in the brief, not read from that xlsx). Added a full 13-row table (including Foosball's now-updated values) to Q10, closing out the Session 11 standing gap. Values aren't applied to any of the 12 unbuilt pages yet — that happens as each page is actually built, later.
+3. **Pass 3 tooling stood up from scratch:**
+   - Checked `sips` (macOS built-in) — reads/crops/resizes fine but errors `Can't write format: org.webmproject.webp` when asked to output WebP. No ImageMagick (`convert`/`magick`) or Python Pillow installed either (`pip3 install Pillow` failed — externally-managed-environment, expected on modern macOS Python).
+   - Installed `cwebp`/`dwebp` via `brew install webp`. First run failed with a missing-dylib error (`libtiff.6.dylib` not found) — the bottle didn't declare `libtiff` as a dependency for some reason; `brew install libtiff` fixed it. Verified with a real conversion (Foosball's existing hero PNG) before relying on it for anything.
+   - Settled on a two-step pipeline per derivative: `sips` for any crop/resize, producing an intermediate PNG in the scratchpad (never committed), then `cwebp -q 85` for the final WebP encode into the project folder. Quality 85 chosen for strong fidelity on product/hardware detail while still getting most of WebP's size advantage — verified 78-86% smaller than source PNGs on the first project's files.
+   - Full writeup of this tooling, the exact settings, the 1600px-longest-edge cap rule, the hero-vs-gallery lightbox-target distinction, and the naming conventions added to `website-design.md`'s Pass 3 section — this was the first time Pass 3 was actually run end-to-end (Foosball's hero crop back in Session 14 was a manual one-off predating this workflow entirely), so there was no existing documentation to follow.
+4. **Pass 3 run for Mechanical Pinball Machine (project 1 of 12)**, `projects/mechanical-pinball-machine/`:
+   - Viewed the hero photo (`hero-pinball-mechanical-finished-example-2178x3204.png`, portrait) to choose the 4:3 crop by eye — full width (2178), height 1634 (the max height a 4:3 crop can have at that width), positioned to frame the colorful scoreboard reels plus the upper playfield (ramps, target mechanisms), rather than the lower flipper area — this reads as the single most recognizable "this is a pinball machine" framing at thumbnail size. Previewed the crop before committing to it, same as every prior manual-crop decision this project.
+   - Hero-tile derivative: cropped 2178×1634, then scaled to 1600×1200, encoded to `mechanical-pinball-machine-hero-1600x1200.webp`.
+   - Homepage thumbnail: same crop scaled to 600×450, encoded to `mechanical-pinball-machine-thumb-600x450.webp`.
+   - 6 gallery photos: 4 were already ≤1600px longest edge (`01`-`04`, all portrait ~1243×1536 or 1536×1345 range) — encoded to WebP at native resolution, no resize. 2 exceeded the cap (`05`/`06`, both 2048×1298 landscape) — resized to 1600×1014 via `sips -Z 1600` before encoding, filenames updated to reflect the new dimensions.
+   - Read every generated WebP back with the image-reading tool to visually confirm quality before calling this project done — all sharp, no visible compression artifacts at the sizes checked.
+   - `data/projects.json` thumb updated to `projects/mechanical-pinball-machine/mechanical-pinball-machine-thumb-600x450.webp`, verified the path resolves on disk.
+5. **Stopped per the brief's explicit instruction**: did not run Pass 3 for the other 11 projects, did not write any project page HTML. Flagging the 8 new files for the customer's visual check before continuing.
+6. **Also checked off implementation-plan.md item 3.7 (Foosball Table)**, which had never actually been checked despite being built and locked back under 2C/2D — a stale-checklist correction similar to ones made in prior sessions, not new work.
+
+### Open items carried forward
+- **Visual check needed on Mechanical Pinball Machine's Pass 3 output** before continuing — the explicit gate from this session's brief.
+- **Pass 3 + page builds, remaining 11 projects** — blocked on the above.
+- Crayford Focuser folder/slug mismatch — unresolved, deferred to that page's build
 - Favicon missing — Phase 3 item 3.23, not blocking
 - Git PAT expires ~2027-07-27 — renewal reminder
 - Monitor repo size — revisit GitHub Releases fallback at ~800MB (per-file trigger ~60-80MB, see website-design.md)
