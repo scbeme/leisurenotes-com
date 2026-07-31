@@ -157,7 +157,7 @@ Two different Claude products are used across this project, both on the MacBook 
 - [x] 3.11 Mantel Clock — built Session 18. Content from live page + 13-page instructions PDF (grandparents' cedar story, rotating pedestal design, full Construction Tips).
 - [x] 3.12 Vertical Tool Cart — built Session 18. Content from live page (Adam Savage origin story, design notes, build steps). Its one reader comment (a genuinely useful tip — power strip for charging, paper towel dispenser) folded into Final Thoughts as prose rather than dropped, unlike Foosball's 2 comments (generic praise, confirmed drop Session 09) — see 3.21 below, that item's premise was wrong.
 - [x] 3.13 Bicycle Maintenance Clamp — built Session 18. Content from live page + 6-page instructions PDF (full parts list table with dimensions, construction tips).
-- [ ] 3.14 Cornhole Game Board — Pass 3 done. Page HTML not yet written.
+- [x] 3.14 Cornhole Game Board — built Session 18. No instructions PDF for this project (CAD zip only) — content built from the live WordPress page, using the tool's directly-quoted phrases as the verbatim anchor since two separate fetch attempts both returned lightly-processed summaries rather than pure sentence-by-sentence text.
 - [ ] 3.15 Biplane Wooden Toy — Pass 3 done (no explicit hero, position-1 used). Page HTML not yet written.
 - [ ] 3.16 Baby Doll Carriage — Pass 3 done (no explicit hero, position-1 used). Page HTML not yet written.
 - [ ] 3.17 Fan Powered Toy Car — Pass 3 done. Page HTML not yet written.
