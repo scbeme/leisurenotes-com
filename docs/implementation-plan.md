@@ -166,6 +166,8 @@ Two different Claude products are used across this project, both on the MacBook 
 
 **All 13 project pages are now built. Phase 3's "All 13 Project Pages" checklist is complete.**
 
+**Crayford Focuser folder/slug mismatch — RESOLVED Session 18.** A full site-wide link verification after all pages were built (190 references across all 16 pages, plus a direct slug-to-folder check) found `data/projects.json`'s `slug` for this project was `crayford-focuser-1-25`, not matching the actual `projects/crayford-focuser/` folder — this had been flagged and deferred since Session 15. Now that the page exists, the mismatch would have 404'd the homepage card link. Fixed with a one-line slug edit; re-verified clean.
+
 **Build time / Skill level standing gap (Session 11) — RESOLVED Session 18:** customer supplied final spec values for all 13 projects via a completed specs spreadsheet — see the full table in website-design.md Q10. Values get applied to each page's spec-grid as that page is built.
 
 ### Assets & Polish
