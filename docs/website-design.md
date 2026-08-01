@@ -107,6 +107,17 @@ Order: **hero photo → spec block (monospace) → downloads (prominent, not bur
 - Instructables caps individual file uploads at 25MB — well under some CAD ZIP sizes — so any Instructables post links back to leisurenotes.com for full downloads (a traffic-driver, not a limitation).
 - **Cross-posting to Instructables itself is optional, per-project, decided after the redesign ships** — not a Phase 3 requirement.
 
+**Amendment — Session 19 (2026-08-01):** downloads restructured from multiple per-format buttons/links to **one combined ZIP per project**. Prompted by discovering Crayford Focuser's actual implementation (PDF button + 3 separate inline CAD-format links) had drifted from the original Session 08 punch-list intent of a single combined ZIP — see session-notes.md for the full discovery and resolution.
+
+**New standing rule:**
+- **One ZIP per project** (`<slug>-project-files.zip`), containing, in this priority order, only what's actually available:
+  1. **CAD file** — STEP preferred; SketchUp if no STEP exists; DesignSpark Mechanical (`.rsdoc`) if neither. All 13 existing projects have STEP, so the fallback tiers aren't in use today — kept in the rule for reuse on future projects.
+  2. **Supporting fabrication files** — 3D-print STL(s), laser-cutting files (e.g. `.eps`), or equivalent — whatever else is needed to actually build the part, not just view the design.
+  3. **Instructions PDF**, if one exists.
+- Formats not included (SketchUp/3DM/OBJ originals, superseded/legacy CAD revisions) are archived to that project's `_archive/` folder, not deleted — same convention as the Phase 3 image-archiving workflow.
+- **Scope: applies to the 13 already-built projects only.** Future projects are decided per-project at page-creation time, not automatically under this rule. Customer's stated typical pattern going forward: a MOI3D-authored CAD file (generally exported as STEP) plus whatever supporting 3D-print/laser files that specific build needs — PDF instructions are not planned for future projects.
+- Supersedes the "PDF as primary button + separate CAD-format inline links" pattern built for Crayford Focuser at Phase 3 (session-notes.md Session 18) — that pattern no longer applies anywhere on the site.
+
 ### Q6 — Navigation
 **Simple top nav: Home / About / Contact** — replacing the old WordPress "Projects" mega-dropdown (13 individual project links), confirmed via live fetch of the current site menu. Gap closed by:
 - **Category filter chips** — **Play / Workshop / Home / Tech** (renamed from the original Woodworking/STEM/Astronomy/Tools draft, decided Session 07 — see category/tag model note below) on the homepage grid
