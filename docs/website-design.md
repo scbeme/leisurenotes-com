@@ -18,6 +18,16 @@ Hobbyist makers with some technical fluency — comfortable with tools and CAD f
 - **Convert all site images to WebP.** ~25-40% smaller than PNG/JPEG at equivalent quality, universally supported.
 - **CAD ZIPs and PDFs stay in the repo for now** — not moved to GitHub Releases at this time.
 
+### Static site generator (Jekyll) — evaluated, decided against for now (Session 20)
+Scoped in Session 20 as the presumed next-session priority, then re-evaluated and **declined** the same session after weighing it explicitly against the site owner's stated priorities: minimize admin time and operating expense, at an actual pace of ~1-2 new projects per quarter.
+
+- **Operating expense is $0 either way** — GitHub Pages hosts both a hand-coded static site and a Jekyll build output for free. Hosted website builders (Wix/Squarespace/Webflow) were ruled out separately on cost, plus a poor fit for hosting large downloadable CAD files.
+- **At 1-2 projects/quarter, the math doesn't favor migrating.** Jekyll's estimated admin-time savings (~20-40 min/project) pay back the estimated 10-16 hour migration cost over 2-4 years — a much weaker case than it would be at a faster publishing cadence.
+- **Today's actual Phase 3R bugs (missing gallery photos, inconsistent nav links) were caused by hand-copied pages drifting without a verification step, not by lacking a template engine specifically.** A lighter-weight fix — a template-conformance check script, extending the existing Session 18 link/integrity-checker pattern — targets the real failure mode for a few hours of work instead of a full migration. **Recommended, non-blocking follow-up for a future session:** such a script (verify each project page includes a gallery entry for its hero photo, uses the established relative-link convention, etc.) to catch drift before it reaches customer review next time. Not urgent, not required before deployment.
+- **Self-service editing options explored and ruled out** (Decap CMS, WordPress-style CMS) — none apply given the customer's standing workflow (Claude Code makes all repo edits; the customer doesn't self-edit files), so a CMS's main value proposition doesn't land here.
+
+**Standing decision: keep the current hand-coded static HTML approach.** Revisit Jekyll (or a comparable static site generator) later if the project-adding pace increases significantly (e.g. toward monthly) or the site grows past roughly 25-30 projects — both are natural inflection points already used elsewhere in this document for other scaling decisions (see Q6's secondary-tag-facets deferral, same ~25-30 project threshold).
+
 ### GitHub Releases — documented fallback (not implemented now)
 If repo size approaches the monitoring trigger, move CAD ZIPs/PDFs out of the git-tracked tree into a single ongoing GitHub Release; link project pages to the release asset URLs instead. Confirmed via GitHub docs: release assets don't count toward the Pages 1GB published-size limit, support files up to 2GiB each, no total size or bandwidth cap, served via GitHub's own CDN — no adverse effect on site speed or reliability when adopted. Deferred now because nothing is published yet under the new design, so there's no cost to doing this later instead of now.
 
