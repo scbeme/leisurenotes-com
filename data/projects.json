@@ -3,7 +3,7 @@
     "slug": "foosball-table",
     "title": "Foosball Table",
     "category": "play",
-    "summary": "Furniture-quality foosball table combining a Tornado-style flat playing field with Warrior brand hardware (14mm rods, weighted men, leg levelers), walnut inlays, acrylic playfield surface, and a rattle-board ball return. CAD model included (SKP, STEP, OBJ, 3DM).",
+    "summary": "Furniture-quality foosball table combining a Tornado-style flat playing field with Warrior brand hardware (14mm rods, weighted men, leg levelers), walnut inlays, acrylic playfield surface, and a rattle-board ball return. CAD model included (STEP).",
     "thumb": "projects/foosball-table/foosball-table-thumb-576x432.webp",
     "dateAdded": "2022-01"
   },
@@ -11,7 +11,7 @@
     "slug": "mechanical-pinball-machine",
     "title": "Mechanical Pinball Machine",
     "category": "play",
-    "summary": "Wooden mechanical pinball machine with a functional plunger, flippers, marble-dispensing targets, and a manual wheel scoreboard, sized for 5/8\" balls. CAD model included (STEP, SketchUp, MoI 3dm) plus PDF instructions.",
+    "summary": "Wooden mechanical pinball machine with a functional plunger, flippers, marble-dispensing targets, and a manual wheel scoreboard, sized for 5/8\" balls. CAD model included (STEP) plus PDF instructions.",
     "thumb": "projects/mechanical-pinball-machine/mechanical-pinball-machine-thumb-600x450.webp",
     "dateAdded": "2021-07"
   },
@@ -19,7 +19,7 @@
     "slug": "crayford-focuser-1-25",
     "title": "Crayford Focuser 1\u00bc\u2033",
     "category": "tech",
-    "summary": "3D-printed (PLA) Crayford-style telescope focuser sized for 1\u00bc\" eyepieces on a 10\" Newtonian tube, with smooth drawtube travel and adjustable friction. STL, STEP, and SketchUp CAD files included, plus Prusa print settings and PDF instructions.",
+    "summary": "3D-printed (PLA) Crayford-style telescope focuser sized for 1\u00bc\" eyepieces on a 10\" Newtonian tube, with smooth drawtube travel and adjustable friction. STL and STEP CAD files included, plus Prusa print settings and PDF instructions.",
     "thumb": "projects/crayford-focuser-1-25/crayford-focuser-thumb-281x211.webp",
     "dateAdded": "2021-12"
   },
@@ -35,7 +35,7 @@
     "slug": "mantel-clock",
     "title": "Mantel Clock",
     "category": "home",
-    "summary": "Mantel clock built from Colorado cedar with a Hermle pendulum movement (model 791-681) and a rotating pedestal base for rear-access winding. CAD model included (STEP, SketchUp) plus PDF instructions.",
+    "summary": "Mantel clock built from Colorado cedar with a Hermle pendulum movement (model 791-681) and a rotating pedestal base for rear-access winding. CAD model included (STEP) plus PDF instructions.",
     "thumb": "projects/mantel-clock/mantel-clock-thumb-600x450.webp",
     "dateAdded": "2021-06"
   },
@@ -43,7 +43,7 @@
     "slug": "vertical-tool-cart",
     "title": "Vertical Tool Cart",
     "category": "workshop",
-    "summary": "Rolling vertical tool storage cart (Adam Savage-inspired design) built from baltic birch plywood with PVC-pipe tool holders, electrical-box bins, and 5\" casters. CAD model included (STEP, SketchUp, OBJ).",
+    "summary": "Rolling vertical tool storage cart (Adam Savage-inspired design) built from baltic birch plywood with PVC-pipe tool holders, electrical-box bins, and 5\" casters. CAD model included (STEP).",
     "thumb": "projects/vertical-tool-cart/vertical-tool-cart-thumb-600x450.webp",
     "dateAdded": "2022-01"
   },
@@ -67,7 +67,7 @@
     "slug": "biplane-wooden-toy",
     "title": "Biplane Wooden Toy",
     "category": "play",
-    "summary": "Walnut-and-maple wooden biplane toy with a spinning propeller, built using printed 2D templates traced from 3D CAD files. CAD model included (STEP, SketchUp).",
+    "summary": "Walnut-and-maple wooden biplane toy with a spinning propeller, built using printed 2D templates traced from 3D CAD files. CAD model included (STEP).",
     "thumb": "projects/biplane-wooden-toy/biplane-wooden-toy-thumb-300x225.webp",
     "dateAdded": "2021-06"
   },
@@ -75,7 +75,7 @@
     "slug": "baby-doll-carriage",
     "title": "Baby Doll Carriage",
     "category": "play",
-    "summary": "Baltic birch plywood doll carriage joined with glued dado and tenon joints (no fasteners), sized to fit typical baby dolls. CAD model included (STEP, SketchUp).",
+    "summary": "Baltic birch plywood doll carriage joined with glued dado and tenon joints (no fasteners), sized to fit typical baby dolls. CAD model included (STEP).",
     "thumb": "projects/baby-doll-carriage/baby-doll-carriage-thumb-600x450.webp",
     "dateAdded": "2021-06"
   },
@@ -83,7 +83,7 @@
     "slug": "fan-powered-toy-car",
     "title": "Fan Powered Toy Car",
     "category": "play",
-    "summary": "Foam-board fan-powered toy car built with a DC motor/wheel/fan kit, designed as a hands-on electricity project for kids covering motors, batteries, and switches. CAD model included (SketchUp, STEP).",
+    "summary": "Foam-board fan-powered toy car built with a DC motor/wheel/fan kit, designed as a hands-on electricity project for kids covering motors, batteries, and switches. CAD model included (STEP).",
     "thumb": "projects/fan-powered-toy-car/fan-powered-toy-car-thumb-600x450.webp",
     "dateAdded": "2021-07"
   },
@@ -91,7 +91,7 @@
     "slug": "fidget-spinner",
     "title": "Fidget Spinner",
     "category": "play",
-    "summary": "Compact 3D-printed fidget spinner sized for younger kids, built around a 0.25\" shaft bearing and 3/8-16 hex nuts. CAD model included (3dm, STEP, SketchUp).",
+    "summary": "Compact 3D-printed fidget spinner sized for younger kids, built around a 0.25\" shaft bearing and 3/8-16 hex nuts. CAD model included (STEP), plus STL files for the 3D-printed parts.",
     "thumb": "projects/fidget-spinner/fidget-spinner-thumb-600x450.webp",
     "dateAdded": "2021-12"
   },
