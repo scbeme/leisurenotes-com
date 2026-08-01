@@ -1,5 +1,5 @@
 # Leisurenotes.com — Website Design
-## Status: LOCKED (Phase 2A–2E, all design decisions + homepage + project page template approved) | Started: 2026-07-27 | Last updated: 2026-07-31 | Session: 18
+## Status: LOCKED (Phase 2A–2E, all design decisions + homepage + project page template approved) | Started: 2026-07-27 | Last updated: 2026-08-01 | Session: 20
 
 ---
 
@@ -99,6 +99,8 @@ Clean sans-serif for body/UI (Inter or system-ui stack). Monospace accent (JetBr
 **Reverses the Session 1 scrolling-banner-hero decision.** Research (Notre Dame CTR study via Smashing Magazine/thegood.com) found carousels get ~1% control-click rate, 84% of users view only the first slide, and CTR drops from ~40% (first item) to ~11% (last) — a poor fit for surfacing a 13+ project cross-section to a goal-oriented visitor. Replaced with:
 - Minimal keyword-rich intro headline above the fold, e.g. "Free plans for functional maker builds — CAD files, step-by-step instructions, and downloads for woodworking, STEM, astronomy, and shop tools."
 - Static, filterable/searchable project grid immediately below — all projects visible/scannable at once, tight spacing, consistent thumbnail sizing
+
+**Amendment — Session 20 (2026-08-01):** `.project-grid` shows **2 columns on phones** (below the 640px breakpoint), not 1 — customer requested a quicker visual overview when browsing the homepage on mobile. Tablet (640px+, 2 col) and desktop (1024px+, 4 col) breakpoints unchanged. Card-width sanity check at ~375px viewport: container padding `1.25rem`/side + `1.5rem` gap → `(335 − 24) / 2 ≈ 155.5px` per card — comfortable for a 4:3 thumbnail + title + category label.
 
 ### Q5 — Project page layout
 Order: **hero photo → spec block (monospace) → downloads (prominent, not buried) → full steps/description.**

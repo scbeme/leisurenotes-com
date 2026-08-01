@@ -1,5 +1,5 @@
 # Leisurenotes.com — Implementation Plan
-## Last updated: 2026-08-01 | Session: 19 | Status: Phase 3 complete — Phase 3R next
+## Last updated: 2026-08-01 | Session: 20 | Status: Phase 3R content-complete, deployment sign-off pending — Jekyll conversion decision next
 ## PM: Claude | Customer: Harvey Carson
 
 ---
@@ -185,9 +185,9 @@ Two different Claude products are used across this project, both on the MacBook 
 - [x] 3R.1 Customer reviews complete site (Live Preview) — reviewed via the live GitHub Pages testing URL, found 2 site-wide bugs
 - [x] 3R.2 Consolidated revision list submitted — 2 bugs reported same session (root-absolute nav links broken on the Pages subpath; hero photo missing from gallery on 8 pages)
 - [x] 3R.3 Claude Code implements revisions — both fixed same session: all 16 pages' nav links converted to relative paths (site-title/breadcrumb/footer About), verified live against the actual subpath URL (58 nav links, 0 broken); 8 project pages got a new gallery-position-1 derivative generated from their existing hero photo, matching the other 5 projects' pattern. Re-ran the site-wide link/file-integrity check (299 refs, 0 broken). A residual item (404.html's relative links not reliably routing to root for a trailing-slash 404 path) was found, then resolved same day — see session-notes.md.
-- [ ] 3R.4 Customer re-reviews
-- [ ] 3R.5 Repeat until approved
-- [ ] 3R.6 Site approved for deployment
+- [x] 3R.4 Customer re-reviews — full page-by-page pass across all 16 pages, customer-confirmed complete. All 6 issues found during Phase 3R (combined-download-ZIP restructure, nav/breadcrumb relative-path fix, 8 missing gallery hero photos, 404.html depth bug, iPhone gallery-grid column-count bug, homepage mobile 2-column request) verified fixed on real devices (iPhone 14 Pro, iPad).
+- [x] 3R.5 Repeat until approved — no further revisions raised after the full page pass; content/functional review is complete.
+- [ ] 3R.6 Site approved for deployment — **explicitly NOT yet signed off.** Customer wants to hold formal deployment approval until the Jekyll conversion decision is resolved (see session-notes.md Session 20): the plan is to deploy once to the custom domain from Jekyll's build output, rather than deploy the current hand-coded site now and redeploy again after migrating. Do not proceed toward Phase 4 until the customer gives explicit sign-off here.
 
 ---
 
