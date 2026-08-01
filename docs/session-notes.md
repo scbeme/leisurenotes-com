@@ -756,6 +756,34 @@ The user's first message referenced "the Q5 amendment text" and "the build table
 
 ---
 
+## Session 19 — Phase 3R bug fixes (same-day follow-up)
+
+Customer's Phase 3R review of the live GitHub Pages testing URL surfaced 2 site-wide bugs, fixed the same session as the combined-ZIP work above.
+
+### BUG 1 — root-absolute nav links broken on the GitHub Pages testing subpath
+The site-title logo link, breadcrumb Home/category links, and footer About link used `href="/"`-style root-absolute paths everywhere — correct for the eventual `leisurenotes.com` custom domain, but broken at `https://scbeme.github.io/leisurenotes-com/` (a project subpath), since `href="/"` resolves to the GitHub account root instead of the site. Same class of bug as the Session 06 asset-path fix.
+
+**Fixed:** replaced with relative paths matching each page's depth — `./` on `index.html`/`404.html`, `../` on `about/index.html`, `../../` on all 13 project pages (plus `../../?category=X` for breadcrumb category links and `../../about/` for the footer About link). Confirmed via grep that no `href="/"`, `href="/about/"`, or `href="/?category="` remains anywhere in the repo.
+
+**Live-verified** (not just locally): after push, polled the live GitHub Pages URL until the new commit deployed (~60s), then fetched all 16 pages over the network and resolved each page's site-title/breadcrumb-Home/breadcrumb-category/footer-About link against the live subpath URL — all 58 nav links checked, 0 broken, each correctly lands on the real homepage or About page rather than a GitHub 404.
+
+**404 test — real result, one caveat found:** the custom `404.html` does render correctly (`Page not found`, HTTP 404 status, correct title) when visiting a nonexistent path under the subpath, confirmed both with and without a trailing slash. However, testing revealed a residual limitation of the depth-0 relative-path treatment the brief specified for `404.html`: relative links resolve against whatever fake path is in the browser's address bar, not against 404.html's real file location. For a single-segment path with **no** trailing slash (e.g. `/leisurenotes-com/typo123`), the browser's own URL-resolution rules happen to strip the last segment, so `./` correctly reaches real site root — this is the case tested and confirmed working. But since every real URL on this site uses a **trailing slash** (`/about/`, `/projects/<slug>/`), the realistic 404 case — a stale bookmark or typo'd project slug, e.g. `/projects/foosbal-table/` — leaves `./` resolving to a sibling of the broken path, not the real root, so the "Home"/"About" links on that particular 404 page wouldn't actually rescue the visitor. Not fixed this session since it wasn't part of the specified scope and fixing it robustly needs either a JS-based path-agnostic redirect or hardcoding the eventual production absolute URL on this one page — flagged as an open item below rather than deciding unilaterally.
+
+### BUG 2 — hero photo missing from image gallery on 8 of 13 project pages
+Mechanical Pinball Machine, Cornhole Game Board, Fan Powered Toy Car, Foosball Table, Mantel Clock, Bicycle Maintenance Clamp, Crayford Focuser 1¼″, and Fidget Spinner each had a hero photo cropped for the hero tile that never got its own gallery/lightbox derivative — unlike the other 5 projects (Baby Doll Carriage, Biplane Wooden Toy, Tablesaw Tenon Jig, Vertical Tool Cart, Flag Display Case), which correctly show the hero photo as gallery position 1.
+
+**Fixed:** for each of the 8, generated a capped ~1600px-long-edge WebP derivative from the same hero source photo already used for the hero tile (`sips -Z 1600` only when the source exceeded the cap, `cwebp -q 85` encode — same Pass 3 pipeline and settings documented in `website-design.md`), inserted it as gallery position 1, and renumbered the rest down by one via `git mv` (both the `.webp` and its raw `.png`/`.jpeg` counterpart, to keep each pair's number in sync — matching the established Pass 3 convention). Foosball Table needed no renumbering, since its 34-photo gallery predates the numbered-prefix convention entirely (a plain filename list); the new entry was inserted first without renaming any sibling file. Alt text for each new position-1 entry reuses the wording already on the hero tile's own `<img alt>`, matching how the other 5 projects' position-1 entries are worded.
+
+**Re-verified:** site-wide link/file-integrity script re-run — 299 references across 16 pages (up from 291, exactly the 8 new images), 0 broken; all 13 ZIPs still pass `unzip -t` (unaffected by this change).
+
+### Committed and pushed
+2 commits: (1) nav-link fix for `index.html`/`about/index.html`/`404.html` + the 5 project pages that didn't also need the gallery fix, plus all 8 projects' image renames/new derivatives; (2) nav-link fix + gallery-insert HTML changes for the 8 affected project pages (same files, both fixes). Pushed clean to `origin/main`.
+
+### New open item
+- **404.html's relative-link fix only reliably works for shallow, non-trailing-slash 404 paths** — the realistic case (a trailing-slash 404, matching this site's own URL convention) still strands the visitor, since `./`/`../about/`-style links resolve against the browser's fake address-bar path, not 404.html's real location. Worth a customer decision on whether this is worth a more robust fix (JS redirect, or hardcoding the eventual `https://leisurenotes.com/` absolute URL on just this one page) before Phase 4, or left as-is since 404.html's `Page not found` message plus its own visible text link still gets a visitor unstuck with one extra click regardless.
+
+---
+
 ## Session Close Protocol
 
 ### Every session — Claude does automatically:
