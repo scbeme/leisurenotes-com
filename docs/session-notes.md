@@ -784,6 +784,15 @@ The flagged item above (relative links on `404.html` not reliably reaching root 
 
 **Known, expected, harmless until Phase 4:** until the Phase 4 DNS cutover, `leisurenotes.com` still serves the old WordPress site — so hitting this exact edge case (a broken URL nested under the GitHub Pages testing subpath) before then would land a visitor on the old WordPress site rather than a broken link. This resolves itself automatically at Phase 4 once the domain points at this site; no follow-up action needed.
 
+### Mobile gallery-grid column-count bug — under investigation, not yet resolved
+Customer reported (Phase 3R, iPhone 14 Pro, both Safari and iOS Chrome — same WebKit engine, so not independent confirmation of anything Safari-specific): `.gallery-grid` shows 1 column in portrait and 2 in landscape, instead of the CSS-specified 2 and 4 (`grid-template-columns: repeat(auto-fill, minmax(160px, 1fr))`).
+
+**Attempt 1 (disproven):** hypothesized `.gallery-grid img` grid items were hitting the CSS Grid `min-width: auto` trap — an item's automatic minimum size defaults to its content-based minimum, which for a large WebP image could exceed the 160px track floor and silently collapse the column count. Added `min-width: 0` (and `min-height: 0`) to `.gallery-grid img`. **Confirmed deployed correctly on the live CSS, but did not resolve the customer's reported symptom** — still 1/2 columns, not 2/4. This rules out the intrinsic-content-size hypothesis as the actual cause. The fix itself is harmless (good defensive practice regardless) and was left in place, not reverted.
+
+**Current step — diagnostic, not a fix:** rather than guess again blind, added a temporary on-screen diagnostic to `projects/foosball-table/index.html` only (one page, for testing) — a fixed-position, bright-yellow/red-bordered box in the top-right corner showing `window.innerWidth` and `window.devicePixelRatio`, updating live on resize/orientation change so both orientations can be read from a single page load. This will reveal what the browser actually thinks the viewport width is, which the `minmax(160px, 1fr)` math depends on — if the real number doesn't match the assumed CSS-pixel width (353px portrait / 812px landscape for iPhone 14 Pro), that's the next lead (e.g. a viewport meta tag issue, zoom/scale interaction, or a wrapping-container width constraint upstream of `.gallery-grid` itself that no amount of grid-track tuning would fix).
+
+**Next step:** waiting on the customer to report back the on-screen `innerWidth`/`devicePixelRatio` numbers from their iPhone in both orientations. Once received, remove the diagnostic element in a follow-up commit (whether or not the real fix is known yet) — it does not belong in the shipped site. Do not attempt another blind `.gallery-grid` fix until the real numbers are in hand.
+
 ---
 
 ## Session Close Protocol
