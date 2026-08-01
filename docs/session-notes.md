@@ -779,8 +779,10 @@ Mechanical Pinball Machine, Cornhole Game Board, Fan Powered Toy Car, Foosball T
 ### Committed and pushed
 2 commits: (1) nav-link fix for `index.html`/`about/index.html`/`404.html` + the 5 project pages that didn't also need the gallery fix, plus all 8 projects' image renames/new derivatives; (2) nav-link fix + gallery-insert HTML changes for the 8 affected project pages (same files, both fixes). Pushed clean to `origin/main`.
 
-### New open item
-- **404.html's relative-link fix only reliably works for shallow, non-trailing-slash 404 paths** — the realistic case (a trailing-slash 404, matching this site's own URL convention) still strands the visitor, since `./`/`../about/`-style links resolve against the browser's fake address-bar path, not 404.html's real location. Worth a customer decision on whether this is worth a more robust fix (JS redirect, or hardcoding the eventual `https://leisurenotes.com/` absolute URL on just this one page) before Phase 4, or left as-is since 404.html's `Page not found` message plus its own visible text link still gets a visitor unstuck with one extra click regardless.
+### 404.html residual item — RESOLVED same day
+The flagged item above (relative links on `404.html` not reliably reaching root for a trailing-slash 404 path) was fixed the same day: the 3 internal links on `404.html` only — site-title, the "project list" text link, and the footer About link — changed from relative paths (`./`, `about/`) to hardcoded absolute production URLs (`https://leisurenotes.com/`, `https://leisurenotes.com/about/`). Absolute URLs don't depend on the requesting broken URL's depth at all, so this is immune to the sibling-path problem regardless of how deep the triggering 404 path is. Scoped to `404.html` only — the other 15 pages keep the Session 19 relative-path fix, since GitHub Pages only re-serves `404.html` itself from arbitrary broken-URL depths; every other page is always requested at its own real, correct depth.
+
+**Known, expected, harmless until Phase 4:** until the Phase 4 DNS cutover, `leisurenotes.com` still serves the old WordPress site — so hitting this exact edge case (a broken URL nested under the GitHub Pages testing subpath) before then would land a visitor on the old WordPress site rather than a broken link. This resolves itself automatically at Phase 4 once the domain points at this site; no follow-up action needed.
 
 ---
 
