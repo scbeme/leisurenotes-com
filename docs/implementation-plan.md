@@ -194,9 +194,9 @@ Two different Claude products are used across this project, both on the MacBook 
 ---
 
 ## Phase 4 — Deployment *(Claude Code + minimal GUI)*
-- [ ] 4.1 Push complete site to scbeme/leisurenotes-com
-- [ ] 4.2 Confirm GitHub Pages at scbeme.github.io/leisurenotes-com
-- [ ] 4.3 Test all pages, links, downloads
+- [x] 4.1 Push complete site to scbeme/leisurenotes-com — already live from Phase 3R; this session's `CNAME` commit (see 4.3 note) is the last repo-side push before DNS cutover
+- [x] 4.2 Confirm GitHub Pages at scbeme.github.io/leisurenotes-com — confirmed, all 16 pages return HTTP 200
+- [x] 4.3 Test all pages, links, downloads — re-ran the Session 18/19 link/file-integrity check, this time against the **live URL** instead of local files (332 `src`/`href` refs across 16 pages, all 13 project ZIPs downloaded and `unzip -t`'d). Found and fixed 1 real bug: `flag-display-case/index.html` had 2 body-content links using a root-absolute path, missed by the Session 19 nav-link fix — switched to relative paths, verified live post-deploy. Remaining flag (`404.html`'s `leisurenotes.com` links → 404) is expected/by-design pre-cutover, not a bug — added a `CNAME` file (commit `c9879da`) so it resolves once DNS below is done.
 - [ ] 4.4 **You:** GitHub repo Settings → Pages → Custom domain → leisurenotes.com
 - [ ] 4.5 **You:** Hostinger hPanel → DNS → add 4 GitHub A records:
   - 185.199.108.153
