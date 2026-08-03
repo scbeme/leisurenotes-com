@@ -1,5 +1,5 @@
 # Leisurenotes.com — Implementation Plan
-## Last updated: 2026-08-01 | Session: 20 | Status: Phase 3R COMPLETE, approved for deployment — Phase 4 (custom domain + DNS) next
+## Last updated: 2026-08-03 | Session: 22 | Status: Phase 4 COMPLETE — leisurenotes.com is live
 ## PM: Claude | Customer: Harvey Carson
 
 ---
@@ -197,16 +197,14 @@ Two different Claude products are used across this project, both on the MacBook 
 - [x] 4.1 Push complete site to scbeme/leisurenotes-com — already live from Phase 3R; this session's `CNAME` commit (see 4.3 note) is the last repo-side push before DNS cutover
 - [x] 4.2 Confirm GitHub Pages at scbeme.github.io/leisurenotes-com — confirmed, all 16 pages return HTTP 200
 - [x] 4.3 Test all pages, links, downloads — re-ran the Session 18/19 link/file-integrity check, this time against the **live URL** instead of local files (332 `src`/`href` refs across 16 pages, all 13 project ZIPs downloaded and `unzip -t`'d). Found and fixed 1 real bug: `flag-display-case/index.html` had 2 body-content links using a root-absolute path, missed by the Session 19 nav-link fix — switched to relative paths, verified live post-deploy. Remaining flag (`404.html`'s `leisurenotes.com` links → 404) is expected/by-design pre-cutover, not a bug — added a `CNAME` file (commit `c9879da`) so it resolves once DNS below is done.
-- [ ] 4.4 **You:** GitHub repo Settings → Pages → Custom domain → leisurenotes.com
-- [ ] 4.5 **You:** Hostinger hPanel → DNS → add 4 GitHub A records:
-  - 185.199.108.153
-  - 185.199.109.153
-  - 185.199.110.153
-  - 185.199.111.153
-- [ ] 4.6 **You:** Hostinger hPanel → DNS → CNAME: www → scbeme.github.io
-- [ ] 4.7 Wait DNS propagation (typically 1–2 hrs, up to 24 hrs)
-- [ ] 4.8 **You:** GitHub Pages → Enable Enforce HTTPS
-- [ ] 4.9 Verify leisurenotes.com loads correctly
+- [x] 4.4 **You:** GitHub repo Settings → Pages → Custom domain → leisurenotes.com — auto-populated from the `CNAME` file pushed Session 21; DNS check passed same day
+- [x] 4.5 **You:** Hostinger hPanel → DNS → add 4 GitHub A records — edited the existing apex A record (was `195.35.15.157`, old Hostinger/WordPress server) to the first GitHub Pages IP, added 3 more so all four are present: `185.199.108.153`, `.109.153`, `.110.153`, `.111.153` (TTL 1800)
+- [x] 4.6 **You:** Hostinger hPanel → DNS → CNAME: www → scbeme.github.io — edited existing `www` CNAME from `leisurenotes.com` to `scbeme.github.io` (TTL 1800)
+- [x] 4.7 Wait DNS propagation — completed within the session
+- [x] 4.8 **You:** GitHub Pages → Enable Enforce HTTPS — stuck "unavailable" for several hours; root cause was a leftover apex AAAA record (`2a02:4780:b:1320:0:386f:8c3c:2`, old Hostinger IPv6, no GitHub equivalent) blocking GitHub's cert issuance. Deleted the AAAA record, removed and re-added the custom domain field in GitHub Settings to force a fresh cert request, waited ~30-45 min, Enforce HTTPS became available and was checked
+- [x] 4.9 Verify leisurenotes.com loads correctly — customer confirmed `https://leisurenotes.com` loads with no warnings and a project download link works; Claude Code independently re-ran the full site-wide link/file-integrity check against the production domain (332 `src`/`href` refs, 16 pages, 0 broken — including the two `404.html` links that were expected-broken pre-cutover, now resolving correctly) and re-verified all 13 project ZIPs (`unzip -t` clean, byte-identical sizes to Session 21)
+
+**Phase 4 is complete. leisurenotes.com is live.**
 
 ---
 
